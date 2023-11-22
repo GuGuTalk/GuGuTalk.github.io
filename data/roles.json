@@ -1,0 +1,114 @@
+[
+  {
+    "id": 1,
+    "roleName": "米雪儿",
+    "description": null,
+    "belong": "欧泊",
+    "imgURl": "mxr",
+    "belongsImgURL": "op"
+  },
+  {
+    "id": 2,
+    "roleName": "心夏",
+    "description": null,
+    "belong": "欧泊",
+    "imgURl": "xx",
+    "belongsImgURL": "op"
+  },
+  {
+    "id": 3,
+    "roleName": "伊薇特",
+    "description": null,
+    "belong": "欧泊",
+    "imgURl": "ywt",
+    "belongsImgURL": "op"
+  },
+  {
+    "id": 4,
+    "roleName": "信",
+    "description": null,
+    "belong": "欧泊",
+    "imgURl": "xin",
+    "belongsImgURL": "op"
+  },
+  {
+    "id": 5,
+    "roleName": "明",
+    "description": null,
+    "belong": "剪刀手",
+    "imgURl": "ming",
+    "belongsImgURL": "jds"
+  },
+  {
+    "id": 6,
+    "roleName": "拉薇",
+    "description": null,
+    "belong": "剪刀手",
+    "imgURl": "lw",
+    "belongsImgURL": "jds"
+  },
+  {
+    "id": 7,
+    "roleName": "令",
+    "description": null,
+    "belong": "剪刀手",
+    "imgURl": "ling",
+    "belongsImgURL": "jds"
+  },
+  {
+    "id": 8,
+    "roleName": "香奈美",
+    "description": null,
+    "belong": "剪刀手",
+    "imgURl": "xnm",
+    "belongsImgURL": "jds"
+  },
+  {
+    "id": 9,
+    "roleName": "梅瑞狄斯",
+    "description": null,
+    "belong": "剪刀手",
+    "imgURl": "mrds",
+    "belongsImgURL": "jds"
+  },
+  {
+    "id": 10,
+    "roleName": "星绘",
+    "description": null,
+    "belong": "乌尔比诺",
+    "imgURl": "xh",
+    "belongsImgURL": "webn"
+  },
+  {
+    "id": 11,
+    "roleName": "奥黛丽",
+    "description": null,
+    "belong": "乌尔比诺",
+    "imgURl": "adl",
+    "belongsImgURL": "webn"
+  },
+  {
+    "id": 12,
+    "roleName": "白墨",
+    "description": null,
+    "belong": "乌尔比诺",
+    "imgURl": "bm",
+    "belongsImgURL": "webn"
+  },
+  {
+    "id": 13,
+    "roleName": "玛德蕾娜",
+    "description": null,
+    "belong": "乌尔比诺",
+    "imgURl": "mdln",
+    "belongsImgURL": "webn"
+  },
+  {
+    "id": 14,
+    "roleName": "绯莎",
+    "description": null,
+    "belong": "乌尔比诺",
+    "imgURl": "fs",
+    "belongsImgURL": "webn"
+  }
+]

@@ -1,0 +1,479 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.htmlName,.notice {
+
+    margin-left: 2rem;
+
+    line-height: 2.5rem;
+
+    font-size: 2rem;
+
+    color: rgb(255, 255, 255);
+
+    font-family: emoji;
+}
+.backImg {
+    height: 100%;
+    overflow: auto;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(http://localhost:8088/wwwroot/Images/hexa_back_01.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body {
+    height: 100%;
+    width: 1500px;
+    transform: translate(13%, 0%);
+}
+
+.top {
+    background-color: rgb(139, 187, 233);
+    width: auto;
+    height: 6%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.left {
+    background-color: rgb(76, 91, 111);
+    height: 100%;
+    width: 5%;
+}
+
+.left .content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.left .content .xx img {
+    max-width: 100%;
+    height: auto;
+}
+
+.left .content .xx {
+    border-bottom: 1px black solid;
+    height: 40%;
+}
+
+.center {
+    background-color: rgb(243, 247, 248);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    width: 50%;
+    /* padding: 0 20px; */
+}
+
+.center .xq {
+    display: flex;
+    height: 75px;
+    padding: 0 20px;
+    padding: 5px 0;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.qx {
+    background-color: rgb(202, 215, 221);
+}
+
+.right {
+    background-color: rgb(207, 207, 206);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 51%;
+    justify-content: flex-end;
+    align-items: baseline;
+    /* overflow-y: auto; */
+    /* overflow-x: hidden; */
+}
+
+.bottom1 {
+    background-color: rgb(76, 91, 111);
+    height: 5%;
+    display: flex;
+    justify-content: flex-start;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.right .bottom {
+    height: auto;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    background-color: burlywood;
+}
+
+.bimg {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+input.el-input__inner {
+    font-size: 20px;
+}
+
+.send {
+    border: 0;
+    background-color: burlywood;
+    /* position: relative; */
+    /* left: 12px; */
+    cursor: pointer;
+}
+
+.save {
+    border: 0;
+    background-color: rgb(255, 228, 196);
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+.bg {
+    display: inline-block;
+    width: 0px;
+    height: 0px;
+    border-top: 10px solid transparent;
+    border-right: 10px solid rgb(76, 91, 111);
+    border-bottom: 10px solid transparent;
+    position: relative;
+    top: -51px;
+    left: 83px;
+}
+
+.topBox {
+    padding: 5px 10px;
+    width: auto;
+    /* margin-left: auto; */
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    justify-content: flex-end;
+}
+
+.topDelete {
+    display: inline;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.5rem;
+    margin-left: 1rem;
+    width: 7.5rem;
+    height: 2.5rem;
+    line-height: 1.5rem;
+    border: none;
+    transform: skew(0deg);
+    cursor: pointer;
+    margin-right: 20px;
+    background-color: white;
+    border: 0.2px solid rgb(230, 233, 235);
+    box-shadow: rgb(207, 212, 215) 0.05rem 0.1rem 0.2rem;
+    border-radius: 5px;
+}
+
+.topDeleteSpan {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: rgb(63, 68, 74);
+}
+
+.roleOverall {
+    display: flex;
+    margin-top: 20px;
+}
+
+.rightRoleOverall {
+    flex-direction: row-reverse;
+}
+
+.divImg {
+    padding: 0 10px;
+    padding-right: 0;
+}
+
+.roleImg {
+    width: 64px;
+    height: 64px;
+    border-radius: 50px;
+}
+
+.roleNameSpan {
+    height: 1.8rem;
+    line-height: 1.5rem;
+    margin-bottom: 10px;
+    margin-left: 17px;
+    font-family: bold;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.roleRemarkDiv {
+    display: flex;
+}
+
+.horn {
+    left: -0.5rem;
+    top: 0.6rem;
+    border-top: 0.3rem solid transparent;
+    border-right: 0.5rem solid rgb(76, 91, 111);
+    border-bottom: 0.3rem solid transparent;
+    width: 0;
+    height: 0;
+    margin-top: 10px;
+}
+
+.Righthorn {
+    left: -0.5rem;
+    top: 0.6rem;
+    border-top: 0.3rem solid transparent;
+    border-left: 0.5rem solid rgb(74, 138, 202);
+    border-bottom: 0.3rem solid transparent;
+    width: 0;
+    height: 0;
+    margin-top: 10px;
+    margin-right: 13px;
+}
+
+.roleRemarkDiv2 {
+    border-radius: 10px;
+    background: rgb(76, 91, 111);
+    border: 1px solid rgb(76, 91, 111);
+}
+
+/* ////////////////////////////////////////////// */
+.roleRemarkDiv {
+    max-width: 560px;
+    padding: 10px;
+    /* position: relative; */
+    left: -5px;
+}
+
+.roleRemarkDiv3 {
+    border-radius: 10px;
+    background: rgb(74, 138, 202);
+    border: 1px solid rgb(74, 138, 202);
+}
+
+.roleRemarkDivSpan {
+    color: white;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    font-size: 18px;
+    font-family: none;
+    /* display: inline-block; */
+}
+
+#box {
+    background-color: rgb(207, 207, 206);
+    overflow: auto;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.rightImg {
+    padding: 5px;
+    border-radius: 5px;
+    max-width: 90%;
+}
+
+.rightImg1 {
+    background-color: rgb(74, 138, 202);
+}
+
+.rightImg2 {
+
+    background-color: rgb(76, 91, 111);
+}
+
+.centerRoleArraybtn {
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    overflow-y: hidden;
+}
+
+.centerRoleArraybtn img {
+    background-color: rgb(243, 247, 248);
+    border-radius: 50px;
+    margin: 10px 0 10px 10px;
+}
+
+.imgb {
+    width: 64px;
+    height: 64px;
+    filter: brightness(50%);
+}
+
+.conImg:hover {
+    filter: brightness(100%);
+}
+
+.bottomImgs {
+    display: flex;
+    flex-direction: row;
+}
+
+.bottomImgs img {
+    /* width: 45px; */
+    /* height: 45px; */
+    margin: 0 10px 0 0;
+    border-radius: 50px;
+    background-color: white;
+}
+
+.imgd {
+    border: 2px solid yellow;
+}
+
+.pangbaiDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 20px 0 0 25px;
+    /* padding: 20px; */
+    /* width: 610px; */
+}
+
+.pangbaiSpan {
+    display: flex;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    font-size: 18px;
+    /* font-family: none; */
+    flex-direction: row;
+    text-align: center;
+    color: rgb(69, 78, 89);
+    font-family: medium;
+}
+
+/* #txt {
+    width: 530px;
+    height: auto;
+    word-break: break-all;
+    overflow: hidden;
+    height: 30px;
+    font-size: 15px;
+    line-height: 20px;
+    font-family: medium;
+} */
+#text {
+    word-break: break-all;
+    overflow: hidden;
+    resize: none;
+    height: 24px;
+    display: block;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    width: 516px;
+
+    font-size: 15px;
+
+
+    line-height: 24px;
+
+    padding: 2px;
+}
+
+
+.txtDiv {}
+
+.sdad {
+    border-radius: 50px;
+    margin-left: 10px;
+}
+
+.dsfds {
+    display: flex;
+
+}
+
+.overall {
+    display: flex;
+}
+
+.sonbsc {
+    border-bottom: 1px solid rgb(230, 229, 229);
+
+}
+
+.nopkmp {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    bottom: 58px;
+    width: 100%;
+}
+
+.bimgcs {
+
+    margin-left: 5px;
+}
+
+.pangbaiDiv,
+.roleOverall:last-child {
+    margin-bottom: 10px;
+}
+
+.roleOverall:first-child {
+    margin-top: 30px;
+}
+
+.xq:hover {
+    background-color: rgb(218, 228, 233);
+}
+
+.bj {
+    width: 62px;
+    height: 62px;
+    border: 1px solid red;
+}
+
+.zz {
+    filter: brightness(50%);
+}
+
+.roleName {
+    margin-left: 20px;
+    font-size: 2rem;
+    color: rgb(69, 75, 84);
+    font-weight: bolder;
+}
+
+.wwww {
+
+    display: flex;
+
+    align-items: center;
+}
+
+.ddddddddddd {
+    height: 100%;
+}
+
+.bxhjc {
+    display: flex;
+    height: 100%;
+    width: 4.7%;
+    /* background-color: red; */
+}
