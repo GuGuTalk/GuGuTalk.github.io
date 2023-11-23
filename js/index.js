@@ -125,13 +125,13 @@ $(document).ready(function () {
                 }
             }
         });
-		var roleImgs;
+		
         roleArray.forEach(item => {
 			
             if (item.avatarArray == '' && item.id == id) {
                 $.getJSON("data/images.json",function (data) {
                     if (!$.isEmptyObject(data)) {
-						
+						var roleImgs=new Array[];
                         data.forEach(item => {
 							if(item.roleId==id){
 								item.path = 'roleImages/' + item.imagePath + '.png';
