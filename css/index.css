@@ -103,7 +103,7 @@ body {
     background-color: rgb(76, 91, 111);
     height: 5%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
@@ -292,7 +292,7 @@ input.el-input__inner {
     border-radius: 5px;
     max-width: 90%;
 }
-.rightImg {
+.rightImgExpression {
     border-radius: 5px;
     max-width: 90%;
 }
@@ -349,7 +349,7 @@ input.el-input__inner {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin: 20px 0 0 25px;
+    margin: 20px 20px;
     /* padding: 20px; */
     /* width: 610px; */
 }
@@ -383,14 +383,19 @@ input.el-input__inner {
     resize: none;
     height: 24px;
     display: block;
+
     margin: 0 auto;
+
     overflow: hidden;
+
     width: 516px;
+
     font-size: 15px;
+
+
     line-height: 24px;
+
     padding: 2px;
-    font-weight: 600;
-    font-family: emoji;
 }
 
 
@@ -430,7 +435,7 @@ input.el-input__inner {
 
 .pangbaiDiv,
 .roleOverall:last-child {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .roleOverall:first-child {

@@ -125,15 +125,16 @@ $(document).ready(function () {
                 }
             }
         });
+		var roleImgs;
         roleArray.forEach(item => {
-			var roleImgs;
+			
             if (item.avatarArray == '' && item.id == id) {
                 $.getJSON("data/images.json",function (data) {
                     if (!$.isEmptyObject(data)) {
 						
                         data.forEach(item => {
-							if(item.roleid==id){
-								item.path = 'roleImages/' + item.path + '.png';
+							if(item.roleId==id){
+								item.path = 'roleImages/' + item.imagePath + '.png';
 								item.choose = false;
 								roleImgs.push(item);
 							}
