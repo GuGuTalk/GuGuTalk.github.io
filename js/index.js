@@ -142,7 +142,7 @@ $(document).ready(function () {
                         roleArray.forEach(item => {
                             if (item.id == id) {
                                 var a = new Object();
-                                a.avatarList = roleImgs.reverse();
+                                a.avatarList = roleImgs;
                                 item.avatarArray = a;
                             }
                         });
