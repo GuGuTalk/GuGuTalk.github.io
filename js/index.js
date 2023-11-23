@@ -131,7 +131,7 @@ $(document).ready(function () {
             if (item.avatarArray == '' && item.id == id) {
                 $.getJSON("data/images.json",function (data) {
                     if (!$.isEmptyObject(data)) {
-						var roleImgs=new Array[];
+						var roleImgs=new Array();
                         data.forEach(item => {
 							if(item.roleId==id){
 								item.path = 'roleImages/' + item.imagePath + '.png';
