@@ -273,6 +273,36 @@ $(document).ready(function () {
         jq.click();
 
     })
+	//发送表情
+    $("#imgExpression").click(function () {
+        var avatars = $("img[class*='imgd']");
+        console.log("avatars", avatars.length);
+        if (avatars.length <= 0) {
+            value = 9999;
+        } else {
+            value = chooseAvatar.roleId
+        }
+        var link = document.createElement("input");
+        var jq = $(link);
+        jq.attr({ "type": "file", "accept": "image/*" });
+        jq.on("change", function () {
+            console.log("图片上传", $(this));
+            var imgP = $(this);
+            var imgObj = imgP[0].files[0];
+            var url = getInputURL(imgObj);
+            var newTalk = '';
+            if (value == 9999) {
+                newTalk = "<div class='roleOverall rightRoleOverall'><div class='Righthorn'></div><img src='" + url + "' alt='' srcset='' class='rightImgExpression'></div>";
+                console.log(url);
+            } else {
+                newTalk = "<div class='roleOverall'><div class='divImg'><img src='" + chooseAvatar.path + "' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>" + chooseAvatar.name + "</span><div class='roleRemarkDiv'><img src='" + url + "' alt='' srcset='' class='rightImgExpression'></div></div></div>";
+            }
+            $("#box").append(newTalk);
+            ToBtm();
+            console.log("图片所在",);
+        })
+        jq.click();
+    })
     //获取图片地址
     function getInputURL(file) {
         var url = null;

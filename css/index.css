@@ -103,7 +103,7 @@ body {
     background-color: rgb(76, 91, 111);
     height: 5%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
@@ -292,7 +292,10 @@ input.el-input__inner {
     border-radius: 5px;
     max-width: 90%;
 }
-
+.rightImg {
+    border-radius: 5px;
+    max-width: 90%;
+}
 .rightImg1 {
     background-color: rgb(74, 138, 202);
 }
@@ -380,19 +383,14 @@ input.el-input__inner {
     resize: none;
     height: 24px;
     display: block;
-
     margin: 0 auto;
-
     overflow: hidden;
-
     width: 516px;
-
     font-size: 15px;
-
-
     line-height: 24px;
-
     padding: 2px;
+    font-weight: 600;
+    font-family: emoji;
 }
 
 
@@ -432,7 +430,7 @@ input.el-input__inner {
 
 .pangbaiDiv,
 .roleOverall:last-child {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .roleOverall:first-child {
