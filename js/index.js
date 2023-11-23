@@ -149,8 +149,8 @@ $(document).ready(function () {
                         });
                         //插入头像列表
                         $(".center").children().eq(index).append("<div class='centerRoleArraybtn'></div>")
-                        for (let indexs = 0; indexs < data.length; indexs++) {
-                            $(".center").children().eq(index).children().last("div").append("<img class='conImg imgb' data-imgid='" + data[indexs].id + "'  data-roleId='" + data[indexs].roleId + "' data-open='" + data[indexs].choose + "' data-index='" + indexs + "' title='" + data[indexs].description + "' src='" + data[indexs].path + "' crossOrigin='anonymous' alt='' srcset=''>");
+                        for (let indexs = 0; indexs < roleImgs.length; indexs++) {
+                            $(".center").children().eq(index).children().last("div").append("<img class='conImg imgb' data-imgid='" + roleImgs[indexs].id + "'  data-roleId='" + roleImgs[indexs].roleId + "' data-open='" + roleImgs[indexs].choose + "' data-index='" + indexs + "' src='" + roleImgs[indexs].path + "' crossOrigin='anonymous' alt='' srcset=''>");
                             $(".center").children().eq(index).children().last("div").children().eq(indexs).click(function () {
                                 $(this).toggleClass("imgb bj");
                                 if ($(this).parent().children().is(".bj")) {
@@ -177,7 +177,6 @@ $(document).ready(function () {
             var newObj = {
                 roleId: $(avatars[i]).data("roleid"),
                 imgId: $(avatars[i]).data("imgid"),
-                imgDescription: $(avatars[i]).attr("title"),
                 imgPath: $(avatars[i]).attr("src"),
                 index: $()
             }
@@ -189,7 +188,7 @@ $(document).ready(function () {
     function btnAvatars() {
         var txt = '';
         roleImgArray.forEach(item => {
-            txt = txt + "<img class='conAvataar zz' data-roleid='" + item.roleId + "' data-imgId='" + item.imgId + "' src='" + item.imgPath + "' title='" + item.imgDescription + "' srcset=''>";
+            txt = txt + "<img class='conAvataar zz' data-roleid='" + item.roleId + "' data-imgId='" + item.imgId + "' src='" + item.imgPath + "' srcset=''>";
         });
         $(".bottomImgs").html(txt);
         $(".conAvataar").on("click", this, function () {
