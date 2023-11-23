@@ -126,18 +126,23 @@ $(document).ready(function () {
             }
         });
         roleArray.forEach(item => {
+			var roleImgs;
             if (item.avatarArray == '' && item.id == id) {
-                $.getJSON("data/roles.json",function (data) {
+                $.getJSON("data/images.json",function (data) {
                     if (!$.isEmptyObject(data)) {
+						
                         data.forEach(item => {
-                            item.path = 'roleImages/' + item.path + '.png';
-                            item.choose = false;
+							if(item.roleid==id){
+								item.path = 'roleImages/' + item.path + '.png';
+								item.choose = false;
+								roleImgs.push(item);
+							}
                         });
                         //角色头像加入角色数组
                         roleArray.forEach(item => {
                             if (item.id == id) {
                                 var a = new Object();
-                                a.avatarList = data;
+                                a.avatarList = roleImgs.reverse();
                                 item.avatarArray = a;
                             }
                         });
