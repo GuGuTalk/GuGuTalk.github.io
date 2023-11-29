@@ -3,7 +3,12 @@
     margin: 0;
 }
 
-.htmlName,.notice {
+[contenteditable] {
+    outline: 0px solid transparent;
+}
+
+.htmlName,
+.notice {
 
     margin-left: 2rem;
 
@@ -15,6 +20,11 @@
 
     font-family: emoji;
 }
+
+.stringLength {
+    color: green;
+}
+
 .backImg {
     height: 100%;
     overflow: auto;
@@ -38,7 +48,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
 }
 
 .left {
@@ -106,6 +116,7 @@ body {
     justify-content: flex-start;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    flex-direction: row;
 }
 
 .right .bottom {
@@ -292,10 +303,20 @@ input.el-input__inner {
     border-radius: 5px;
     max-width: 90%;
 }
+
 .rightImgExpression {
     border-radius: 5px;
     max-width: 90%;
 }
+
+.udiohsfnds {
+    margin-right: 25px;
+}
+
+.sioahdnaoi {
+    margin-left: 20px;
+}
+
 .rightImg1 {
     background-color: rgb(74, 138, 202);
 }
