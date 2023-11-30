@@ -7,6 +7,12 @@
     outline: 0px solid transparent;
 }
 
+a,
+a:link {
+    text-decoration: none;
+    color: black;
+}
+
 .htmlName,
 .notice {
 
@@ -28,7 +34,7 @@
 .backImg {
     height: 100%;
     overflow: auto;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(http://localhost:8088/wwwroot/Images/hexa_back_01.webp);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(/images/hexa_back_01.webp);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -61,6 +67,8 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
+    flex-wrap: nowrap;
+    align-items: center;
 }
 
 .left .content .xx img {
@@ -123,15 +131,12 @@ body {
     height: auto;
     align-items: center;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     background-color: burlywood;
 }
 
 .bimg {
     display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -404,18 +409,11 @@ input.el-input__inner {
     resize: none;
     height: 24px;
     display: block;
-
     margin: 0 auto;
-
     overflow: hidden;
-
-    width: 516px;
-
+    width: 550px;
     font-size: 15px;
-
-
     line-height: 24px;
-
     padding: 2px;
 }
 
@@ -500,4 +498,98 @@ input.el-input__inner {
     height: 100%;
     width: 4.7%;
     /* background-color: red; */
+}
+
+.abc {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.abc div {
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    font-weight: 600;
+    font-family: auto;
+}
+
+.abc div:hover {
+    position: relative;
+    bottom: 3px;
+}
+
+.abc span {
+    color: white;
+    font-size: 0.9rem;
+}
+.Gallery{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 570px;
+    width: 480px;
+    border-radius: 0.9rem;
+    background-color: rgb(255,255,255);
+    margin-left:-240px;/*宽度的一半*/
+    margin-top:-285px;/*高度的一半*/
+}
+.n{
+    display: none;
+}
+.GalleryTop{
+    display: flex;
+    height: 10%;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    background-image: url(/images/Popup_Img_Deco_0.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-position: -2rem -2rem; */
+}
+.GalleryTop div{
+    color: rgb(45,70,100);
+    font-size: 1.7rem;
+    font-weight: bold;
+    font-family: emoji;
+    margin-right: 7rem;
+}
+.gb{
+    width: 75%;
+}
+.gb:hover{
+    position: relative;
+    bottom: 3px;
+}
+.GalleryContent{
+    background-color: antiquewhite;
+    height: 90%;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(/images/hexa_back_01.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom-left-radius: 0.9rem;
+    border-bottom-right-radius: 0.9rem;
+}
+.imgContent{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: auto;
+    overflow-x: hidden;
+    justify-content: space-between;
+    align-content: flex-start;
+}
+.hgfhdft{
+    width: 9rem;
+    height: 9rem;
+}
+.oneImg:first-of-type{
+    margin-right: 10px;
 }

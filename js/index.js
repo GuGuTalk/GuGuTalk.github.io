@@ -21,7 +21,7 @@ $(document).ready(function () {
         if (e.keyCode == 36) {
             chooseAvatar = '';
         }
-        if (e.keyCode == 33) {
+        if (e.ctrlKey && e.which == 13) {
             aside();
         }
 
@@ -36,6 +36,10 @@ $(document).ready(function () {
         var keyCode = event.keyCode ? event.keyCode : (event.which ? event.which : event.charCode);
         if (event.shiftKey && event.keyCode == 13) { //ctrl+enter换行
             $(this).css("height", $(this).css("height") + 24)// 获取textarea数据进行 换行
+        } else if (event.ctrlKey && event.keyCode == 13) {
+            //发送旁白
+            aside();
+            event.preventDefault();//禁止回车的默认换行
         } else if (keyCode == 13) { //enter发送
             wirte();
             event.preventDefault();//禁止回车的默认换行
@@ -100,7 +104,7 @@ $(document).ready(function () {
             json.index = cen;
             json.type = 'aside';
             json.content = text;
-            
+
             boxJson(json);
             cen++;
             $("#box").append(newTalk);
@@ -146,9 +150,9 @@ $(document).ready(function () {
             switch (item.type) {
                 case 'Expression':
                     if (item.roleId == 9999) {
-                        newTalk = "<div class='roleOverall rightRoleOverall statistics' data-index=" + item.index + "><img  src='" + dataURItoBlob(item.content) + "' alt='' srcset='' class='rightImgExpression udiohsfnds'></div>";
+                        newTalk = "<div class='roleOverall rightRoleOverall statistics' data-index=" + item.index + "><img  src='" + item.content + "' alt='' srcset='' class='rightImgExpression udiohsfnds'></div>";
                     } else {
-                        newTalk = "<div class='roleOverall statistics' data-index=" + item.index + "><div class='divImg'><img src='" + item.path + "' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>" + item.name + "</span><div class='roleRemarkDiv'><img  src='" + dataURItoBlob(item.content) + "' alt='' srcset='' class='rightImgExpression sioahdnaoi'></div></div></div>";
+                        newTalk = "<div class='roleOverall statistics' data-index=" + item.index + "><div class='divImg'><img src='" + item.path + "' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>" + item.name + "</span><div class='roleRemarkDiv'><img  src='" + item.content + "' alt='' srcset='' class='rightImgExpression sioahdnaoi'></div></div></div>";
                     }
                     html = html + newTalk;
                     break;
@@ -191,8 +195,8 @@ $(document).ready(function () {
         $.getJSON("data/roles.json",
             function (data) {
                 data.forEach(item => {
-                    item.imgURl = 'roleImages/' + item.imgURl + '.png';
-                    item.belongsImgURL = 'roleImages/' + item.belongsImgURL + '.webp';
+                    item.imgURl = 'images/roleImages/' + item.imgURl + '.png';
+                    item.belongsImgURL = 'images/roleImages/' + item.belongsImgURL + '.webp';
                     item.open = false;
                     item.avatarArray = '';
                 });
@@ -207,10 +211,59 @@ $(document).ready(function () {
                 }
             }
         );
+        ExpressionInit();
         getLength();
         if (localStorage.getItem('boxJson') != null && localStorage.getItem('boxJson') != '') {
             loadBoxData();
         }
+    }
+    //初始化表情包
+    function ExpressionInit() {
+        $.getJSON("data/Expression.json",
+            function (data) {
+                data.forEach(element => {
+                    element.expressionName = 'images/Expression/' + element.expressionName + '.png';
+                });
+                for (let i = 0; i < data.length; i++) {
+                    $('.imgContent').append("<img src='" + data[i].expressionName + "' alt='' srcset='' class='hgfhdft'>");
+                    $('.imgContent').children().eq(i).click(function () {
+                        ExpressionSend($(this));
+                    });
+                }
+            }
+        )
+    }
+    //表情包点击发送
+    function ExpressionSend(e) {
+        var avatars = $("img[class*='imgd']");
+        if (avatars.length <= 0) {
+            value = 9999;
+        } else {
+            value = chooseAvatar.roleId
+        }
+        var json = new Object();
+        json.index = cen;
+        json.type = "Expression"
+        var imgObj = e.attr('src');
+        var newTalk = '';
+        if (value == 9999) {
+            json.roleId = 9999;
+            json.content = imgObj;
+            boxJson(json);
+            newTalk = "<div class='roleOverall rightRoleOverall statistics' data-index=" + cen + "><img  src='" + imgObj + "' alt='' srcset='' class='rightImgExpression udiohsfnds'></div>";
+        } else {
+            json.roleId = chooseAvatar.roleId,
+                json.imgId = chooseAvatar.imgId,
+                json.path = chooseAvatar.path,
+                json.name = chooseAvatar.name,
+                json.content = imgObj;
+            boxJson(json);
+            newTalk = "<div data-index=" + cen + " class='roleOverall statistics'><div class='divImg'><img src='" + chooseAvatar.path + "' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>" + chooseAvatar.name + "</span><div class='roleRemarkDiv'><img  src='" + imgObj + "' alt='' srcset='' class='rightImgExpression sioahdnaoi'></div></div></div>";
+        }
+        $("#box").append(newTalk);
+        cen++;
+        closeExpression()
+        ToBtm();
     }
     //动态添加点击事件
     function roleArrayClick(id, index, e) {
@@ -235,7 +288,7 @@ $(document).ready(function () {
                         var roleImgs = new Array();
                         data.forEach(item => {
                             if (item.roleId == id) {
-                                item.path = 'roleImages/' + item.imagePath + '.png';
+                                item.path = 'images/roleImages/' + item.imagePath + '.png';
                                 item.choose = false;
                                 roleImgs.push(item);
                             }
@@ -405,51 +458,18 @@ $(document).ready(function () {
         })
         jq.click();
     })
-    //发送表情
+    //打开表情包
     $("#imgExpression").click(function () {
-        var avatars = $("img[class*='imgd']");
-        if (avatars.length <= 0) {
-            value = 9999;
-        } else {
-            value = chooseAvatar.roleId
-        }
-        var link = document.createElement("input");
-        var jq = $(link);
-        jq.attr({ "type": "file", "accept": "image/*" });
-        jq.on("change", function () {
-            var json = new Object();
-            var reader = new FileReader();
-            json.index = cen;
-            json.type = "Expression"
-            var imgP = $(this);
-            var imgObj = imgP[0].files[0];
-            reader.readAsDataURL(imgObj);
-            var url = getInputURL(imgObj);
-            var newTalk = '';
-            if (value == 9999) {
-                json.roleId = 9999;
-                reader.onload = function () {
-                    json.content = reader.result;
-                    boxJson(json);
-                };
-                newTalk = "<div class='roleOverall rightRoleOverall statistics' data-index=" + cen + "><img  src='" + url + "' alt='' srcset='' class='rightImgExpression udiohsfnds'></div>";
-            } else {
-                json.roleId = chooseAvatar.roleId,
-                    json.imgId = chooseAvatar.imgId,
-                    json.path = chooseAvatar.path,
-                    json.name = chooseAvatar.name,
-                    reader.onload = function () {
-                        json.content = reader.result;
-                        boxJson(json);
-                    };
-                newTalk = "<div data-index=" + cen + " class='roleOverall statistics'><div class='divImg'><img src='" + chooseAvatar.path + "' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>" + chooseAvatar.name + "</span><div class='roleRemarkDiv'><img  src='" + url + "' alt='' srcset='' class='rightImgExpression sioahdnaoi'></div></div></div>";
-            }
-            $("#box").append(newTalk);
-            cen++;
-        })
-        jq.click();
-        ToBtm();
+        $('.Gallery').removeClass('n');
     })
+
+    $('.gb').click(function () {
+        closeExpression();
+    })
+    //关闭表情包
+    function closeExpression() {
+        $(".Gallery").addClass('n');
+    }
     //获取图片地址
     function getInputURL(file) {
         var url = null;
@@ -487,9 +507,6 @@ $(document).ready(function () {
             getStyle = elem.currentStyle ? function (name) {
 
                 var val = elem.currentStyle[name];
-
-
-
                 if (name === 'height' && val.search(/px/i) !== 1) {
 
                     var rect = elem.getBoundingClientRect();
