@@ -214,12 +214,15 @@ input.el-input__inner {
 }
 
 .rightRoleOverall {
+    margin-top: 10px;
     flex-direction: row-reverse;
 }
 
 .divImg {
     padding: 0 10px;
     padding-right: 0;
+    /* height: 0; */
+    /* display: none; */
 }
 
 .roleImg {
@@ -236,6 +239,7 @@ input.el-input__inner {
     font-family: bold;
     font-weight: 600;
     font-size: 1rem;
+    /* display: none; */
 }
 
 .roleRemarkDiv {
@@ -327,7 +331,6 @@ input.el-input__inner {
 }
 
 .rightImg2 {
-
     background-color: rgb(76, 91, 111);
 }
 
@@ -452,7 +455,7 @@ input.el-input__inner {
     margin-left: 5px;
 }
 
-.pangbaiDiv,
+
 .roleOverall:last-child {
     margin-bottom: 10px;
 }
@@ -592,4 +595,22 @@ input.el-input__inner {
 }
 .oneImg:first-of-type{
     margin-right: 10px;
+}
+.iuydsgfop{
+    margin: 0;
+    margin-bottom: 10px;
+    margin-left: 92px;
+}
+.hudsfdosf{
+    margin: 0;
+    margin-bottom: 10px;
+    margin-left: 82px;
+}
+.yiuchsfh{
+    padding: 0;
+}
+.ydbsfhdf{
+    max-width: 92%;
+    padding: 5px;
+    border-radius: 5px;
 }
