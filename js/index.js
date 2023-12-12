@@ -24,6 +24,9 @@ $(document).ready(function () {
         if (e.ctrlKey && e.which == 13) {
             aside();
         }
+        if (e.keyCode == 36) { //enter发送
+            wirte();
+        }
 
     });
     $(".send").click(function () {
@@ -306,9 +309,9 @@ $(document).ready(function () {
         });
 
         roleArray.forEach(item => {
-
             if (item.avatarArray == '' && item.id == id) {
                 $.getJSON("data/images.json", function (data) {
+                    console.log(data);
                     if (!$.isEmptyObject(data)) {
                         var roleImgs = new Array();
                         data.forEach(item => {
@@ -319,6 +322,7 @@ $(document).ready(function () {
                                 roleImgs.push(item);
                             }
                         });
+                        
                         //角色头像加入角色数组
                         roleArray.forEach(item => {
                             if (item.id == id) {

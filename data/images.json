@@ -430,5 +430,23 @@
     "imgName": "医疗护卫",
     "imagePath": "fs_ylhw",
     "roleId": 14
+  },
+  {
+    "id": 73,
+    "imgName": "雪原纪行",
+    "imagePath": "xin_xyjx",
+    "roleId": 4
+  },
+  {
+    "id": 74,
+    "imgName": "踏雪飞猫",
+    "imagePath": "mxr_txfm",
+    "roleId": 1
+  },
+  {
+    "id": 75,
+    "imgName": "雪精灵",
+    "imagePath": "ywt_xjl",
+    "roleId": 3
   }
 ]
