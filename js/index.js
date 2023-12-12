@@ -310,8 +310,7 @@ $(document).ready(function () {
 
         roleArray.forEach(item => {
             if (item.avatarArray == '' && item.id == id) {
-                $.getJSON("data/images.json", function (data) {
-                    console.log(data);
+                $.getJSON("data/imagese.json", function (data) {
                     if (!$.isEmptyObject(data)) {
                         var roleImgs = new Array();
                         data.forEach(item => {
