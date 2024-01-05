@@ -448,5 +448,47 @@
     "imgName": "雪精灵",
     "imagePath": "ywt_xjl",
     "roleId": 3
+  },
+  {
+    "id": 76,
+    "imgName": "现场直击",
+    "imagePath": "adl_xczj",
+    "roleId": 11
+  },
+  {
+    "id": 77,
+    "imgName": "星空遥梦",
+    "imagePath": "ling_xkym",
+    "roleId": 7
+  },
+  {
+    "id": 78,
+    "imgName": "灰狼奇遇",
+    "imagePath": "lw_hlqy",
+    "roleId": 6
+  },
+  {
+    "id": 79,
+    "imgName": "失落的伊卡洛斯",
+    "imagePath": "mdln_sldykls",
+    "roleId": 13
+  },
+  {
+    "id": 80,
+    "imgName": "漫影绘客",
+    "imagePath": "mrds_myhk",
+    "roleId": 9
+  },
+  {
+    "id": 81,
+    "imgName": "逆影蔷薇",
+    "imagePath": "xh_yyqw",
+    "roleId": 10
+  },
+  {
+    "id": 82,
+    "imgName": "小红帽",
+    "imagePath": "ywt_xhm",
+    "roleId": 3
   }
 ]

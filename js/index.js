@@ -221,6 +221,7 @@ $(document).ready(function () {
                     item.open = false;
                     item.avatarArray = '';
                 });
+                
                 roleArray = data;
                 //循环展示角色
                 for (let index = 0; index < roleArray.length; index++) {
@@ -310,7 +311,7 @@ $(document).ready(function () {
 
         roleArray.forEach(item => {
             if (item.avatarArray == '' && item.id == id) {
-                $.getJSON("data/imagese.json", function (data) {
+                $.getJSON("data/images.json", function (data) {
                     if (!$.isEmptyObject(data)) {
                         var roleImgs = new Array();
                         data.forEach(item => {
@@ -321,7 +322,6 @@ $(document).ready(function () {
                                 roleImgs.push(item);
                             }
                         });
-                        
                         //角色头像加入角色数组
                         roleArray.forEach(item => {
                             if (item.id == id) {
