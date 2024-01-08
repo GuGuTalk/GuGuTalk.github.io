@@ -551,18 +551,31 @@ input.el-input__inner {
     height: 10%;
     flex-direction: row;
     justify-content: flex-end;
-    align-items: center;
     background-image: url(/images/Popup_Img_Deco_0.webp);
     background-repeat: no-repeat;
     background-size: cover;
     /* background-position: -2rem -2rem; */
+    align-items: center;
 }
-.GalleryTop div{
+.tydgvsgfv{
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    margin-right: 3.8rem;
+    align-content: space-between;
+}
+.tydgvsgfv img{
+    position: relative;
+    top: 3px;
+    /* width: 66%; */
+}
+.yhivdfbs{
     color: rgb(45,70,100);
     font-size: 1.7rem;
     font-weight: bold;
     font-family: emoji;
-    margin-right: 7rem;
+    /* margin-right: 7rem; */
 }
 .gb{
     width: 75%;

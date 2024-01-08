@@ -233,18 +233,29 @@ $(document).ready(function () {
                 }
             }
         );
-        ExpressionInit();
+        ExpressionInit(1);
         getLength();
         if (localStorage.getItem('boxJson') != null && localStorage.getItem('boxJson') != '') {
             loadBoxData();
         }
     }
     //初始化表情包
-    function ExpressionInit() {
-        $.getJSON("data/Expression.json",
+    function ExpressionInit(num) {
+        $('.imgContent').html("");
+        var st="";
+        var a="";
+        var ele=$(".yhivdfbs");
+        if(num==1){
+            st="data/Expression.json";
+            a="images/Expression/";
+        }else{
+            st="data/roleExpression.json";
+            a="images/roleExpression/";
+        }
+        $.getJSON(st,
             function (data) {
                 data.forEach(element => {
-                    element.expressionName = 'images/Expression/' + element.expressionName + '.png';
+                    element.expressionName = a + element.expressionName + '.png';
                 });
                 for (let i = 0; i < data.length; i++) {
                     $('.imgContent').append("<img src='" + data[i].expressionName + "' alt='' srcset='' class='hgfhdft'>");
@@ -311,7 +322,7 @@ $(document).ready(function () {
 
         roleArray.forEach(item => {
             if (item.avatarArray == '' && item.id == id) {
-                $.getJSON("data/images.json", function (data) {
+                $.getJSON("data/imagese.json", function (data) {
                     if (!$.isEmptyObject(data)) {
                         var roleImgs = new Array();
                         data.forEach(item => {
@@ -322,6 +333,7 @@ $(document).ready(function () {
                                 roleImgs.push(item);
                             }
                         });
+                        
                         //角色头像加入角色数组
                         roleArray.forEach(item => {
                             if (item.id == id) {
@@ -330,10 +342,11 @@ $(document).ready(function () {
                                 item.avatarArray = a;
                             }
                         });
+                        console.log(roleArray);
                         //插入头像列表
                         $(".center").children().eq(index).append("<div class='centerRoleArraybtn'></div>")
                         for (let indexs = 0; indexs < roleImgs.length; indexs++) {
-                            $(".center").children().eq(index).children().last("div").append("<img data-mark=" + roleImgs[indexs].mark + " class='conImg imgb' data-imgid='" + roleImgs[indexs].id + "'  data-roleId='" + roleImgs[indexs].roleId + "' data-open='" + roleImgs[indexs].choose + "' data-index='" + indexs + "' src='" + roleImgs[indexs].path + "' crossOrigin='anonymous' alt='' srcset=''>");
+                            $(".center").children().eq(index).children().last("div").append("<img data-mark=" + roleImgs[indexs].mark + " class='conImg imgb' data-imgid='" + roleImgs[indexs].id + "'  data-roleId='" + roleImgs[indexs].roleId + "' data-open='" + roleImgs[indexs].choose + "' data-index='" + indexs + "' title='"+roleImgs[indexs].imgName+"' src='" + roleImgs[indexs].path + "' crossOrigin='anonymous' alt='' srcset=''>");
                             $(".center").children().eq(index).children().last("div").children().eq(indexs).click(function () {
                                 $(this).toggleClass("imgb bj");
                                 if ($(this).parent().children().is(".bj")) {
@@ -423,7 +436,7 @@ $(document).ready(function () {
             if (c) {
                 $("#box").html('');
                 localStorage.clear();
-                boxJsonArray = '';
+                boxJsonArray = ''; 
                 getLength();
                 window.location.reload();
             }
@@ -486,11 +499,65 @@ $(document).ready(function () {
                     boxJson(json);
                 };
             }
+            console.log(url);
             cen++;
             $("#box").append(newTalk);
             ToBtm();
         })
         jq.click();
+    })
+    //创建角色
+    $("#newRole").click(function(){
+       var roleName=prompt("请输入角色姓名","");
+       if(roleName!=null||roleName==''){
+        var link = document.createElement("input");
+        var jq = $(link);
+        jq.attr({ "type": "file", "accept": "image/*" });
+        jq.on("change", function () {
+            console.log('进入on');
+            var reader = new FileReader();
+            var imgP = $(this);
+            var imgObj = imgP[0].files[0];
+            reader.readAsDataURL(imgObj);
+            reader.onload = function () {
+                var json=new Object();
+                json.id=parseInt(getNowTime());
+                json.roleName=roleName;
+                json.description="newRole";
+                json.imgURl=reader.result;
+                newRoleSave(json);
+                console.log(json);
+            };
+        })
+       }
+       jq.click();
+    })
+    //保存新建角色
+    function newRoleSave(ele){
+        var json=new Array();
+        if(localStorage.getItem('newRoleJson') != null && localStorage.getItem('newRoleJson') != ''){
+            console.log("有缓存");
+            json=JSON.parse(localStorage.getItem('newRoleJson'));
+            json.unshift(ele);
+        }else{
+            console.log("无缓存");
+            json.push(ele);
+        }
+        console.log("json",ele);
+        var a = JSON.stringify(json);
+        localStorage.setItem("newRoleJson", a);
+    }
+    //删除自定义角色------------------------未完成
+    function deleteRole(){
+        
+    }
+    //下一个表情包
+    $(".ToT").click(function(){
+        ExpressionInit(1);
+    })
+    //上一个表情包
+    $(".ToB").click(function(){
+        ExpressionInit(2);
     })
     //打开表情包
     $("#imgExpression").click(function () {
@@ -675,4 +742,26 @@ $(document).ready(function () {
         }
         localStorage.setItem('boxJson', JSON.stringify(boxJsonArray));
     }
+    function getNowTime () {
+        let now = new Date();
+        let year = now.getFullYear(); //获取完整的年份(4位,1970-????)
+        let month = now.getMonth() + 1; //获取当前月份(0-11,0代表1月)
+        let today = now.getDate(); //获取当前日(1-31)
+        let hour = now.getHours(); //获取当前小时数(0-23)
+        let minute = now.getMinutes(); //获取当前分钟数(0-59)
+        let second = now.getSeconds(); //获取当前秒数(0-59)
+        let nowTime = ''
+        nowTime = year +fillZero(month) + fillZero(today) + fillZero(hour) +fillZero(minute) + fillZero(second)
+        return nowTime
+      };
+      
+      function fillZero (str) {
+        var realNum;
+        if (str < 10) {
+          realNum = '0' + str;
+        } else {
+          realNum = str;
+        }
+        return realNum.toString() ;
+      }   
 });
