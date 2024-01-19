@@ -440,7 +440,7 @@ input.el-input__inner {
 
 .sonbsc {
     border-bottom: 1px solid rgb(230, 229, 229);
-
+    pointer-events: auto;
 }
 
 .nopkmp {
