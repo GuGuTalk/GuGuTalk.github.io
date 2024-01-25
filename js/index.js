@@ -71,14 +71,16 @@ $(document).ready(function () {
             } else {
                 json.roleId = chooseAvatar.roleId,
                     json.imgId = chooseAvatar.imgId,
-                    json.path = chooseAvatar.path,
+                    //json.path = chooseAvatar.path,
                     json.name = chooseAvatar.name,
                     json.content = text,
                     json.mark = chooseAvatar.mark
                 if ($('#box').children().last('div').data('name') == chooseAvatar.mark) {
+                    json.path = ''
                     newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + " class='roleOverall statistics iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><div class='roleRemarkDiv2 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan' >" + text + "</div></div></div></div></div>";
                     //newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + " class='roleOverall statistics iuydsgfop'><div class='divImg'><img src='" + chooseAvatar.path + "' crossOrigin='anonymous' alt='' class='roleImg' srcset='' style='height:0'></div><div><span class='roleNameSpan'></span><div class='roleRemarkDiv'><div class='roleRemarkDiv2 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan' >" + text + "</div></div></div></div></div>";
                 } else {
+                    json.path = chooseAvatar.path
                     newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + " class='roleOverall statistics'><div class='divImg'><img src='" + chooseAvatar.path + "' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>" + chooseAvatar.name + "</span><div class='roleRemarkDiv'><div class='horn'></div><div class='roleRemarkDiv2 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan' >" + text + "</div></div></div></div></div>";
                 }
             }
@@ -211,6 +213,14 @@ $(document).ready(function () {
         }
         ToBtm();
     }
+    //创建角色列表可编辑副本
+    function roleListCopy(roleList) {
+        localStorage.setItem("roleListCopy", JSON.stringify(roleList))
+    }
+    //修改角色名字
+    function updateRoleName(){
+        
+    }
     //初始化数据
     function Init() {
         $("#knopiji").html('');
@@ -224,6 +234,14 @@ $(document).ready(function () {
                 });
                 data = splicingRole(data);
                 roleArray = data;
+                
+                if (localStorage.getItem("roleListCopy") == null || localStorage.getItem("roleListCopy") == '') {
+                    roleListCopy(data);
+                    console.log('创建副本');
+                }{
+                    data=JSON.parse(localStorage.getItem("roleListCopy"));
+                    console.log("读取副本");
+                }
                 //循环展示角色
                 for (let index = 0; index < roleArray.length; index++) {
                     // $(".center").append("<div class='sonbsc'><div class='xq' data-id='" + roleArray[index].id + "'><img crossOrigin='anonymous' src='" + roleArray[index].imgURl + "' alt='' height=75px; width=75px; class='sdad'></div></div>")
