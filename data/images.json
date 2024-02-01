@@ -567,6 +567,12 @@
     "imgName":"森林莓果",
     "imagePath":"xx_slmg",
     "roleId":2
+  },
+  {
+    "id":96,
+    "imgName":"常服",
+    "imagePath":"flwy",
+    "roleId":15
   }
 
 ]
