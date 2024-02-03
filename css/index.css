@@ -340,6 +340,8 @@ input.el-input__inner {
     flex-direction: row;
     overflow: auto;
     overflow-y: hidden;
+    overscroll-behavior: contain;
+
 }
 
 .centerRoleArraybtn img {
@@ -389,11 +391,12 @@ input.el-input__inner {
     white-space: pre-wrap;
     overflow-wrap: break-word;
     word-break: break-all;
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 500;
     /* font-family: none; */
     flex-direction: row;
     text-align: center;
-    color: rgb(69, 78, 89);
+    color: rgb(0, 0, 0);
     font-family: medium;
 }
 
