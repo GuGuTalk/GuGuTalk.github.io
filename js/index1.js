@@ -75,13 +75,13 @@ $(document).ready(function () {
                     json.name = chooseAvatar.name,
                     json.content = text,
                     json.mark = chooseAvatar.mark
-                if ($('#box').children().last('div').data('name') == chooseAvatar.mark) {
+                if ($('#box').children().last('div').data('name') == chooseAvatar.mark && $('#box').children().last('div').data('names') == chooseAvatar.name) {
                     json.path = ''
-                    newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + " class='roleOverall statistics iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><div class='roleRemarkDiv2 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan' >" + text + "</div></div></div></div></div>";
+                    newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + " data-names=" + chooseAvatar.name + " class='roleOverall statistics iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><div class='roleRemarkDiv2 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan' >" + text + "</div></div></div></div></div>";
                     //newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + " class='roleOverall statistics iuydsgfop'><div class='divImg'><img src='" + chooseAvatar.path + "' crossOrigin='anonymous' alt='' class='roleImg' srcset='' style='height:0'></div><div><span class='roleNameSpan'></span><div class='roleRemarkDiv'><div class='roleRemarkDiv2 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan' >" + text + "</div></div></div></div></div>";
                 } else {
                     json.path = chooseAvatar.path
-                    newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + " class='roleOverall statistics'><div class='divImg'><img src='" + chooseAvatar.path + "' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>" + chooseAvatar.name + "</span><div class='roleRemarkDiv'><div class='horn'></div><div class='roleRemarkDiv2 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan' >" + text + "</div></div></div></div></div>";
+                    newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + "  data-names=" + chooseAvatar.name + " class='roleOverall statistics'><div class='divImg'><img src='" + chooseAvatar.path + "' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>" + chooseAvatar.name + "</span><div class='roleRemarkDiv'><div class='horn'></div><div class='roleRemarkDiv2 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan' >" + text + "</div></div></div></div></div>";
                 }
             }
             $("#box").append(newTalk);
@@ -164,10 +164,10 @@ $(document).ready(function () {
                     if (boxJsonArray[i].roleId == 9999) {
                         newTalk = "<div class='roleOverall rightRoleOverall statistics' data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "><img  src='" + boxJsonArray[i].content + "' alt='' srcset='' class='rightImgExpression udiohsfnds'></div>";
                     } else {
-                        if (i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) {
-                            newTalk = "<div data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + " class='roleOverall statistics hudsfdosf'><div><div class='roleRemarkDiv yiuchsfh'><img src='" + boxJsonArray[i].content + "' alt='' srcset='' class='rightImgExpression '></div></div></div>";
+                        if ((i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) && (i > 0 && boxJsonArray[i - 1].name == boxJsonArray[i].name)) {
+                            newTalk = "<div data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "  data-names=" + boxJsonArray[i].name + " class='roleOverall statistics hudsfdosf'><div><div class='roleRemarkDiv yiuchsfh'><img src='" + boxJsonArray[i].content + "' alt='' srcset='' class='rightImgExpression '></div></div></div>";
                         } else {
-                            newTalk = `<div class='roleOverall statistics' data-index="${boxJsonArray[i].index}"data-name="${boxJsonArray[i].mark}"><div class='divImg'><img src='${boxJsonArray[i].path.indexOf(a) < 0 ? boxJsonArray[i].path : dataURItoBlob(boxJsonArray[i].path)}' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>${boxJsonArray[i].name}</span><div class='roleRemarkDiv'><img  src='${boxJsonArray[i].content}' alt='' srcset='' class='rightImgExpression '></div></div></div>`;
+                            newTalk = `<div class='roleOverall statistics' data-index="${boxJsonArray[i].index}"data-name="${boxJsonArray[i].mark}"  data-names="${boxJsonArray[i].name}"><div class='divImg'><img src='${boxJsonArray[i].path.indexOf(a) < 0 ? boxJsonArray[i].path : dataURItoBlob(boxJsonArray[i].path)}' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>${boxJsonArray[i].name}</span><div class='roleRemarkDiv'><img  src='${boxJsonArray[i].content}' alt='' srcset='' class='rightImgExpression '></div></div></div>`;
                         }
                     }
                     html = html + newTalk;
@@ -176,10 +176,10 @@ $(document).ready(function () {
                     if (boxJsonArray[i].roleId == 9999) {
                         newTalk = "<div class='roleOverall rightRoleOverall statistics' data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "><div class='Righthorn'></div><img  src='" + dataURItoBlob(boxJsonArray[i].content) + "' alt='' srcset='' class='rightImg rightImg1'></div>";
                     } else {
-                        if (i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) {
-                            newTalk = "<div data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + " class='roleOverall statistics iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><img src='" + dataURItoBlob(boxJsonArray[i].content) + "' alt='' srcset='' class='ydbsfhdf rightImg2'></div></div></div>";
+                        if ((i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) && (i > 0 && boxJsonArray[i - 1].name == boxJsonArray[i].name)) {
+                            newTalk = "<div data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + " data-names=" + boxJsonArray[i].name + " class='roleOverall statistics iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><img src='" + dataURItoBlob(boxJsonArray[i].content) + "' alt='' srcset='' class='ydbsfhdf rightImg2'></div></div></div>";
                         } else {
-                            newTalk = `<div class='roleOverall statistics' data-index="${boxJsonArray[i].index}" data-name="${boxJsonArray[i].mark}"><div class='divImg'><img src='${boxJsonArray[i].path.indexOf(a) < 0 ? boxJsonArray[i].path : dataURItoBlob(boxJsonArray[i].path)}' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>"${boxJsonArray[i].name}"</span><div class='roleRemarkDiv'><div class='horn'></div><img  src='${dataURItoBlob(boxJsonArray[i].content)}' alt='' srcset='' class='rightImg rightImg2'></div></div></div>`;
+                            newTalk = `<div class='roleOverall statistics' data-index="${boxJsonArray[i].index}" data-name="${boxJsonArray[i].mark} "data-names="${boxJsonArray[i].name} " ><div class='divImg'><img src='${boxJsonArray[i].path.indexOf(a) < 0 ? boxJsonArray[i].path : dataURItoBlob(boxJsonArray[i].path)}' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>"${boxJsonArray[i].name}"</span><div class='roleRemarkDiv'><div class='horn'></div><img  src='${dataURItoBlob(boxJsonArray[i].content)}' alt='' srcset='' class='rightImg rightImg2'></div></div></div>`;
                         }
                     }
                     html = html + newTalk;
@@ -188,10 +188,10 @@ $(document).ready(function () {
                     if (boxJsonArray[i].roleId == 9999) {
                         newTalk = "<div class='roleOverall rightRoleOverall statistics'  data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "><div class='Righthorn'></div><div class='roleRemarkDiv3 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan'>" + boxJsonArray[i].content + "</div></div></div>";
                     } else {
-                        if (i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) {
-                            newTalk = "<div data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + " class='roleOverall statistics iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><div class='roleRemarkDiv2 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan' >" + boxJsonArray[i].content + "</div></div></div></div></div>";
+                        if ((i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) && (i > 0 && boxJsonArray[i - 1].name == boxJsonArray[i].name)) {
+                            newTalk = "<div data-index=" + boxJsonArray[i].index + " data-names=" + boxJsonArray[i].name + " data-name=" + boxJsonArray[i].mark + " class='roleOverall statistics iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><div class='roleRemarkDiv2 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan' >" + boxJsonArray[i].content + "</div></div></div></div></div>";
                         } else {
-                            newTalk = `<div class='roleOverall statistics'  data-index="${boxJsonArray[i].index}" data-name=" ${boxJsonArray[i].mark} "><div class='divImg'><img src='${boxJsonArray[i].path.indexOf(a) < 0 ? boxJsonArray[i].path : dataURItoBlob(boxJsonArray[i].path)} ' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>${boxJsonArray[i].name}</span><div class='roleRemarkDiv'><div class='horn'></div><div class='roleRemarkDiv2 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan'>${boxJsonArray[i].content}</div></div></div></div></div>`;
+                            newTalk = `<div class='roleOverall statistics' data-names="${boxJsonArray[i].name} "  data-index="${boxJsonArray[i].index}" data-name=" ${boxJsonArray[i].mark} "><div class='divImg'><img src='${boxJsonArray[i].path.indexOf(a) < 0 ? boxJsonArray[i].path : dataURItoBlob(boxJsonArray[i].path)} ' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>${boxJsonArray[i].name}</span><div class='roleRemarkDiv'><div class='horn'></div><div class='roleRemarkDiv2 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan'>${boxJsonArray[i].content}</div></div></div></div></div>`;
                         }
                     }
                     html = html + newTalk;
@@ -213,14 +213,16 @@ $(document).ready(function () {
         }
         ToBtm();
     }
-    //创建角色列表可编辑副本
-    function roleListCopy(roleList) {
-        localStorage.setItem("roleListCopy", JSON.stringify(roleList))
-    }
-    //修改角色名字
-    function updateRoleName(){
-        
-    }
+
+    //重置角色名称
+    $("#ReName").click(function () {
+        var a = confirm("确定要重置全部角色名称吗？");
+        if (a) {
+            localStorage.removeItem('roleListCopy');
+            window.location.reload();
+        }
+
+    });
     //初始化数据
     function Init() {
         $("#knopiji").html('');
@@ -232,20 +234,20 @@ $(document).ready(function () {
                     item.open = false;
                     item.avatarArray = '';
                 });
+
+
                 data = splicingRole(data);
-                roleArray = data;
-                
-                if (localStorage.getItem("roleListCopy") == null || localStorage.getItem("roleListCopy") == '') {
-                    roleListCopy(data);
-                    console.log('创建副本');
-                }{
-                    data=JSON.parse(localStorage.getItem("roleListCopy"));
-                    console.log("读取副本");
-                }
+                var count = data.length;
+                //角色列表副本相关
+                var copyDate = RoleListOperate(data, count);
+                roleArray = copyDate;
+
+
+
                 //循环展示角色
                 for (let index = 0; index < roleArray.length; index++) {
                     // $(".center").append("<div class='sonbsc'><div class='xq' data-id='" + roleArray[index].id + "'><img crossOrigin='anonymous' src='" + roleArray[index].imgURl + "' alt='' height=75px; width=75px; class='sdad'></div></div>")
-                    $(".center").append("<div class='sonbsc'><div class='xq' data-id='" + roleArray[index].id + "'><div class='wwww'><img crossOrigin='anonymous' src='" + roleArray[index].imgURl + "' alt='' height=75px; width=75px; class='sdad'><span class='roleName'>" + roleArray[index].roleName + "</span></div><img src='" + roleArray[index].belongsImgURL + "' class='ddddddddddd' alt='' srcset=''></div></div>")
+                    $(".center").append("<div class='sonbsc'><div class='xq' data-id='" + roleArray[index].id + "'><div class='wwww'><img crossOrigin='anonymous' src='" + roleArray[index].imgURl + "' alt='' height=75px; width=75px; class='sdad'><span class='roleName'>" + roleArray[index].roleName + "</span><a href='javascript:;' class='adb'><img src='images/updateName.png' class='updateName' alt='' srcset=''></a></div><img src='" + roleArray[index].belongsImgURL + "' class='ddddddddddd' alt='' srcset=''></div></div>")
                     //附加删除自定义角色事件
                     $(".center").children().eq(index).children().eq(0).children().last('ddddddddddd').click(function (e) {
                         if (roleArray[index].description == 'newRole') {
@@ -253,7 +255,7 @@ $(document).ready(function () {
                         }
                     })
                     $(".center").children().eq(index).children().eq(0).click(function (e) {
-                        roleArrayClick(roleArray[index].id, index, this);
+                        roleArrayClick(roleArray[index].id, index, this, e);
                     });
                 }
             }
@@ -264,6 +266,52 @@ $(document).ready(function () {
             loadBoxData();
         }
         ToBtm();
+    }
+    $("#knopiji").on('click', '.updateName', function (e) {
+        updateName(this, e);
+        e.stopPropagation();
+    })
+    //重置选中角色头像
+    function ReCheckAvatar() {
+        var avatars = $("img[class*='imgd']");
+        for (let index = 0; index < avatars.length; index++) {
+            $(avatars[index]).attr('class', 'conAvataar zz');
+        }
+    }
+    //修改角色名字
+    function updateName(d, e) {
+        var newName = prompt('请输入新名称');
+        if (newName !== null && newName != ' ') {
+            console.log("1", newName);
+            var id = $(d).parent().parent().parent().data("id");
+            console.log(id, d);
+            var copyList = JSON.parse(localStorage.getItem("roleListCopy"));
+            for (let index = 0; index < copyList.length; index++) {
+                if (copyList[index].id == id) {
+                    copyList[index].roleName = newName;
+                    localStorage.setItem("roleListCopy", JSON.stringify(copyList));
+                    $(d).parent().siblings("span").html(newName)
+                    break;
+                }
+            }
+            ReCheckAvatar();
+        }
+
+    }
+    //角色列表操作
+    function RoleListOperate(data, count) {
+        if (localStorage.getItem("roleCount") != count || localStorage.getItem("roleCount") == null) {
+            localStorage.removeItem("roleListCopy");
+        }
+        if (localStorage.getItem("roleListCopy") == null || localStorage.getItem("roleListCopy") == '') {
+            localStorage.setItem("roleListCopy", JSON.stringify(data))
+            localStorage.setItem("roleCount", count);
+            console.log('创建副本');
+        } else {
+            data = JSON.parse(localStorage.getItem("roleListCopy"));
+            console.log("读取数据并修改副本");
+        }
+        return data;
     }
     //初始化表情包
     function ExpressionInit(num) {
@@ -388,7 +436,7 @@ $(document).ready(function () {
                         $(".center").children().eq(index).append("<div class='centerRoleArraybtn'></div>")
                         for (let indexs = 0; indexs < roleImgs.length; indexs++) {
                             $(".center").children().eq(index).children().last("div").append("<img data-mark=" + roleImgs[indexs].mark + " class='conImg imgb' data-imgid='" + roleImgs[indexs].id + "'  data-roleId='" + roleImgs[indexs].roleId + "' data-open='" + roleImgs[indexs].choose + "' data-index='" + indexs + "' title='" + roleImgs[indexs].imgName + "' src='" + roleImgs[indexs].path + "' crossOrigin='anonymous' alt='' srcset=''>");
-                            $(".center").children().eq(index).children().last("div").children().eq(indexs).click(function () {
+                            $(".center").children().eq(index).children().last("div").children().eq(indexs).click(function (e) {
                                 $(this).toggleClass("imgb bj");
                                 if ($(this).parent().children().is(".bj")) {
                                     $(this).parent().siblings(".xq").addClass("qx");
@@ -396,6 +444,7 @@ $(document).ready(function () {
                                     $(this).parent().siblings(".xq").removeClass("qx");
                                 }
                                 roleAvatarClick($(this));
+                                e.stopPropagation();
                             })
                         }
                     } else {
@@ -404,6 +453,7 @@ $(document).ready(function () {
                 );
             }
         });
+
     }
     //角色头像点击事件
     function roleAvatarClick(e) {
@@ -445,9 +495,10 @@ $(document).ready(function () {
                     path: $(this).attr("src"),
                 }
                 var roleName = '';
-                for (let i = 0; i < roleArray.length; i++) {
-                    if (roleArray[i].id == obj.roleId) {
-                        roleName = roleArray[i].roleName;
+                var list = JSON.parse(localStorage.getItem("roleListCopy"))
+                for (let i = 0; i < list.length; i++) {
+                    if (list[i].id == obj.roleId) {
+                        roleName = list[i].roleName;
                         break;
                     }
 
@@ -550,7 +601,7 @@ $(document).ready(function () {
     //创建角色
     $("#newRole").click(function () {
         var roleName = prompt("请输入角色姓名", "");
-        if (roleName != null || roleName == '') {
+        if (roleName != null && roleName != '') {
             var link = document.createElement("input");
             var jq = $(link);
             jq.attr({ "type": "file", "accept": "image/*" });
@@ -588,8 +639,6 @@ $(document).ready(function () {
     }
     //删除自定义角色
     function deleteRole(id, e) {
-        console.log(id);
-
         var c = confirm("确认要删除吗？");
         if (c) {
             var json = JSON.parse(localStorage.getItem('newRoleJson'));

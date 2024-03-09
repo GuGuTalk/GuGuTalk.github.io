@@ -639,6 +639,59 @@
     "imgName":"金玲报春",
     "imagePath":"mxr_jlbc",
     "roleId":1
+  },
+  {
+    "id":109,
+    "imgName":"闪电风暴",
+    "imagePath":"ming_sdfb",
+    "roleId":5
+  },
+  {
+    "id":110,
+    "imgName":"怪盗英雄",
+    "imagePath":"bm_gdyx",
+    "roleId":12
+  },
+  {
+    "id":111,
+    "imgName":"星河幻影",
+    "imagePath":"lw_xhhy",
+    "roleId":6
+  },
+  {
+    "id":112,
+    "imgName":"郁香丽人",
+    "imagePath":"adl_yxlr",
+    "roleId":11
+  },
+  {
+    "id":113,
+    "imgName":"叛逆共鸣",
+    "imagePath":"xin_pngm",
+    "roleId":4
+  },
+  {
+    "id":114,
+    "imgName":"蔚蓝魔影",
+    "imagePath":"xnm_wlmy",
+    "roleId":8
+  },
+  {
+    "id":115,
+    "imgName":"艾卡-面具",
+    "imagePath":"ak_mj",
+    "roleId":16
+  },
+  {
+    "id":116,
+    "imgName":"常服",
+    "imagePath":"ak",
+    "roleId":16
+  },
+  {
+    "id":117,
+    "imgName":"熊熊曲奇",
+    "imagePath":"ywt_xxqq",
+    "roleId":3
   }
-   
 ]

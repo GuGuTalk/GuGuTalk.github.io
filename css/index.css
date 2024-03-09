@@ -631,3 +631,10 @@ input.el-input__inner {
     padding: 5px;
     border-radius: 5px;
 }
+.adb{
+    margin-left: 25px;
+    margin-top: 15px;
+}
+.updateName{
+    width: 25px;
+}

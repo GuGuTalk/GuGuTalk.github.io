@@ -80,6 +80,14 @@
     "belongsImgURL": "jds"
   },
   {
+    "id": 16,
+    "roleName": "艾卡",
+    "description": null,
+    "belong": "剪刀手",
+    "imgURl": "ak",
+    "belongsImgURL": "jds"
+  },
+  {
     "id": 10,
     "roleName": "星绘",
     "description": null,
