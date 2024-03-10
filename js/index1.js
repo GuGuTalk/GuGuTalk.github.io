@@ -2,7 +2,9 @@ $(document).ready(function () {
     var roleArray;
     var roleImgArray;
     var ExpressionArray;
-    var chooseAvatar = '';
+    var chooseAvatar={
+        roleId:9999
+    };
     var boxJsonArray = new Array();
     var one;
     var cen = 0;
@@ -65,7 +67,7 @@ $(document).ready(function () {
             json.index = cen;
             json.content = text;
             if (value == 9999) {
-                newTalk = "<div data-index=" + cen + " data-name='9999' class='roleOverall rightRoleOverall statistics'><div class='Righthorn'></div><div class='roleRemarkDiv3 roleRemarkDiv' contenteditable='true'><div  class='roleRemarkDivSpan'>" + text + "</div></div></div>";
+                newTalk = "<div data-index=" + cen + " data-name='9999' class='roleOverall rightRoleOverall'><div class='Righthorn'></div><div class='roleRemarkDiv3 roleRemarkDiv'><div  class='roleRemarkDivSpan statistics'  contenteditable='true' data-index=" + cen + ">" + text + "</div></div></div>";
                 json.roleId = 9999;
                 json.mark = '9999';
             } else {
@@ -77,18 +79,18 @@ $(document).ready(function () {
                     json.mark = chooseAvatar.mark
                 if ($('#box').children().last('div').data('name') == chooseAvatar.mark && $('#box').children().last('div').data('names') == chooseAvatar.name) {
                     json.path = ''
-                    newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + " data-names=" + chooseAvatar.name + " class='roleOverall statistics iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><div class='roleRemarkDiv2 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan' >" + text + "</div></div></div></div></div>";
+                    newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + " data-names=" + chooseAvatar.name + " class='roleOverall iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><div class='roleRemarkDiv2 roleRemarkDiv' ><div class='roleRemarkDivSpan statistics'data-index=" + cen + "  contenteditable='true'>" + text + "</div></div></div></div></div>";
                     //newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + " class='roleOverall statistics iuydsgfop'><div class='divImg'><img src='" + chooseAvatar.path + "' crossOrigin='anonymous' alt='' class='roleImg' srcset='' style='height:0'></div><div><span class='roleNameSpan'></span><div class='roleRemarkDiv'><div class='roleRemarkDiv2 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan' >" + text + "</div></div></div></div></div>";
                 } else {
                     json.path = chooseAvatar.path
-                    newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + "  data-names=" + chooseAvatar.name + " class='roleOverall statistics'><div class='divImg'><img src='" + chooseAvatar.path + "' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>" + chooseAvatar.name + "</span><div class='roleRemarkDiv'><div class='horn'></div><div class='roleRemarkDiv2 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan' >" + text + "</div></div></div></div></div>";
+                    newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + "  data-names=" + chooseAvatar.name + " class='roleOverall '><div class='divImg'><img src='" + chooseAvatar.path + "' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>" + chooseAvatar.name + "</span><div class='roleRemarkDiv'><div class='horn'></div><div class='roleRemarkDiv2 roleRemarkDiv'  ><div class='roleRemarkDivSpan statistics' data-index=" + cen + " contenteditable='true' >" + text + "</div></div></div></div></div>";
                 }
             }
             $("#box").append(newTalk);
-            $("#box").children().last('div').on('focusout', function () {
-                var ele = $(this);
-                updateBoxOne(ele.data('index'), ele.children().last('div').children().last('div').text());
-            })
+            // $("#box").children().last('div').on('focusout', function () {
+            //     var ele = $(this);
+            //     updateBoxOne(ele.data('index'), ele.children().last('div').children().last('div').text());
+            // })
             boxJson(json);
             $("#text").val("");
             ToBtm();
@@ -105,12 +107,16 @@ $(document).ready(function () {
         var scrollHeight = $('#box').prop("scrollHeight") + 9999
         $('#box').scrollTop(scrollHeight);
     }
+    $("#box").on('focusout', '.statistics', function () {
+        var ele = $(this);
+        updateBoxOne(ele.data('index'), ele.text());
+    })
     //旁白
     function aside() {
         $("#text").css("height", "24px");
         var text = $("#text").val();
         if (text != "") {
-            newTalk = "<div class='pangbaiDiv statistics' contenteditable='true' data-index=" + cen + " data-name='aside'><div class='pangbaiSpan'>" + text + "</div></div>";
+            newTalk = "<div class='pangbaiDiv'  data-index=" + cen + " data-name='aside'><div class='pangbaiSpan statistics' contenteditable='true' data-index=" + cen + ">" + text + "</div></div>";
             var json = new Object();
             json.index = cen;
             json.type = 'aside';
@@ -119,15 +125,87 @@ $(document).ready(function () {
             boxJson(json);
             cen++;
             $("#box").append(newTalk);
-            $("#box").children().last('div').on('focusout', function () {
-                var ele = $(this);
-                updateBoxOne(ele.data('index'), ele.children().last('div').text());
-            })
+            // $("#box").children().last('div').on('focusout', function () {
+            //     var ele = $(this);
+            //     updateBoxOne(ele.data('index'), ele.children().last('div').text());
+            // })
             $("#text").val("");
             ToBtm();
             // textHeightRest ()
         }
     }
+    //特殊事件 回复/羁绊事件
+    $('.propIco').click(function () {
+        $("#text").css("height", "24px");
+        var text = $("#text").val();
+        var a = $(this).attr('alt');
+        var json = new Object();
+        var avatars = $("img[class*='imgd']");
+        
+        switch (a) {
+            case '回复':
+                if (text != "") {
+                    newTalk = `<div class='eventContainerReply' data-index='${cen}' data-name='reply'>
+                    <div class='eTopTitle'>
+                      <div class='colorBlue'></div>
+                      <div class='eTitle'>回复</div>
+                    </div>
+                    <div class='eLine'></div>
+                    <div class='eContentBlue statistics' contenteditable='true' data-index='${cen}'>${text}</div>
+                  </div>`;
+                    json.type = 'reply';
+                } else {
+                    return false
+                }
+                break;
+            case '旁白':
+                if (text != "") {
+                    newTalk = "<div class='pangbaiDiv'  data-index=" + cen + " data-name='aside'><div class='pangbaiSpan statistics' contenteditable='true' data-index=" + cen + ">" + text + "</div></div>";
+                    json.type = 'aside';
+                } else {
+                    return false
+                }
+
+                break;
+            case '羁绊事件':
+                newTalk = `<div class='eventContainerLove' data-index='${cen}' data-name='love'>
+                    <div class='eTopTitle'>
+                      <div class='colorRed'></div>
+                      <div class='eTitle'>羁绊事件</div>
+                    </div>
+                    <div class='eLine'></div>
+                    <div class='eContentRed statistics' contenteditable='true' data-index='${cen}'>前往${avatars.length > 0 ? chooseAvatar.name :'引航者'}的羁绊剧情</div>
+                  </div>`;
+                json.type = 'love';
+                break;
+
+            default:
+                return false
+                break;
+        }
+        console.log(avatars.length);
+        if (avatars.length > 0) {
+            json.content ='前往'+chooseAvatar.name+"的羁绊剧情";
+            json.name=chooseAvatar.name;
+            json.mark=chooseAvatar.mark;
+        } else {
+            json.mark = '9999';
+            json.roleId = '9999';
+            json.content = '前往引航者的羁绊剧情';
+        }
+        json.index = cen;
+        json.roleId=chooseAvatar.roleId;
+        boxJson(json);
+        cen++;
+        $("#box").append(newTalk);
+        // $("#box").children().last('div').on('focusout', function () {
+        //     var ele = $(this);
+        //     updateBoxOne(ele.data('index'), ele.text());
+        // })
+        $("#text").val("");
+        ToBtm();
+    })
+
     //base64转blob
     function dataURItoBlob(base64Data) {
         var byteString;
@@ -162,55 +240,77 @@ $(document).ready(function () {
             switch (boxJsonArray[i].type) {
                 case 'Expression':
                     if (boxJsonArray[i].roleId == 9999) {
-                        newTalk = "<div class='roleOverall rightRoleOverall statistics' data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "><img  src='" + boxJsonArray[i].content + "' alt='' srcset='' class='rightImgExpression udiohsfnds'></div>";
+                        newTalk = "<div class='roleOverall rightRoleOverall ' data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "><img data-index=" + boxJsonArray[i].index + "  src='" + boxJsonArray[i].content + "' alt='' srcset='' class='rightImgExpression udiohsfnds statistics'></div>";
                     } else {
                         if ((i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) && (i > 0 && boxJsonArray[i - 1].name == boxJsonArray[i].name)) {
-                            newTalk = "<div data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "  data-names=" + boxJsonArray[i].name + " class='roleOverall statistics hudsfdosf'><div><div class='roleRemarkDiv yiuchsfh'><img src='" + boxJsonArray[i].content + "' alt='' srcset='' class='rightImgExpression '></div></div></div>";
+                            newTalk = "<div data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "  data-names=" + boxJsonArray[i].name + " class='roleOverall  hudsfdosf'><div><div class='roleRemarkDiv yiuchsfh'><img data-index=" + boxJsonArray[i].index + " src='" + boxJsonArray[i].content + "' alt='' srcset='' class='rightImgExpression statistics'></div></div></div>";
                         } else {
-                            newTalk = `<div class='roleOverall statistics' data-index="${boxJsonArray[i].index}"data-name="${boxJsonArray[i].mark}"  data-names="${boxJsonArray[i].name}"><div class='divImg'><img src='${boxJsonArray[i].path.indexOf(a) < 0 ? boxJsonArray[i].path : dataURItoBlob(boxJsonArray[i].path)}' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>${boxJsonArray[i].name}</span><div class='roleRemarkDiv'><img  src='${boxJsonArray[i].content}' alt='' srcset='' class='rightImgExpression '></div></div></div>`;
+                            newTalk = `<div class='roleOverall' data-index="${boxJsonArray[i].index}"data-name="${boxJsonArray[i].mark}"  data-names="${boxJsonArray[i].name}"><div class='divImg'><img src='${boxJsonArray[i].path.indexOf(a) < 0 ? boxJsonArray[i].path : dataURItoBlob(boxJsonArray[i].path)}' crossOrigin='anonymous' alt='' data-index="${boxJsonArray[i].index}" class='roleImg statistics' srcset=''></div><div><span class='roleNameSpan'>${boxJsonArray[i].name}</span><div class='roleRemarkDiv'><img  src='${boxJsonArray[i].content}' alt='' srcset='' class='rightImgExpression '></div></div></div>`;
                         }
                     }
                     html = html + newTalk;
                     break;
                 case 'img':
                     if (boxJsonArray[i].roleId == 9999) {
-                        newTalk = "<div class='roleOverall rightRoleOverall statistics' data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "><div class='Righthorn'></div><img  src='" + dataURItoBlob(boxJsonArray[i].content) + "' alt='' srcset='' class='rightImg rightImg1'></div>";
+                        newTalk = "<div class='roleOverall rightRoleOverall ' data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "><div class='Righthorn'></div><img  data-index=" + boxJsonArray[i].index + " src='" + dataURItoBlob(boxJsonArray[i].content) + "' alt='' srcset='' class='rightImg rightImg1 statistics'></div>";
                     } else {
                         if ((i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) && (i > 0 && boxJsonArray[i - 1].name == boxJsonArray[i].name)) {
-                            newTalk = "<div data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + " data-names=" + boxJsonArray[i].name + " class='roleOverall statistics iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><img src='" + dataURItoBlob(boxJsonArray[i].content) + "' alt='' srcset='' class='ydbsfhdf rightImg2'></div></div></div>";
+                            newTalk = "<div data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + " data-names=" + boxJsonArray[i].name + " class='roleOverall  iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><img data-index=" + boxJsonArray[i].index + " src='" + dataURItoBlob(boxJsonArray[i].content) + "' alt='' srcset='' class='ydbsfhdf rightImg2 statistics'></div></div></div>";
                         } else {
-                            newTalk = `<div class='roleOverall statistics' data-index="${boxJsonArray[i].index}" data-name="${boxJsonArray[i].mark} "data-names="${boxJsonArray[i].name} " ><div class='divImg'><img src='${boxJsonArray[i].path.indexOf(a) < 0 ? boxJsonArray[i].path : dataURItoBlob(boxJsonArray[i].path)}' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>"${boxJsonArray[i].name}"</span><div class='roleRemarkDiv'><div class='horn'></div><img  src='${dataURItoBlob(boxJsonArray[i].content)}' alt='' srcset='' class='rightImg rightImg2'></div></div></div>`;
+                            newTalk = `<div class='roleOverall ' data-index="${boxJsonArray[i].index}" data-name="${boxJsonArray[i].mark} "data-names="${boxJsonArray[i].name} " ><div class='divImg'><img src='${boxJsonArray[i].path.indexOf(a) < 0 ? boxJsonArray[i].path : dataURItoBlob(boxJsonArray[i].path)}' crossOrigin='anonymous' alt='' class='roleImg ' srcset=''></div><div><span class='roleNameSpan'>"${boxJsonArray[i].name}"</span><div class='roleRemarkDiv'><div class='horn'></div><img data-index="${boxJsonArray[i].index}"  src='${dataURItoBlob(boxJsonArray[i].content)}' alt='' srcset='' class='rightImg rightImg2 statistics'></div></div></div>`;
                         }
                     }
                     html = html + newTalk;
                     break;
                 case 'txt':
                     if (boxJsonArray[i].roleId == 9999) {
-                        newTalk = "<div class='roleOverall rightRoleOverall statistics'  data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "><div class='Righthorn'></div><div class='roleRemarkDiv3 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan'>" + boxJsonArray[i].content + "</div></div></div>";
+                        newTalk = "<div class='roleOverall rightRoleOverall '  data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "><div class='Righthorn'></div><div class='roleRemarkDiv3 roleRemarkDiv'  ><div class='roleRemarkDivSpan statistics' data-index=" + boxJsonArray[i].index + " contenteditable='true'>" + boxJsonArray[i].content + "</div></div></div>";
                     } else {
                         if ((i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) && (i > 0 && boxJsonArray[i - 1].name == boxJsonArray[i].name)) {
-                            newTalk = "<div data-index=" + boxJsonArray[i].index + " data-names=" + boxJsonArray[i].name + " data-name=" + boxJsonArray[i].mark + " class='roleOverall statistics iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><div class='roleRemarkDiv2 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan' >" + boxJsonArray[i].content + "</div></div></div></div></div>";
+                            newTalk = "<div data-index=" + boxJsonArray[i].index + " data-names=" + boxJsonArray[i].name + " data-name=" + boxJsonArray[i].mark + " class='roleOverall  iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><div class='roleRemarkDiv2 roleRemarkDiv'  ><div class='roleRemarkDivSpan statistics' data-index=" + boxJsonArray[i].index + " contenteditable='true' >" + boxJsonArray[i].content + "</div></div></div></div></div>";
                         } else {
-                            newTalk = `<div class='roleOverall statistics' data-names="${boxJsonArray[i].name} "  data-index="${boxJsonArray[i].index}" data-name=" ${boxJsonArray[i].mark} "><div class='divImg'><img src='${boxJsonArray[i].path.indexOf(a) < 0 ? boxJsonArray[i].path : dataURItoBlob(boxJsonArray[i].path)} ' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>${boxJsonArray[i].name}</span><div class='roleRemarkDiv'><div class='horn'></div><div class='roleRemarkDiv2 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan'>${boxJsonArray[i].content}</div></div></div></div></div>`;
+                            newTalk = `<div class='roleOverall ' data-names="${boxJsonArray[i].name} " data-name=" ${boxJsonArray[i].mark} "><div class='divImg'><img src='${boxJsonArray[i].path.indexOf(a) < 0 ? boxJsonArray[i].path : dataURItoBlob(boxJsonArray[i].path)} ' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>${boxJsonArray[i].name}</span><div class='roleRemarkDiv'><div class='horn'></div><div class='roleRemarkDiv2 roleRemarkDiv'  ><div class='roleRemarkDivSpan statistics'  data-index="${boxJsonArray[i].index}"contenteditable='true' >${boxJsonArray[i].content}</div></div></div></div></div>`;
                         }
                     }
                     html = html + newTalk;
                     break;
                 case 'aside':
-                    newTalk = "<div class='pangbaiDiv statistics' contenteditable='true' data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "><span class='pangbaiSpan'>" + boxJsonArray[i].content + "</span></div>";
+                    newTalk = "<div class='pangbaiDiv ' data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "><span class='pangbaiSpan statistics' contenteditable='true' data-index=" + boxJsonArray[i].index + " >" + boxJsonArray[i].content + "</span></div>";
+                    html = html + newTalk;
+                    break;
+                case 'reply':
+                    newTalk = `<div class='eventContainerReply' data-index='${boxJsonArray[i].index}' data-name='${boxJsonArray[i].mark}'>
+                    <div class='eTopTitle'>
+                      <div class='colorBlue'></div>
+                      <div class='eTitle'>回复</div>
+                    </div>
+                    <div class='eLine'></div>
+                    <div class='eContentBlue statistics' contenteditable='true' data-index='${boxJsonArray[i].index}' >${boxJsonArray[i].content}</div>
+                  </div>`;
+                    html = html + newTalk;
+                    break;
+                case 'love':
+                    newTalk = `<div class='eventContainerLove' data-index='${boxJsonArray[i].index}' data-name='${boxJsonArray[i].mark}'>
+                    <div class='eTopTitle'>
+                      <div class='colorRed'></div>
+                      <div class='eTitle'>羁绊事件</div>
+                    </div>
+                    <div class='eLine'></div>
+                    <div class='eContentRed statistics' contenteditable='true' data-index='${boxJsonArray[i].index}' >${boxJsonArray[i].content}</div>
+                  </div>`;
                     html = html + newTalk;
                     break;
             }
         }
         $('#box').html(html);
-        var avatars = $("div[class*='statistics']");
-        for (let i = 0; i < avatars.length; i++) {
-            $(avatars[i]).on('focusout', function () {
-                var ele = $(this);
-                updateBoxOne(ele.data('index'), ele.children().last('div').children().last('div').text());
-            })
+        // var avatars = $("div[class*='statistics']");
+        // for (let i = 0; i < avatars.length; i++) {
+        //     $(avatars[i]).on('focusout', function () {
+        //         var ele = $(this);
+        //             updateBoxOne(ele.data('index'), ele.text());
+        //     })
 
-        }
+        // }
         ToBtm();
     }
 
@@ -523,7 +623,8 @@ $(document).ready(function () {
     $('#delAll').click(function () {
         var a = $("div[class*='roleOverall']");
         var b = $("div[class*='pangbaiDiv']");
-        if (a.length > 0 || b.length > 0) {
+        var c = $("div[class*='eTopTitle']");
+        if (a.length > 0 || b.length > 0 || c.length > 0) {
             var c = confirm("确认要删除吗？");
             if (c) {
                 $("#box").html('');

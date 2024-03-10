@@ -133,6 +133,7 @@ body {
     display: flex;
     justify-content: space-evenly;
     background-color: burlywood;
+    padding: 2px 0;
 }
 
 .bimg {
@@ -154,9 +155,27 @@ input.el-input__inner {
 
 .save {
     border: 0;
-    background-color: rgb(255, 228, 196);
-    flex-grow: 1;
+
     cursor: pointer;
+}
+
+.propIcons {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(255, 228, 196);
+    padding: 5px 0;
+    /* align-content: space-around; */
+    justify-content: space-around;
+}
+
+.propIco {
+    /* height: 29px; */
+    cursor: pointer;
+}
+
+.propIco:hover {
+    position: relative;
+    bottom: 2px;
 }
 
 .bg {
@@ -211,6 +230,7 @@ input.el-input__inner {
 .roleOverall {
     display: flex;
     margin-top: 20px;
+    /* margin-bottom: 20px; */
 }
 
 .rightRoleOverall {
@@ -465,7 +485,8 @@ input.el-input__inner {
 }
 
 .roleOverall:first-child {
-    margin-top: 30px;
+    /* margin-top: 30px; */
+    /* margin-bottom: 20px; */
 }
 
 .xq:hover {
@@ -535,21 +556,26 @@ input.el-input__inner {
     color: white;
     font-size: 0.9rem;
 }
-.Gallery{
+
+.Gallery {
     position: absolute;
     top: 50%;
     left: 50%;
     height: 570px;
     width: 480px;
     border-radius: 0.9rem;
-    background-color: rgb(255,255,255);
-    margin-left:-240px;/*宽度的一半*/
-    margin-top:-285px;/*高度的一半*/
+    background-color: rgb(255, 255, 255);
+    margin-left: -240px;
+    /*宽度的一半*/
+    margin-top: -285px;
+    /*高度的一半*/
 }
-.n{
+
+.n {
     display: none;
 }
-.GalleryTop{
+
+.GalleryTop {
     display: flex;
     height: 10%;
     flex-direction: row;
@@ -560,7 +586,8 @@ input.el-input__inner {
     /* background-position: -2rem -2rem; */
     align-items: center;
 }
-.tydgvsgfv{
+
+.tydgvsgfv {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
@@ -568,26 +595,31 @@ input.el-input__inner {
     margin-right: 3.8rem;
     align-content: space-between;
 }
-.tydgvsgfv img{
+
+.tydgvsgfv img {
     position: relative;
     top: 3px;
     /* width: 66%; */
 }
-.yhivdfbs{
-    color: rgb(45,70,100);
+
+.yhivdfbs {
+    color: rgb(45, 70, 100);
     font-size: 1.7rem;
     font-weight: bold;
     font-family: emoji;
     /* margin-right: 7rem; */
 }
-.gb{
+
+.gb {
     width: 75%;
 }
-.gb:hover{
+
+.gb:hover {
     position: relative;
     bottom: 3px;
 }
-.GalleryContent{
+
+.GalleryContent {
     background-color: antiquewhite;
     height: 90%;
     background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(/images/hexa_back_01.webp);
@@ -596,7 +628,8 @@ input.el-input__inner {
     border-bottom-left-radius: 0.9rem;
     border-bottom-right-radius: 0.9rem;
 }
-.imgContent{
+
+.imgContent {
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -606,35 +639,151 @@ input.el-input__inner {
     justify-content: space-between;
     align-content: flex-start;
 }
-.hgfhdft{
+
+.hgfhdft {
     width: 9rem;
     height: 9rem;
 }
-.oneImg:first-of-type{
+
+.oneImg:first-of-type {
     margin-right: 10px;
 }
-.iuydsgfop{
+
+.iuydsgfop {
     margin: 0;
     margin-bottom: 10px;
     margin-left: 92px;
 }
-.hudsfdosf{
+
+.hudsfdosf {
     margin: 0;
     margin-bottom: 10px;
     margin-left: 82px;
 }
-.yiuchsfh{
+
+.yiuchsfh {
     padding: 0;
 }
-.ydbsfhdf{
+
+.ydbsfhdf {
     max-width: 92%;
     padding: 5px;
     border-radius: 5px;
 }
-.adb{
+
+.adb {
     margin-left: 25px;
     margin-top: 15px;
 }
-.updateName{
+
+.updateName {
     width: 25px;
+}
+
+.eventContainerLove{
+    display: flex;
+
+    flex-direction: column;
+
+    width: auto;
+
+    margin: 0px 40px;
+
+    color: #4C5B6F;
+
+    border-radius: 10px;
+
+    padding: 10px;
+
+    background-color: rgb(252, 238, 240);
+
+    border: 1px solid rgb(221, 210, 216);
+    
+    margin-bottom: 20px;
+    background-image: url(/images/Favor_Schedule_Deco.webp);
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: auto 100%;
+}
+.eventContainerReply{
+    display: flex;
+
+    flex-direction: column;
+
+    width: auto;
+
+    margin: 0px 40px;
+
+    color: #4C5B6F;
+
+    border-radius: 10px;
+
+    padding: 10px;
+
+    background-color: rgb(225, 237, 240);
+
+    border: 1px solid rgb(221, 210, 216);
+    
+    margin-bottom: 20px;
+    background-image: url(/images/Popup_Img_Deco_2.webp);
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-size: auto 100%;
+}
+.eTopTitle {
+    display: flex;
+    flex-direction: row;
+    font-size: large;
+    align-items: center;
+    font-weight: bold;
+}
+
+.eVertical {
+    height: 20px;
+    width: 2px;
+    
+}
+.colorRed{
+    height: 20px;
+    width: 2px;
+    background-color: rgb(252, 135, 155);
+}
+.colorBlue{
+    height: 20px;
+    width: 2px;
+    background-color: rgb(39,153,228);
+}
+.eTitle {
+    margin-left: 5px;
+}
+
+.eLine {
+    border-top: 1px solid rgb(207, 207, 206);
+    margin: 10px 0;
+}
+
+.eContentRed {
+    display: flex;
+    background-color: rgb(252, 135, 155);
+    padding: 10px 0;
+    border-radius: 10px;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: rgb(215, 165, 165) 0rem 0.05rem 0.2rem;
+    border-bottom: 0.1rem solid rgb(169, 136, 136);
+}
+.eContentBlue {
+    display: flex;
+    background-color: rgb(252, 135, 155);
+    padding: 10px 0;
+    border-radius: 10px;
+    justify-content: center;
+    color: rgb(75, 105, 137);
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: rgb(180, 188, 192) 0rem 0.05rem 0.2rem;
+    border-bottom: 0.1rem solid rgb(174, 174, 174);
+    background-color: white;
 }
