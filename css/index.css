@@ -12,7 +12,9 @@ a:link {
     text-decoration: none;
     color: black;
 }
-
+.app{
+    width: 100%;
+}
 .htmlName,
 .notice {
 
@@ -41,8 +43,8 @@ a:link {
 
 body {
     height: 100%;
-    width: 1500px;
-    transform: translate(13%, 0%);
+    width: auto;
+    margin: 0px 185px;
 }
 
 .top {
@@ -121,21 +123,26 @@ body {
     background-color: rgb(76, 91, 111);
     height: 5%;
     display: flex;
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     flex-direction: row;
 }
 
-.right .bottom {
+/* .right .bottom {
     height: auto;
     align-items: center;
     display: flex;
     justify-content: space-evenly;
     background-color: burlywood;
     padding: 2px 0;
+} */
+.nopkmpBottom{
+    display: flex;
+    align-items: center;
+    background-color: rgb(222,184,135);
+    /* justify-content: space-around; */
 }
-
 .bimg {
     display: flex;
     align-items: center;
@@ -151,6 +158,7 @@ input.el-input__inner {
     /* position: relative; */
     /* left: 12px; */
     cursor: pointer;
+    /* margin-left: 420px; */
 }
 
 .save {
@@ -257,8 +265,8 @@ input.el-input__inner {
     margin-bottom: 10px;
     margin-left: 17px;
     font-family: bold;
-    font-weight: 600;
-    font-size: 1rem;
+    font-weight: bold;
+    font-size: large;
     /* display: none; */
 }
 
@@ -298,7 +306,7 @@ input.el-input__inner {
 /* ////////////////////////////////////////////// */
 .roleRemarkDiv {
     max-width: 560px;
-    padding: 10px;
+    padding:5px 10px;
     /* position: relative; */
     left: -5px;
 }
@@ -435,17 +443,22 @@ input.el-input__inner {
     overflow: hidden;
     resize: none;
     height: 24px;
-    display: block;
+    /* display: block; */
     margin: 0 auto;
     overflow: hidden;
-    width: 550px;
+    display: flex;
+    /* width: 595px; */
+    flex-grow: 2;
     font-size: 15px;
     line-height: 24px;
     padding: 2px;
 }
 
 
-.txtDiv {}
+.txtDiv {
+    display: flex;
+    flex-grow: 1;
+}
 
 .sdad {
     border-radius: 50px;
@@ -530,14 +543,15 @@ input.el-input__inner {
 
 .abc {
 
-    display: flex;
+display: flex;
 
-    flex-direction: column;
+flex-direction: column;
 
-    align-items: center;
+align-items: center;
+
+/* justify-content: center; */
 }
-
-.abc div {
+.abc>a>div {
     background-color: white;
     padding: 5px;
     border-radius: 5px;
@@ -552,9 +566,10 @@ input.el-input__inner {
     bottom: 3px;
 }
 
-.abc span {
+.abc>div {
     color: white;
     font-size: 0.9rem;
+    display: flex;
 }
 
 .Gallery {
@@ -651,7 +666,7 @@ input.el-input__inner {
 
 .iuydsgfop {
     margin: 0;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     margin-left: 92px;
 }
 
@@ -682,24 +697,15 @@ input.el-input__inner {
 
 .eventContainerLove{
     display: flex;
-
     flex-direction: column;
-
     width: auto;
-
-    margin: 0px 40px;
-
+    /* margin: 0px 40px; */
     color: #4C5B6F;
-
     border-radius: 10px;
-
     padding: 10px;
-
     background-color: rgb(252, 238, 240);
-
     border: 1px solid rgb(221, 210, 216);
-    
-    margin-bottom: 20px;
+    margin: 20px 40px;
     background-image: url(/images/Favor_Schedule_Deco.webp);
     background-repeat: no-repeat;
     background-position: right center;
@@ -712,7 +718,7 @@ input.el-input__inner {
 
     width: auto;
 
-    margin: 0px 40px;
+    margin: 20px 40px;
 
     color: #4C5B6F;
 
@@ -724,7 +730,7 @@ input.el-input__inner {
 
     border: 1px solid rgb(221, 210, 216);
     
-    margin-bottom: 20px;
+    margin-top: 20px;
     background-image: url(/images/Popup_Img_Deco_2.webp);
     background-repeat: no-repeat;
     background-position: right top;
@@ -792,4 +798,7 @@ input.el-input__inner {
     white-space: pre-wrap;
     overflow-wrap: break-word;
     word-break: break-all;
+}
+#box>div:nth-of-type(1){
+    margin-top: 40px;
 }
