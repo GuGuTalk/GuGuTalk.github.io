@@ -773,6 +773,9 @@ input.el-input__inner {
     font-weight: bold;
     box-shadow: rgb(215, 165, 165) 0rem 0.05rem 0.2rem;
     border-bottom: 0.1rem solid rgb(169, 136, 136);
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-break: break-all;
 }
 .eContentBlue {
     display: flex;
@@ -786,4 +789,7 @@ input.el-input__inner {
     box-shadow: rgb(180, 188, 192) 0rem 0.05rem 0.2rem;
     border-bottom: 0.1rem solid rgb(174, 174, 174);
     background-color: white;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-break: break-all;
 }
