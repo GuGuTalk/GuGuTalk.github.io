@@ -2,8 +2,8 @@ $(document).ready(function () {
     var roleArray;
     var roleImgArray;
     var ExpressionArray;
-    var chooseAvatar={
-        roleId:9999
+    var chooseAvatar = {
+        roleId: 9999
     };
     var boxJsonArray = new Array();
     var one;
@@ -141,7 +141,7 @@ $(document).ready(function () {
         var a = $(this).attr('alt');
         var json = new Object();
         var avatars = $("img[class*='imgd']");
-        
+
         switch (a) {
             case '回复':
                 if (text != "") {
@@ -174,7 +174,7 @@ $(document).ready(function () {
                       <div class='eTitle'>羁绊事件</div>
                     </div>
                     <div class='eLine'></div>
-                    <div class='eContentRed statistics' contenteditable='true' data-index='${cen}'>前往${avatars.length > 0 ? chooseAvatar.name :'引航者'}的羁绊剧情</div>
+                    <div class='eContentRed statistics' contenteditable='true' data-index='${cen}'>前往${avatars.length > 0 ? chooseAvatar.name : '引航者'}的羁绊剧情</div>
                   </div>`;
                 json.type = 'love';
                 break;
@@ -183,18 +183,26 @@ $(document).ready(function () {
                 return false
                 break;
         }
-        console.log(avatars.length);
-        if (avatars.length > 0) {
-            json.content ='前往'+chooseAvatar.name+"的羁绊剧情";
-            json.name=chooseAvatar.name;
-            json.mark=chooseAvatar.mark;
-        } else {
-            json.mark = '9999';
-            json.roleId = '9999';
-            json.content = '前往引航者的羁绊剧情';
+        switch (json.type) {
+            case 'love':
+                if (avatars.length > 0) {
+                    json.content = '前往' + chooseAvatar.name + "的羁绊剧情";
+                    json.name = chooseAvatar.name;
+                    json.mark = chooseAvatar.mark;
+                } else {
+                    json.mark = '9999';
+                    
+                    json.content = '前往引航者的羁绊剧情';
+                }
+                break;
+            case 'reply':
+                json.content=text;
+                break;
+            default:
+                break;
         }
         json.index = cen;
-        json.roleId=chooseAvatar.roleId;
+        json.roleId = chooseAvatar.roleId;
         boxJson(json);
         cen++;
         $("#box").append(newTalk);
@@ -266,7 +274,7 @@ $(document).ready(function () {
                     if (boxJsonArray[i].roleId == 9999) {
                         newTalk = "<div class='roleOverall rightRoleOverall '  data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "><div class='Righthorn'></div><div class='roleRemarkDiv3 roleRemarkDiv'  ><div class='roleRemarkDivSpan statistics' data-index=" + boxJsonArray[i].index + " contenteditable='true'>" + boxJsonArray[i].content + "</div></div></div>";
                     } else {
-                        if ((i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) && (i > 0 && boxJsonArray[i - 1].name == boxJsonArray[i].name)&&(i > 0 && boxJsonArray[i - 1].type == boxJsonArray[i].type)) {
+                        if ((i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) && (i > 0 && boxJsonArray[i - 1].name == boxJsonArray[i].name) && (i > 0 && boxJsonArray[i - 1].type == boxJsonArray[i].type)) {
                             newTalk = "<div data-index=" + boxJsonArray[i].index + " data-names=" + boxJsonArray[i].name + " data-name=" + boxJsonArray[i].mark + " class='roleOverall  iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><div class='roleRemarkDiv2 roleRemarkDiv'  ><div class='roleRemarkDivSpan statistics' data-index=" + boxJsonArray[i].index + " contenteditable='true' >" + boxJsonArray[i].content + "</div></div></div></div></div>";
                         } else {
                             newTalk = `<div class='roleOverall ' data-names="${boxJsonArray[i].name} " data-name=" ${boxJsonArray[i].mark} "><div class='divImg'><img src='${boxJsonArray[i].path.indexOf(a) < 0 ? boxJsonArray[i].path : dataURItoBlob(boxJsonArray[i].path)} ' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>${boxJsonArray[i].name}</span><div class='roleRemarkDiv'><div class='horn'></div><div class='roleRemarkDiv2 roleRemarkDiv'  ><div class='roleRemarkDivSpan statistics'  data-index="${boxJsonArray[i].index}"contenteditable='true' >${boxJsonArray[i].content}</div></div></div></div></div>`;

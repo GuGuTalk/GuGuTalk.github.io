@@ -761,6 +761,7 @@ align-items: center;
 }
 .eTitle {
     margin-left: 5px;
+    font-size: larger;
 }
 
 .eLine {
@@ -790,7 +791,7 @@ align-items: center;
     border-radius: 10px;
     justify-content: center;
     color: rgb(75, 105, 137);
-    font-size: 16px;
+    font-size: large;
     font-weight: bold;
     box-shadow: rgb(180, 188, 192) 0rem 0.05rem 0.2rem;
     border-bottom: 0.1rem solid rgb(174, 174, 174);
