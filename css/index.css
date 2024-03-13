@@ -322,7 +322,7 @@ input.el-input__inner {
     white-space: pre-wrap;
     overflow-wrap: break-word;
     word-break: break-all;
-    font-size: 18px;
+    font-size: 20px;
     font-family: none;
     /* display: inline-block; */
 }
@@ -776,7 +776,7 @@ align-items: center;
     border-radius: 10px;
     justify-content: center;
     color: white;
-    font-size: 16px;
+    font-size:large;
     font-weight: bold;
     box-shadow: rgb(215, 165, 165) 0rem 0.05rem 0.2rem;
     border-bottom: 0.1rem solid rgb(169, 136, 136);
