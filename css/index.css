@@ -561,7 +561,7 @@ align-items: center;
     font-family: auto;
 }
 
-.abc div:hover {
+.abc>a:hover {
     position: relative;
     bottom: 3px;
 }
