@@ -191,18 +191,19 @@ $(document).ready(function () {
                     json.mark = chooseAvatar.mark;
                 } else {
                     json.mark = '9999';
-                    
                     json.content = '前往引航者的羁绊剧情';
                 }
+                json.roleId = chooseAvatar.roleId;
                 break;
             case 'reply':
+            case 'aside':
                 json.content=text;
                 break;
             default:
                 break;
         }
         json.index = cen;
-        json.roleId = chooseAvatar.roleId;
+        
         boxJson(json);
         cen++;
         $("#box").append(newTalk);

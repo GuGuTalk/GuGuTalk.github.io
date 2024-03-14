@@ -7,7 +7,7 @@ window.onload = function () {
 }
 const downloadQrcode = () => {
   var scrollHeight = $('#box').prop("scrollHeight")+20   ;
-  domtoimage.toJpeg(document.getElementById('box'), { quality: 1,height:scrollHeight })
+  domtoimage.toJpeg(document.getElementById('box'), { quality: 2,height:scrollHeight })
     .then(function (dataUrl) {
         var link = document.createElement('a');
         link.download = 'gugutalk.jpeg';
