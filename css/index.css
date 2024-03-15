@@ -772,7 +772,7 @@ align-items: center;
 .eContentRed {
     display: flex;
     background-color: rgb(252, 135, 155);
-    padding: 10px 0;
+    padding: 10px 10px;
     border-radius: 10px;
     justify-content: center;
     color: white;
@@ -787,7 +787,7 @@ align-items: center;
 .eContentBlue {
     display: flex;
     background-color: rgb(252, 135, 155);
-    padding: 10px 0;
+    padding: 10px 10px;
     border-radius: 10px;
     justify-content: center;
     color: rgb(75, 105, 137);
