@@ -19,8 +19,9 @@
     ::-webkit-scrollbar {
       width: 7px;
       height: 7px;
-      overscroll-behavior:contain;
+      overscroll-behavior: contain;
     }
+
     ::-webkit-scrollbar-track {
       background-color: #f3f3f3;
     }
@@ -80,10 +81,16 @@
             </a>
             <div>重置名称</div>
           </div>
+          <div class="abc">
+            <a href="javascript:;" id="updateSet">
+              <div>设</div>
+            </a>
+            <div>设置</div>
+          </div>
         </div>
       </div>
       <div class="center" id="knopiji">
-        
+
 
       </div>
       <div class="right">
@@ -96,7 +103,7 @@
           <div id="can" style="width: 100%;height: 100%;">
             <div id="box" ref="picture">
 
-              
+
             </div>
           </div>
         </div>
@@ -112,11 +119,11 @@
                 <input id="expressionUpload" name="file" accept="image/*" type="file" style="display: none" />
               </div>
             </div>
-            
-              <div class="txtDiv">
-                <textarea contenteditable="true" id="text" maxlength="150"></textarea>
-              </div>
-            
+
+            <div class="txtDiv">
+              <textarea contenteditable="true" id="text" maxlength="150"></textarea>
+            </div>
+
             <div>
               <button type="button" class="send"><img src="images/send.png" alt="发送" srcset=""></button>
             </div>
@@ -125,9 +132,9 @@
             <img src="images/Reply.png" title="回复" alt="回复" srcset="" class="propIco">
             <img src="images/info.png" title="旁白" alt="旁白" srcset="" class="propIco">
             <img src="images/love.png" title="羁绊事件" alt="羁绊事件" srcset="" class="propIco">
-          <img src="images/save.png" title="保存" alt="保存" srcset="" id="save" class="save propIco"
-                onclick="downloadQrcode()">
-            </div>
+            <img src="images/save.png" title="保存" alt="保存" srcset="" id="save" class="save propIco"
+              onclick="downloadQrcode()">
+          </div>
         </div>
       </div>
     </div>
@@ -135,9 +142,28 @@
       <div class="bxhjc">
       </div>
       <div class="bottomImgs">
-
       </div>
-
+    </div>
+    <!-- 设置 -->
+    <div class="setList n">
+      <div class="setListTitle">
+        设置
+      </div>
+      <div class="setLists">
+        <div class="fdgfd">
+          <div>背景色</div>
+          <input type="text">
+        </div>
+        <div class="fdgfd">
+          <div>背景图片</div>
+          <input type="text">
+        </div>
+        <div class="fdgfd">
+          <div>底部头像方向</div>
+          <select name="" id="">
+          </select>
+        </div>
+      </div>
     </div>
     <div class="Gallery n">
       <div class="GalleryTop">

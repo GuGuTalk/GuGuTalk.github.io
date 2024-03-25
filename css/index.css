@@ -394,11 +394,12 @@ input.el-input__inner {
 }
 
 .bottomImgs img {
-    /* width: 45px; */
-    /* height: 45px; */
+    width: 44px;
+    height: 44px;
     margin: 0 10px 0 0;
     border-radius: 50px;
     background-color: white;
+    display: flex;
 }
 
 .imgd {
@@ -570,6 +571,19 @@ align-items: center;
     color: white;
     font-size: 0.9rem;
     display: flex;
+}
+.setList{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 570px;
+    width: 480px;
+    border-radius: 0.9rem;
+    background-color: rgb(255, 255, 255);
+    margin-left: -240px;
+    /*宽度的一半*/
+    margin-top: -285px;
+    /*高度的一半*/
 }
 
 .Gallery {

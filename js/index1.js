@@ -56,13 +56,16 @@ $(document).ready(function () {
         var text = $("#text").val();
         var value;
         json.type = 'txt'
+        var base64;
         var avatars = $("img[class*='imgd']");
         var a = $("div[class*='roleOverall']");
         if (avatars.length <= 0) {
             value = 9999;
         } else {
             value = chooseAvatar.roleId
+            base64 = getBase64(chooseAvatar.roleId);
         }
+
         if (text != "") {
             json.index = cen;
             json.content = text;
@@ -76,14 +79,23 @@ $(document).ready(function () {
                     //json.path = chooseAvatar.path,
                     json.name = chooseAvatar.name,
                     json.content = text,
-                    json.mark = chooseAvatar.mark
-                if ($('#box').children().last('div').data('name') == chooseAvatar.mark && $('#box').children().last('div').data('names') == chooseAvatar.name) {
+                    json.mark = chooseAvatar.mark;
+                var ary = JSON.parse(localStorage.getItem("boxJson"));
+                if (ary[ary.length - 1].mark == chooseAvatar.mark
+                    && ary[ary.length - 1].name == chooseAvatar.name
+                    && (ary[ary.length - 1].type == "txt")) {
+                    json.base64 = '';
                     json.path = ''
                     newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + " data-names=" + chooseAvatar.name + " class='roleOverall iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><div class='roleRemarkDiv2 roleRemarkDiv' ><div class='roleRemarkDivSpan statistics'data-index=" + cen + "  contenteditable='true'>" + text + "</div></div></div></div></div>";
                     //newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + " class='roleOverall statistics iuydsgfop'><div class='divImg'><img src='" + chooseAvatar.path + "' crossOrigin='anonymous' alt='' class='roleImg' srcset='' style='height:0'></div><div><span class='roleNameSpan'></span><div class='roleRemarkDiv'><div class='roleRemarkDiv2 roleRemarkDiv' contenteditable='true' ><div class='roleRemarkDivSpan' >" + text + "</div></div></div></div></div>";
                 } else {
+                    if (getNewRoleType(chooseAvatar.roleId) == "newRole" || getNewRoleType(chooseAvatar.roleId) == null) {
+                        json.base64 = base64;
+                    }
                     json.path = chooseAvatar.path
-                    newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + "  data-names=" + chooseAvatar.name + " class='roleOverall '><div class='divImg'><img src='" + chooseAvatar.path + "' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>" + chooseAvatar.name + "</span><div class='roleRemarkDiv'><div class='horn'></div><div class='roleRemarkDiv2 roleRemarkDiv'  ><div class='roleRemarkDivSpan statistics' data-index=" + cen + " contenteditable='true' >" + text + "</div></div></div></div></div>";
+                    newTalk = `<div class="roleOverall " data-names="${chooseAvatar.name} " data-name=" ${chooseAvatar.mark} "><div class="divImg"><img src="${getNewRoleType(chooseAvatar.roleId) == "newRole" ? dataURItoBlob(json.base64) : chooseAvatar.path}" crossorigin="anonymous" alt="" class="roleImg" srcset=""></div><div><span class="roleNameSpan">${chooseAvatar.name}</span><div class="roleRemarkDiv"><div class="horn"></div><div class="roleRemarkDiv2 roleRemarkDiv"><div class="roleRemarkDivSpan statistics" data-index="${cen}" contenteditable="true">${text}</div></div></div></div></div>`;
+                    //newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + "  data-names=" + chooseAvatar.name + " class='roleOverall '><div class='divImg'><img src='" + chooseAvatar.roleId.length > 2 ? dataURItoBlob(json.base64) : chooseAvatar.path + "' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>" + chooseAvatar.name + "</span><div class='roleRemarkDiv'><div class='horn'></div><div class='roleRemarkDiv2 roleRemarkDiv'  ><div class='roleRemarkDivSpan statistics' data-index=" + cen + " contenteditable='true' >" + text + "</div></div></div></div></div>";
+                    //newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + "  data-names=" + chooseAvatar.name + " class='roleOverall '><div class='divImg'><img src=" + chooseAvatar.roleId.length > 2 ? dataURItoBlob(json.base64) : chooseAvatar.path + " crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>" + chooseAvatar.name + "</span><div class='roleRemarkDiv'><div class='horn'></div><div class='roleRemarkDiv2 roleRemarkDiv'  ><div class='roleRemarkDivSpan statistics' data-index=" + cen + " contenteditable='true' >" + text + "</div></div></div></div></div>";
                 }
             }
             $("#box").append(newTalk);
@@ -101,11 +113,25 @@ $(document).ready(function () {
             //textHeightRest ()
         }
     }
+    //获取新建角色类型
+    function getNewRoleType(id) {
+        var json = JSON.parse(localStorage.getItem("roleListCopy"));
+        var type;
+        for (let index = 0; index < json.length; index++) {
+            if (id == json[index].id) {
+                type = json[index].description;
+                break;
+            }
+
+        }
+        return type;
+    }
     //滚动条到最底部
     function ToBtm() {
         getLength();
         var scrollHeight = $('#box').prop("scrollHeight") + 9999
         $('#box').scrollTop(scrollHeight);
+
     }
     $("#box").on('focusout', '.statistics', function () {
         var ele = $(this);
@@ -197,13 +223,13 @@ $(document).ready(function () {
                 break;
             case 'reply':
             case 'aside':
-                json.content=text;
+                json.content = text;
                 break;
             default:
                 break;
         }
         json.index = cen;
-        
+
         boxJson(json);
         cen++;
         $("#box").append(newTalk);
@@ -251,10 +277,11 @@ $(document).ready(function () {
                     if (boxJsonArray[i].roleId == 9999) {
                         newTalk = "<div class='roleOverall rightRoleOverall ' data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "><img data-index=" + boxJsonArray[i].index + "  src='" + boxJsonArray[i].content + "' alt='' srcset='' class='rightImgExpression udiohsfnds statistics'></div>";
                     } else {
-                        if ((i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) && (i > 0 && boxJsonArray[i - 1].name == boxJsonArray[i].name)) {
+                        //(ary[ary.length-1].type=="txt"||ary[ary.length-1].type=="Expression")
+                        if ((i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) && (i > 0 && boxJsonArray[i - 1].name == boxJsonArray[i].name) && ((i > 0 && boxJsonArray[i - 1].type == "txt") || (i > 0 && boxJsonArray[i - 1].type == "Expression"))) {
                             newTalk = "<div data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "  data-names=" + boxJsonArray[i].name + " class='roleOverall  hudsfdosf'><div><div class='roleRemarkDiv yiuchsfh'><img data-index=" + boxJsonArray[i].index + " src='" + boxJsonArray[i].content + "' alt='' srcset='' class='rightImgExpression statistics'></div></div></div>";
                         } else {
-                            newTalk = `<div class='roleOverall' data-index="${boxJsonArray[i].index}"data-name="${boxJsonArray[i].mark}"  data-names="${boxJsonArray[i].name}"><div class='divImg'><img src='${boxJsonArray[i].path.indexOf(a) < 0 ? boxJsonArray[i].path : dataURItoBlob(boxJsonArray[i].path)}' crossOrigin='anonymous' alt='' data-index="${boxJsonArray[i].index}" class='roleImg statistics' srcset=''></div><div><span class='roleNameSpan'>${boxJsonArray[i].name}</span><div class='roleRemarkDiv'><img  src='${boxJsonArray[i].content}' alt='' srcset='' class='rightImgExpression '></div></div></div>`;
+                            newTalk = `<div class='roleOverall' data-index="${boxJsonArray[i].index}"data-name="${boxJsonArray[i].mark}"  data-names="${boxJsonArray[i].name}"><div class='divImg'><img src='${boxJsonArray[i].base64.indexOf(a) >= 0 ? dataURItoBlob(boxJsonArray[i].base64) : boxJsonArray[i].path}' crossOrigin='anonymous' alt='' data-index="${boxJsonArray[i].index}" class='roleImg statistics' srcset=''></div><div><span class='roleNameSpan'>${boxJsonArray[i].name}</span><div class='roleRemarkDiv'><img  src='${boxJsonArray[i].content}' alt='' srcset='' class='rightImgExpression '></div></div></div>`;
                         }
                     }
                     html = html + newTalk;
@@ -263,10 +290,10 @@ $(document).ready(function () {
                     if (boxJsonArray[i].roleId == 9999) {
                         newTalk = "<div class='roleOverall rightRoleOverall ' data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "><div class='Righthorn'></div><img  data-index=" + boxJsonArray[i].index + " src='" + dataURItoBlob(boxJsonArray[i].content) + "' alt='' srcset='' class='rightImg rightImg1 statistics'></div>";
                     } else {
-                        if ((i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) && (i > 0 && boxJsonArray[i - 1].name == boxJsonArray[i].name)) {
+                        if ((i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) && (i > 0 && boxJsonArray[i - 1].name == boxJsonArray[i].name) && (i > 0 && boxJsonArray[i - 1].type == "txt")) {
                             newTalk = "<div data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + " data-names=" + boxJsonArray[i].name + " class='roleOverall  iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><img data-index=" + boxJsonArray[i].index + " src='" + dataURItoBlob(boxJsonArray[i].content) + "' alt='' srcset='' class='ydbsfhdf rightImg2 statistics'></div></div></div>";
                         } else {
-                            newTalk = `<div class='roleOverall ' data-index="${boxJsonArray[i].index}" data-name="${boxJsonArray[i].mark} "data-names="${boxJsonArray[i].name} " ><div class='divImg'><img src='${boxJsonArray[i].path.indexOf(a) < 0 ? boxJsonArray[i].path : dataURItoBlob(boxJsonArray[i].path)}' crossOrigin='anonymous' alt='' class='roleImg ' srcset=''></div><div><span class='roleNameSpan'>"${boxJsonArray[i].name}"</span><div class='roleRemarkDiv'><div class='horn'></div><img data-index="${boxJsonArray[i].index}"  src='${dataURItoBlob(boxJsonArray[i].content)}' alt='' srcset='' class='rightImg rightImg2 statistics'></div></div></div>`;
+                            newTalk = `<div class='roleOverall ' data-index="${boxJsonArray[i].index}" data-name="${boxJsonArray[i].mark} "data-names="${boxJsonArray[i].name} " ><div class='divImg'><img src='${boxJsonArray[i].base64.indexOf(a) >= 0 ? dataURItoBlob(boxJsonArray[i].base64) : boxJsonArray[i].path}' crossOrigin='anonymous' alt='' class='roleImg ' srcset=''></div><div><span class='roleNameSpan'>${boxJsonArray[i].name}</span><div class='roleRemarkDiv'><div class='horn'></div><img data-index="${boxJsonArray[i].index}"  src='${dataURItoBlob(boxJsonArray[i].content)}' alt='' srcset='' class='rightImg rightImg2 statistics'></div></div></div>`;
                         }
                     }
                     html = html + newTalk;
@@ -275,10 +302,10 @@ $(document).ready(function () {
                     if (boxJsonArray[i].roleId == 9999) {
                         newTalk = "<div class='roleOverall rightRoleOverall '  data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "><div class='Righthorn'></div><div class='roleRemarkDiv3 roleRemarkDiv'  ><div class='roleRemarkDivSpan statistics' data-index=" + boxJsonArray[i].index + " contenteditable='true'>" + boxJsonArray[i].content + "</div></div></div>";
                     } else {
-                        if ((i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) && (i > 0 && boxJsonArray[i - 1].name == boxJsonArray[i].name) && (i > 0 && boxJsonArray[i - 1].type == boxJsonArray[i].type)) {
+                        if ((i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) && (i > 0 && boxJsonArray[i - 1].name == boxJsonArray[i].name) && (i > 0 && boxJsonArray[i - 1].type == "txt")) {
                             newTalk = "<div data-index=" + boxJsonArray[i].index + " data-names=" + boxJsonArray[i].name + " data-name=" + boxJsonArray[i].mark + " class='roleOverall  iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><div class='roleRemarkDiv2 roleRemarkDiv'  ><div class='roleRemarkDivSpan statistics' data-index=" + boxJsonArray[i].index + " contenteditable='true' >" + boxJsonArray[i].content + "</div></div></div></div></div>";
                         } else {
-                            newTalk = `<div class='roleOverall ' data-names="${boxJsonArray[i].name} " data-name=" ${boxJsonArray[i].mark} "><div class='divImg'><img src='${boxJsonArray[i].path.indexOf(a) < 0 ? boxJsonArray[i].path : dataURItoBlob(boxJsonArray[i].path)} ' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>${boxJsonArray[i].name}</span><div class='roleRemarkDiv'><div class='horn'></div><div class='roleRemarkDiv2 roleRemarkDiv'  ><div class='roleRemarkDivSpan statistics'  data-index="${boxJsonArray[i].index}"contenteditable='true' >${boxJsonArray[i].content}</div></div></div></div></div>`;
+                            newTalk = `<div class='roleOverall ' data-names="${boxJsonArray[i].name} " data-name=" ${boxJsonArray[i].mark} "><div class='divImg'><img src='${boxJsonArray[i].base64.indexOf(a) >= 0 ? dataURItoBlob(boxJsonArray[i].base64) : boxJsonArray[i].path} ' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>${boxJsonArray[i].name}</span><div class='roleRemarkDiv'><div class='horn'></div><div class='roleRemarkDiv2 roleRemarkDiv'  ><div class='roleRemarkDivSpan statistics'  data-index="${boxJsonArray[i].index}"contenteditable='true' >${boxJsonArray[i].content}</div></div></div></div></div>`;
                         }
                     }
                     html = html + newTalk;
@@ -334,6 +361,13 @@ $(document).ready(function () {
     });
     //初始化数据
     function Init() {
+
+        if (localStorage.getItem("delete") == null) {
+            localStorage.clear();
+            localStorage.setItem("delete", "1");
+            window.location.reload();
+        }
+
         $("#knopiji").html('');
         $.getJSON("data/roles.json",
             function (data) {
@@ -349,6 +383,11 @@ $(document).ready(function () {
                 var count = data.length;
                 //角色列表副本相关
                 var copyDate = RoleListOperate(data, count);
+                for (let index = 0; index < copyDate.length; index++) {
+                    if (copyDate[index].description == "newRole") {
+                        copyDate[index].imgURl = dataURItoBlob(copyDate[index].imgURl);
+                    }
+                }
                 roleArray = copyDate;
 
 
@@ -391,7 +430,6 @@ $(document).ready(function () {
     function updateName(d, e) {
         var newName = prompt('请输入新名称');
         if (newName !== null && newName != ' ') {
-            console.log("1", newName);
             var id = $(d).parent().parent().parent().data("id");
             console.log(id, d);
             var copyList = JSON.parse(localStorage.getItem("roleListCopy"));
@@ -475,13 +513,20 @@ $(document).ready(function () {
                 json.name = chooseAvatar.name,
                 json.content = imgObj;
             json.mark = chooseAvatar.mark;
-            boxJson(json);
-            if ($('#box').children().last('div').data('name') == chooseAvatar.mark) {
+            var ary = JSON.parse(localStorage.getItem("boxJson"));
+            //(i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) && (i > 0 && boxJsonArray[i - 1].name == boxJsonArray[i].name) 
+            if (((ary[ary.length - 1].type == "txt")
+                || ary[ary.length - 1].type == "Expression")
+                && ary[ary.length - 1].mark == chooseAvatar.mark
+                && ary[ary.length - 1].name == chooseAvatar.name) {
+                json.base64 = '';
                 //newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + " class='roleOverall statistics iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><img src='" + url + "' alt='' srcset='' class='ydbsfhdf rightImg2'></div></div></div>";
                 newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + " class='roleOverall statistics hudsfdosf'><div><div class='roleRemarkDiv yiuchsfh'><img src='" + imgObj + "' alt='' srcset='' class='rightImgExpression '></div></div></div>";
             } else {
+                json.base64 = getBase64(chooseAvatar.roleId);
                 newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + " class='roleOverall statistics'><div class='divImg'><img src='" + chooseAvatar.path + "' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>" + chooseAvatar.name + "</span><div class='roleRemarkDiv'><img  src='" + imgObj + "' alt='' srcset='' class='rightImgExpression '></div></div></div>";
             }
+            boxJson(json);
         }
         $("#box").append(newTalk);
         cen++;
@@ -618,6 +663,20 @@ $(document).ready(function () {
             }
         })
     }
+    //通过id获取base64头像
+    function getBase64(id) {
+        var base64;
+        json = JSON.parse(localStorage.getItem('roleListCopy'));
+
+        for (let index = 0; index < json.length; index++) {
+            if (json[index].id == id) {
+                base64 = json[index].imgURl;
+                break;
+            }
+
+        }
+        return base64;
+    }
     //切分文本长度
     function getActualWidthOfChars(text, options = {}) {
         const { size = 18, family = "none" } = options;
@@ -670,44 +729,101 @@ $(document).ready(function () {
         var jq = $(link);
         jq.attr({ "type": "file", "accept": "image/*" });
         jq.on("change", function () {
-            var reader = new FileReader();
             json.index = cen;
             json.type = "img"
             var imgP = $(this);
             var imgObj = imgP[0].files[0];
-            reader.readAsDataURL(imgObj);
-            var url = getInputURL(imgObj);
-            var newTalk = '';
-            if (value == 9999) {
-                newTalk = "<div data-index=" + cen + " data-name='9999' class='roleOverall rightRoleOverall statistics'><div class='Righthorn'></div><img src='" + url + "' alt='' srcset='' class='rightImg rightImg1'></div>";
-                json.roleId = 9999;
-                json.mark = '9999';
-                reader.onload = function () {
-                    json.content = reader.result;
+            var newImg;
+            //压缩图片
+            compressImg(imgObj, 0.2).then(res => {//compressImg方法见附录
+                newImg = res.afterSrc;
+                //reader.readAsDataURL(imgObj);
+                //var url = getInputURL(imgObj);
+                var url = newImg;
+                var newTalk = '';
+                if (value == 9999) {
+                    newTalk = "<div data-index=" + cen + " data-name='9999' class='roleOverall rightRoleOverall statistics'><div class='Righthorn'></div><img src='" + dataURItoBlob(url) + "' alt='' srcset='' class='rightImg rightImg1'></div>";
+                    json.roleId = 9999;
+                    json.mark = '9999';
+                    json.content = url;
                     boxJson(json);
-                };
-            } else {
-                json.roleId = chooseAvatar.roleId;
-                json.imgId = chooseAvatar.imgId;
-                json.path = chooseAvatar.path;
-                json.name = chooseAvatar.name;
-                json.mark = chooseAvatar.mark;
-                if ($('#box').children().last('div').data('name') == chooseAvatar.mark) {
-                    newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + " class='roleOverall statistics iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><img src='" + url + "' alt='' srcset='' class='ydbsfhdf rightImg2'></div></div></div>";
                 } else {
-                    newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + " class='roleOverall statistics'><div class='divImg'><img src='" + chooseAvatar.path + "' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>" + chooseAvatar.name + "</span><div class='roleRemarkDiv'><div class='horn'></div><img src='" + url + "' alt='' srcset='' class='rightImg rightImg2'></div></div></div>";
-                }
-                reader.onload = function () {
-                    json.content = reader.result;
+                    json.roleId = chooseAvatar.roleId;
+                    json.imgId = chooseAvatar.imgId;
+                    json.path = chooseAvatar.path;
+                    json.name = chooseAvatar.name;
+                    json.mark = chooseAvatar.mark;
+                    var ary = JSON.parse(localStorage.getItem("boxJson"));
+                    if (ary[ary.length - 1].mark == chooseAvatar.mark
+                        && ary[ary.length - 1].name == chooseAvatar.name
+                        && (ary[ary.length - 1].type == "txt")) {
+                        json.base64 = '';
+                        newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + " class='roleOverall statistics iuydsgfop'><div><div class='roleRemarkDiv yiuchsfh'><img src='" + dataURItoBlob(url) + "' alt='' srcset='' class='ydbsfhdf rightImg2'></div></div></div>";
+                    } else {
+                        json.base64 = getBase64(chooseAvatar.roleId);
+                        newTalk = "<div data-index=" + cen + " data-name=" + chooseAvatar.mark + " class='roleOverall statistics'><div class='divImg'><img src='" + chooseAvatar.path + "' crossOrigin='anonymous' alt='' class='roleImg' srcset=''></div><div><span class='roleNameSpan'>" + chooseAvatar.name + "</span><div class='roleRemarkDiv'><div class='horn'></div><img src='" + dataURItoBlob(url) + "' alt='' srcset='' class='rightImg rightImg2'></div></div></div>";
+                    }
+                    json.content = url;
                     boxJson(json);
-                };
-            }
-            cen++;
-            $("#box").append(newTalk);
-            ToBtm();
+                }
+                cen++;
+                $("#box").append(newTalk);
+                ToBtm();
+
+            })
         })
         jq.click();
     })
+    //图片压缩
+    /**
+ * 压缩方法 
+ * @param {string} file 文件
+ * @param {Number} quality  0~1之间
+*/
+    function compressImg(file, quality) {
+        if (file[0]) {
+            return Promise.all(Array.from(file).map(e => compressImg(e,
+                quality))) // 如果是 file 数组返回 Promise 数组
+        } else {
+            return new Promise((resolve) => {
+                const reader = new FileReader() // 创建 FileReader
+                reader.onload = ({
+                    target: {
+                        result: src
+                    }
+                }) => {
+                    const image = new Image() // 创建 img 元素
+                    image.onload = async () => {
+                        const canvas = document.createElement('canvas') // 创建 canvas 元素
+                        canvas.width = image.width
+                        canvas.height = image.height
+                        canvas.getContext('2d').drawImage(image, 0, 0, image.width, image.height) // 绘制 canvas
+                        const canvasURL = canvas.toDataURL('image/jpeg', quality)
+                        const buffer = atob(canvasURL.split(',')[1])
+                        let length = buffer.length
+                        const bufferArray = new Uint8Array(new ArrayBuffer(length))
+                        while (length--) {
+                            bufferArray[length] = buffer.charCodeAt(length)
+                        }
+                        const miniFile = new File([bufferArray], file.name, {
+                            type: 'image/jpeg'
+                        })
+                        resolve({
+                            file: miniFile,
+                            origin: file,
+                            beforeSrc: src,
+                            afterSrc: canvasURL,
+                            beforeKB: Number((file.size / 1024).toFixed(2)),
+                            afterKB: Number((miniFile.size / 1024).toFixed(2))
+                        })
+                    }
+                    image.src = src
+                }
+                reader.readAsDataURL(file)
+            })
+        }
+    }
+
     //创建角色
     $("#newRole").click(function () {
         var roleName = prompt("请输入角色姓名", "");
@@ -716,18 +832,17 @@ $(document).ready(function () {
             var jq = $(link);
             jq.attr({ "type": "file", "accept": "image/*" });
             jq.on("change", function () {
-                var reader = new FileReader();
+                var json = new Object();
                 var imgP = $(this);
                 var imgObj = imgP[0].files[0];
-                reader.readAsDataURL(imgObj);
-                reader.onload = function () {
-                    var json = new Object();
+                compressImg(imgObj, 0.2).then(res => {//compressImg方法见附录
+                    var url = res.afterSrc;
                     json.id = parseInt(getNowTime());
                     json.roleName = roleName;
                     json.description = "newRole";
-                    json.imgURl = reader.result;
+                    json.imgURl = url;
                     newRoleSave(json);
-                };
+                })
             })
         }
         jq.click();
@@ -768,6 +883,7 @@ $(document).ready(function () {
     //拼接自定义角色到列表
     function splicingRole(array) {
         var json = JSON.parse(localStorage.getItem('newRoleJson'));
+
         if (json == '' || json == null) {
             return array;
         } else {
@@ -791,9 +907,12 @@ $(document).ready(function () {
     })
     //打开表情包
     $("#imgExpression").click(function () {
-        $('.Gallery').removeClass('n');
+        $('.Gallery').toggleClass('n');
     })
-
+    //打开/关闭设置列表
+    $("#updateSet").click(function () {
+        $('.Gallery').toggleClass('n');
+    })
     $('.gb').click(function () {
         closeExpression();
     })
