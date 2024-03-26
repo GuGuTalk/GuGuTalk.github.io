@@ -81,7 +81,7 @@ $(document).ready(function () {
                     json.content = text,
                     json.mark = chooseAvatar.mark;
                 var ary = JSON.parse(localStorage.getItem("boxJson"));
-                if (ary!=null&&ary[ary.length - 1].mark == chooseAvatar.mark
+                if (ary != null && ary[ary.length - 1].mark == chooseAvatar.mark
                     && ary[ary.length - 1].name == chooseAvatar.name
                     && (ary[ary.length - 1].type == "txt")) {
                     json.base64 = '';
@@ -359,9 +359,20 @@ $(document).ready(function () {
         }
 
     });
+    //跳转到新网址
+    function toNewPath() {
+        var url = window.location.href;
+        console.log(url);
+        if (url.indexOf("gugutack.com") == -1) {
+            if (confirm("是否跳转新站点，当前数据无法保存")) {
+                window.location.replace("http://gugutack.com/index.html")
+            }
+
+        }
+    }
     //初始化数据
     function Init() {
-
+        toNewPath();
         if (localStorage.getItem("delete") == null) {
             localStorage.clear();
             localStorage.setItem("delete", "1");
@@ -515,7 +526,7 @@ $(document).ready(function () {
             json.mark = chooseAvatar.mark;
             var ary = JSON.parse(localStorage.getItem("boxJson"));
             //(i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) && (i > 0 && boxJsonArray[i - 1].name == boxJsonArray[i].name) 
-            if (ary!=null&&((ary[ary.length - 1].type == "txt")
+            if (ary != null && ((ary[ary.length - 1].type == "txt")
                 || ary[ary.length - 1].type == "Expression")
                 && ary[ary.length - 1].mark == chooseAvatar.mark
                 && ary[ary.length - 1].name == chooseAvatar.name) {
@@ -754,7 +765,7 @@ $(document).ready(function () {
                     json.name = chooseAvatar.name;
                     json.mark = chooseAvatar.mark;
                     var ary = JSON.parse(localStorage.getItem("boxJson"));
-                    if (ary!=null&&ary[ary.length - 1].mark == chooseAvatar.mark
+                    if (ary != null && ary[ary.length - 1].mark == chooseAvatar.mark
                         && ary[ary.length - 1].name == chooseAvatar.name
                         && (ary[ary.length - 1].type == "txt")) {
                         json.base64 = '';
