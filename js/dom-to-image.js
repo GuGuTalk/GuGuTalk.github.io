@@ -154,8 +154,16 @@
             .then(util.makeImage)
             .then(util.delay(100))
             .then(function (image) {
+                // var canvas = newCanvas(domNode);
+                // canvas.getContext('2d').drawImage(image, 0, 0);
+                // return canvas;
                 var canvas = newCanvas(domNode);
-                canvas.getContext('2d').drawImage(image, 0, 0);
+                let context = canvas.getContext('2d');
+                const ratio = window.devicePixelRatio || 1;
+                canvas.width *= ratio;
+                canvas.height *= ratio;
+                context.scale(ratio, ratio);
+                context.drawImage(image, 0, 0);
                 return canvas;
             });
 
