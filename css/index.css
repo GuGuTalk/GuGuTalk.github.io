@@ -4,7 +4,7 @@
 }
 
 [contenteditable] {
-    outline: 0px solid transparent;
+    outline: 0 solid transparent;
 }
 
 a,
@@ -13,14 +13,15 @@ a:link {
     color: black;
 }
 
-.app {
+#app {
     width: 100%;
+    height: 100%;
 }
 
 .htmlName,
 .notice {
 
-    margin-left: 2rem;
+    margin-left: 1rem;
 
     line-height: 2.5rem;
 
@@ -41,30 +42,38 @@ a:link {
     background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(/images/hexa_back_01.webp);
     background-repeat: no-repeat;
     background-size: cover;
+    width: 100%;
 }
 
 body {
     height: 100%;
     width: auto;
-    margin: 0px 185px;
+    margin: 0px 10.25rem;
 }
 
 .top {
     background-color: rgb(139, 187, 233);
     width: auto;
     height: 6%;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
 
+.topimg {
+    width: 2rem;
+    margin-left: 1.3rem;
+    display: none;
+}
+
 .left {
     background-color: rgb(76, 91, 111);
     height: 100%;
-    width: 5%;
+    width: 5rem;
+    /* flex-grow: 1; */
 }
 
 .left .content {
@@ -92,14 +101,14 @@ body {
     flex-direction: column;
     overflow: auto;
     width: 50%;
-    /* padding: 0 20px; */
+    overscroll-behavior: contain;
+    /* flex-grow: 1; */
 }
 
 .center .xq {
     display: flex;
-    height: 75px;
-    padding: 0 20px;
-    padding: 5px 0;
+    height: 5rem;
+    padding: 0.2rem 0;
     width: 100%;
     align-items: center;
     justify-content: space-between;
@@ -114,11 +123,12 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    width: 51%;
+    width: 48rem;
     justify-content: flex-end;
     align-items: baseline;
     /* overflow-y: auto; */
     /* overflow-x: hidden; */
+    flex-grow: 1;
 }
 
 .bottom1 {
@@ -126,19 +136,11 @@ body {
     height: 5%;
     display: flex;
     /* justify-content: flex-start; */
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
     flex-direction: row;
 }
 
-/* .right .bottom {
-    height: auto;
-    align-items: center;
-    display: flex;
-    justify-content: space-evenly;
-    background-color: burlywood;
-    padding: 2px 0;
-} */
 .nopkmpBottom {
     display: flex;
     align-items: center;
@@ -152,16 +154,13 @@ body {
 }
 
 input.el-input__inner {
-    font-size: 20px;
+    font-size: 1rem;
 }
 
 .send {
     border: 0;
     background-color: burlywood;
-    /* position: relative; */
-    /* left: 12px; */
     cursor: pointer;
-    /* margin-left: 420px; */
 }
 
 .save {
@@ -174,19 +173,19 @@ input.el-input__inner {
     display: flex;
     flex-direction: row;
     background-color: rgb(255, 228, 196);
-    padding: 5px 0;
+    padding: 0.2rem 0;
     /* align-content: space-around; */
     justify-content: space-around;
 }
 
 .propIco {
-    /* height: 29px; */
+    height: 1.8rem;
     cursor: pointer;
 }
 
 .propIco:hover {
     position: relative;
-    bottom: 2px;
+    bottom: 0.1rem;
 }
 
 .bg {
@@ -202,7 +201,7 @@ input.el-input__inner {
 }
 
 .topBox {
-    padding: 5px 10px;
+    padding: 0.25rem 0.5rem;
     width: auto;
     /* margin-left: auto; */
     display: flex;
@@ -225,11 +224,11 @@ input.el-input__inner {
     border: none;
     transform: skew(0deg);
     cursor: pointer;
-    margin-right: 20px;
+    margin-right: 1rem;
     background-color: white;
     border: 0.2px solid rgb(230, 233, 235);
     box-shadow: rgb(207, 212, 215) 0.05rem 0.1rem 0.2rem;
-    border-radius: 5px;
+    border-radius: 0.25rem;
 }
 
 .topDeleteSpan {
@@ -240,17 +239,17 @@ input.el-input__inner {
 
 .roleOverall {
     display: flex;
-    margin-top: 20px;
-    /* margin-bottom: 20px; */
+    margin-top: 1rem;
+    /* margin-bottom: 1rem; */
 }
 
 .rightRoleOverall {
-    margin-top: 10px;
+    margin-top: 0.5rem;
     flex-direction: row-reverse;
 }
 
 .divImg {
-    padding: 0 10px;
+    padding: 0 0.5rem;
     padding-right: 0;
     /* height: 0; */
     /* display: none; */
@@ -259,14 +258,14 @@ input.el-input__inner {
 .roleImg {
     width: 64px;
     height: 64px;
-    border-radius: 50px;
+    border-radius: 2.5rem;
 }
 
 .roleNameSpan {
     height: 1.8rem;
     line-height: 1.5rem;
-    margin-bottom: 10px;
-    margin-left: 17px;
+    margin-bottom: 0.5rem;
+    margin-left: 0.85rem;
     font-family: bold;
     font-weight: bold;
     font-size: large;
@@ -285,7 +284,7 @@ input.el-input__inner {
     border-bottom: 0.3rem solid transparent;
     width: 0;
     height: 0;
-    margin-top: 10px;
+    margin-top: 0.5rem;
 }
 
 .Righthorn {
@@ -296,26 +295,28 @@ input.el-input__inner {
     border-bottom: 0.3rem solid transparent;
     width: 0;
     height: 0;
-    margin-top: 10px;
-    margin-right: 13px;
+    margin-top: 0.5rem;
+    margin-right: 0.65rem;
 }
 
 .roleRemarkDiv2 {
-    border-radius: 10px;
+    max-width: 90.5%;
+    border-radius: 0.5rem;
     background: rgb(76, 91, 111);
     border: 1px solid rgb(76, 91, 111);
 }
 
 /* ////////////////////////////////////////////// */
 .roleRemarkDiv {
-    max-width: 560px;
-    padding: 5px 10px;
+    /* max-width: 90%; */
+    padding: 0.25rem 0.5rem;
     /* position: relative; */
-    left: -5px;
+    left: -0.25rem;
 }
 
 .roleRemarkDiv3 {
-    border-radius: 10px;
+    max-width: 35rem;
+    border-radius: 0.5rem;
     background: rgb(74, 138, 202);
     border: 1px solid rgb(74, 138, 202);
 }
@@ -325,8 +326,9 @@ input.el-input__inner {
     white-space: pre-wrap;
     overflow-wrap: break-word;
     word-break: break-all;
-    font-size: 20px;
+    font-size: 1.1rem;
     font-family: none;
+    /* font-weight: bold; */
     /* display: inline-block; */
 }
 
@@ -336,34 +338,37 @@ input.el-input__inner {
     overflow-x: hidden;
     width: 100%;
     height: 100%;
+    overscroll-behavior: contain;
 }
 
 .rightImg {
-    padding: 5px;
-    border-radius: 5px;
-    max-width: 90%;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    /* max-width: 80%; */
 }
 
 .rightImgExpression {
-    border-radius: 5px;
+    border-radius: 0.25rem;
     /* max-width: 90%; */
-    width: 180px;
+    width: 10rem;
 }
 
 .udiohsfnds {
-    margin-right: 25px;
+    margin-right: 1.25rem;
 }
 
 .sioahdnaoi {
-    margin-left: 20px;
+    margin-left: 1rem;
 }
 
 .rightImg1 {
     background-color: rgb(74, 138, 202);
+    max-width: 70%;
 }
 
 .rightImg2 {
     background-color: rgb(76, 91, 111);
+    max-width: 90%;
 }
 
 .centerRoleArraybtn {
@@ -377,8 +382,8 @@ input.el-input__inner {
 
 .centerRoleArraybtn img {
     background-color: rgb(243, 247, 248);
-    border-radius: 50px;
-    margin: 10px 0 10px 10px;
+    border-radius: 2.5rem;
+    margin: 0.5rem 0 0.5rem 0.5rem;
 }
 
 .imgb {
@@ -394,26 +399,29 @@ input.el-input__inner {
 .bottomImgs {
     display: flex;
     flex-direction: row;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 95%;
 }
 
 .bottomImgs img {
-    width: 44px;
-    height: 44px;
-    margin: 0 10px 0 0;
+    margin: 0 0.5rem 0 0;
     border-radius: 50px;
     background-color: white;
     display: flex;
+    width: 38px;
+    /* object-fit: cover; */
 }
 
 .imgd {
-    border: 2px solid yellow;
+    border: 1px solid yellow;
 }
 
 .pangbaiDiv {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin: 20px 20px;
+    margin: 1rem;
     /* padding: 20px; */
     /* width: 610px; */
 }
@@ -423,8 +431,8 @@ input.el-input__inner {
     white-space: pre-wrap;
     overflow-wrap: break-word;
     word-break: break-all;
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 1.1rem;
+    font-weight: bold;
     /* font-family: none; */
     flex-direction: row;
     text-align: center;
@@ -432,30 +440,18 @@ input.el-input__inner {
     font-family: medium;
 }
 
-/* #txt {
-    width: 530px;
-    height: auto;
-    word-break: break-all;
-    overflow: hidden;
-    height: 30px;
-    font-size: 15px;
-    line-height: 20px;
-    font-family: medium;
-} */
 #text {
     word-break: break-all;
     overflow: hidden;
     resize: none;
-    height: 24px;
-    /* display: block; */
+    height: 1.35rem;
     margin: 0 auto;
     overflow: hidden;
     display: flex;
-    /* width: 595px; */
     flex-grow: 2;
-    font-size: 15px;
-    line-height: 24px;
-    padding: 2px;
+    font-size: 1.35rem;
+    line-height: 1.35rem;
+    padding: 0.1rem;
 }
 
 
@@ -465,8 +461,8 @@ input.el-input__inner {
 }
 
 .sdad {
-    border-radius: 50px;
-    margin-left: 10px;
+    border-radius: 2.5rem;
+    margin-left: 0.5rem;
 }
 
 .dsfds {
@@ -476,6 +472,9 @@ input.el-input__inner {
 
 .overall {
     display: flex;
+    height: 89%;
+    /* flex-wrap: wrap; */
+    width: 100%;
 }
 
 .sonbsc {
@@ -487,23 +486,22 @@ input.el-input__inner {
     height: auto;
     display: flex;
     flex-direction: column;
-    bottom: 58px;
     width: 100%;
 }
 
 .bimgcs {
 
-    margin-left: 5px;
+    margin-left: 0.25rem;
 }
 
 
 .roleOverall:last-child {
-    margin-bottom: 10px;
+    margin-bottom: 0.5rem;
 }
 
 .roleOverall:first-child {
-    /* margin-top: 30px; */
-    /* margin-bottom: 20px; */
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .xq:hover {
@@ -521,7 +519,7 @@ input.el-input__inner {
 }
 
 .roleName {
-    margin-left: 20px;
+    margin-left: 1rem;
     font-size: 2rem;
     color: rgb(69, 75, 84);
     font-weight: bolder;
@@ -539,10 +537,24 @@ input.el-input__inner {
 }
 
 .bxhjc {
-    display: flex;
-    height: 100%;
-    width: 4.7%;
-    /* background-color: red; */
+    display: none;
+    margin: 4px;
+    width: 32px;
+    /* height: 100%; */
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-left: auto;
+    justify-content: flex-end;
+}
+
+.bxhjcImg {
+    /* width: 100%; */
+    /* height: 100%; */
+    width: 30px;
+    object-fit: cover;
 }
 
 .abc {
@@ -558,8 +570,8 @@ input.el-input__inner {
 
 .abc>a>div {
     background-color: white;
-    padding: 5px;
-    border-radius: 5px;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
     font-size: 1.3rem;
     margin-top: 1rem;
     font-weight: 600;
@@ -581,13 +593,13 @@ input.el-input__inner {
     position: absolute;
     top: 50%;
     left: 50%;
-    height: 570px;
-    width: 480px;
+    height: 30rem;
+    width: 30rem;
     border-radius: 0.9rem;
     background-color: rgb(255, 255, 255);
-    margin-left: -240px;
+    margin-left: -15rem;
     /*宽度的一半*/
-    margin-top: -285px;
+    margin-top: -15rem;
     /*高度的一半*/
 }
 
@@ -595,13 +607,13 @@ input.el-input__inner {
     position: absolute;
     top: 50%;
     left: 50%;
-    height: 570px;
-    width: 480px;
+    height: 30rem;
+    width: 30rem;
     border-radius: 0.9rem;
     background-color: rgb(255, 255, 255);
-    margin-left: -240px;
+    margin-left: -15rem;
     /*宽度的一半*/
-    margin-top: -285px;
+    margin-top: -15rem;
     /*高度的一半*/
 }
 
@@ -680,19 +692,19 @@ input.el-input__inner {
 }
 
 .oneImg:first-of-type {
-    margin-right: 10px;
+    margin-right: 0.5rem;
 }
 
 .iuydsgfop {
     margin: 0;
-    margin-bottom: 5px;
-    margin-left: 92px;
+    margin-bottom: 0.25rem;
+    margin-left: 5.4rem;
 }
 
 .hudsfdosf {
     margin: 0;
-    margin-bottom: 10px;
-    margin-left: 82px;
+    margin-bottom: 0.5rem;
+    margin-left: 5.4rem;
 }
 
 .yiuchsfh {
@@ -701,30 +713,29 @@ input.el-input__inner {
 
 .ydbsfhdf {
     max-width: 92%;
-    padding: 5px;
-    border-radius: 5px;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
 }
 
 .adb {
-    margin-left: 25px;
-    margin-top: 15px;
+    margin-left: 1.25rem;
+    margin-top: 0.75rem;
 }
 
 .updateName {
-    width: 25px;
+    width: 1.25rem;
 }
 
 .eventContainerLove {
     display: flex;
     flex-direction: column;
     width: auto;
-    /* margin: 0px 40px; */
     color: #4C5B6F;
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
     background-color: rgb(252, 238, 240);
     border: 1px solid rgb(221, 210, 216);
-    margin: 20px 40px;
+    margin: 1rem 2rem;
     background-image: url(/images/Favor_Schedule_Deco.webp);
     background-repeat: no-repeat;
     background-position: right center;
@@ -733,24 +744,14 @@ input.el-input__inner {
 
 .eventContainerReply {
     display: flex;
-
     flex-direction: column;
-
     width: auto;
-
-    margin: 20px 40px;
-
+    margin: 1rem 2rem;
     color: #4C5B6F;
-
-    border-radius: 10px;
-
-    padding: 10px;
-
+    border-radius: 0.5rem;
+    padding: 0.5rem;
     background-color: rgb(225, 237, 240);
-
     border: 1px solid rgb(221, 210, 216);
-
-    margin-top: 20px;
     background-image: url(/images/Popup_Img_Deco_2.webp);
     background-repeat: no-repeat;
     background-position: right top;
@@ -766,38 +767,38 @@ input.el-input__inner {
 }
 
 .eVertical {
-    height: 20px;
-    width: 2px;
+    height: 1rem;
+    width: 0.05rem;
 
 }
 
 .colorRed {
-    height: 20px;
-    width: 2px;
+    height: 1.5rem;
+    width: 0.1rem;
     background-color: rgb(252, 135, 155);
 }
 
 .colorBlue {
-    height: 20px;
-    width: 2px;
+    height: 1.5rem;
+    width: 0.1rem;
     background-color: rgb(39, 153, 228);
 }
 
 .eTitle {
-    margin-left: 5px;
+    margin-left: 0.25rem;
     font-size: larger;
 }
 
 .eLine {
     border-top: 1px solid rgb(207, 207, 206);
-    margin: 10px 0;
+    margin: 0.5rem 0;
 }
 
 .eContentRed {
     display: flex;
     background-color: rgb(252, 135, 155);
-    padding: 10px 10px;
-    border-radius: 10px;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
     justify-content: center;
     color: white;
     font-size: large;
@@ -812,8 +813,8 @@ input.el-input__inner {
 .eContentBlue {
     display: flex;
     background-color: rgb(252, 135, 155);
-    padding: 10px 10px;
-    border-radius: 10px;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
     justify-content: center;
     color: rgb(75, 105, 137);
     font-size: large;
@@ -827,14 +828,87 @@ input.el-input__inner {
 }
 
 #box>div:nth-of-type(1) {
-    margin-top: 40px;
+    margin-top: 2rem;
 }
 
 .bah {
     display: flex;
     justify-content: center;
-    padding: 10px 0;
+    padding: 0.5rem 0;
 }
-.bah>div:first-child{
-    margin-right: 10px;
+
+.bah>div:first-child {
+    margin-right: 0.5rem;
 }
+
+/* 超小屏幕（手机，小于 768px） */
+@media (max-width: 768px) {
+    body {
+        height: 100%;
+        width: auto;
+        margin: 0;
+        overflow-x: hidden;
+    }
+
+    .left {
+        display: none;
+    }
+
+    .topimg {
+        display: flex;
+    }
+
+    .center {
+        width: 0;
+        transition: width 0.5s;
+        z-index: 99;
+    }
+    .right {
+        width: 100%;
+        transition: width 0.5s;
+    }
+    .roleRemarkDiv3 {
+        max-width: 75%;
+    }
+
+    .roleRemarkDiv2 {
+        max-width: 85%;
+    }
+    .bxhjc{
+        display: flex;
+    }
+    .bottomImgs{
+        width: 94%;
+    }
+}
+
+/* 小屏幕（平板，小于等于 768px） */
+@media (min-width: 768px) {
+    /* body {
+        height: 100%;
+        width: auto;
+        margin: 0;
+        overflow-x: hidden;
+    }
+
+    .left {
+        display: none;
+    }
+
+    .topimg {
+        display: flex;
+    }
+
+    .center {
+        display: none;
+    }
+
+    .roleRemarkDiv3 {
+        max-width: 75%;
+    }
+
+    .roleRemarkDiv2 {
+        max-width: 85%;
+    } */
+}
+

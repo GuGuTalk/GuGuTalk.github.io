@@ -17,8 +17,8 @@
   <!-- 滚动条样式 -->
   <style scoped lang="scss">
     ::-webkit-scrollbar {
-      width: 7px;
-      height: 7px;
+      width: 0.35rem;
+      height: 0.35rem;
       overscroll-behavior: contain;
     }
 
@@ -42,13 +42,17 @@
 </head>
 
 <body>
-  <div style="height: 100%;" id="app">
-    <div class="top">
+  <div id="app">
+    <div class="top" >
+      <div style="display: flex;">
+        <img src="/images/menu.webp" alt="" srcset="" class="topimg">
       <span class="htmlName">GuGuTalk</span>
+      </div>
+      
       <span class="stringLength">0KB</span>
       <span class="notice"></span>
     </div>
-    <div style="height: 89%;" class="overall">
+    <div class="overall">
       <div class="left">
         <div class="content">
           <div class="abc">
@@ -139,9 +143,10 @@
       </div>
     </div>
     <div class="bottom1">
-      <div class="bxhjc">
-      </div>
       <div class="bottomImgs">
+      </div>
+      <div class="bxhjc">
+        <img src="/images/箭头左右.png" alt="" srcset="" class="bxhjcImg">
       </div>
     </div>
     

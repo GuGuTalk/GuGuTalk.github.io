@@ -1124,4 +1124,43 @@ $(document).ready(function () {
         }
         return realNum.toString();
     }
+    //////////////////////小屏幕时触发事件////////////////////////////
+    //点击显示/关闭左侧工具栏
+    $(".topimg").click(function () {
+        $(".left").css("display") == 'flex' ?
+            $(".left").css("display", "none") :
+            $(".left").css("display", "flex")
+    })
+    //点击显示/关闭角色列表
+    $(".bxhjc").click(function () {
+        // if ($(".center").css("width") == '0') {
+            
+            if($(".right").css("display")=="none"){
+                $(".right").css({
+                    "width":"100%",
+                    "transition":"width 0.5s",
+                    "display":"flex"
+                });
+                $(".center").css({
+                    "width":"0",
+                    "transition":"width 0.5s",
+                    "display":"none"
+                });
+            }else{
+                $(".center").css({
+                    "width": "100%",
+                    "transition":"width 0.5s",
+                    "display":"flex"
+                });
+                $(".right").css({
+                    "width":"0",
+                    "transition":"width 0.5s",
+                    "display":"none"
+                });
+            }
+        // } else {
+        //     $(".center").css("width", "0");
+        //     $(".right").css("width", "100%");
+        // }
+    })
 });
