@@ -52,7 +52,7 @@ $(document).ready(function () {
     })
     function wirte() {
         var json = new Object();
-        $("#text").css("height", "24px");
+        $("#text").css("height", "1.35rem");
         var text = $("#text").val();
         var value;
         json.type = 'txt'
@@ -1134,33 +1134,33 @@ $(document).ready(function () {
     //点击显示/关闭角色列表
     $(".bxhjc").click(function () {
         // if ($(".center").css("width") == '0') {
-            
-            if($(".right").css("display")=="none"){
-                $(".right").css({
-                    "width":"100%",
-                    "transition":"width 0.5s",
-                    "display":"flex"
-                });
-                $(".center").css({
-                    "width":"0",
-                    "transition":"width 0.5s",
-                    "display":"none"
-                });
-            }else{
-                $(".center").css({
-                    "width": "100%",
-                    "transition":"width 0.5s",
-                    "display":"flex"
-                });
-                $(".right").css({
-                    "width":"0",
-                    "transition":"width 0.5s",
-                    "display":"none"
-                });
-            }
-        // } else {
-        //     $(".center").css("width", "0");
-        //     $(".right").css("width", "100%");
-        // }
+
+        if ($(".right").css("display") == "none") {
+            $(".right").css({
+                "width": "100%",
+                "transition": "width 0.5s",
+                "display": "flex"
+            });
+            $(".center").css({
+                "width": "0",
+                "transition": "width 0.5s",
+                "display": "none"
+            });
+        } else {
+            $(".center").css({
+                "width": "100%",
+                "transition": "width 0.5s",
+                "display": "flex"
+            });
+            $(".right").css({
+                "width": "0",
+                "transition": "width 0.5s",
+                "display": "none"
+            });
+        }
     })
+    // $("#text").focus(function () {
+
+    //     document.querySelector('#text').scrollIntoView();
+    // })
 });

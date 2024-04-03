@@ -693,5 +693,41 @@
     "imgName":"熊熊曲奇",
     "imagePath":"ywt_xxqq",
     "roleId":3
+  },
+  {
+    "id":118,
+    "imgName":"深海幻境",
+    "imagePath":"fs_shhj",
+    "roleId":14
+  },
+  {
+    "id":119,
+    "imgName":"欢歌曼舞",
+    "imagePath":"mdln_hgmw",
+    "roleId":13
+  },
+  {
+    "id":120,
+    "imgName":"黑红交错",
+    "imagePath":"lw_hhjc",
+    "roleId":6
+  },
+  {
+    "id":121,
+    "imgName":"守护者",
+    "imagePath":"mrds_shz",
+    "roleId":9
+  },
+  {
+    "id":122,
+    "imgName":"长夜守望",
+    "imagePath":"xin_cysw",
+    "roleId":4
+  },
+  {
+    "id":123,
+    "imgName":"浪舞心涟",
+    "imagePath":"xnm_lwxl",
+    "roleId":8
   }
 ]
