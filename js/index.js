@@ -669,7 +669,7 @@ $(document).ready(function () {
     }
     //初始化数据
     function Init() {
-        //toNewPath();
+        toNewPath();
         if (localStorage.getItem("delete") == null) {
             localStorage.clear();
             localStorage.setItem("delete", "1");
