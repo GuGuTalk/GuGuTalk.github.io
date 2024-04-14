@@ -1,0 +1,18 @@
+@font-face
+{
+	font-family:title;
+	src: url('/Font/Jalnan.TTF')
+}
+@font-face
+{
+	font-family:gugutack;
+	src: url('/Font/Blueaka.woff2') format("woff");
+}
+body,textarea,div
+{
+	font-family:gugutack;
+}
+.bold
+{
+	font-family: "Microsoft YaHei", Arial, sans-serif; /* 指定字体 */
+}

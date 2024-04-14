@@ -72,7 +72,8 @@ body {
 .left {
     background-color: rgb(76, 91, 111);
     height: 100%;
-    width: 5rem;
+    width: 6%;
+    border-bottom-left-radius: 1rem;
     /* flex-grow: 1; */
 }
 
@@ -123,7 +124,7 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    width: 48rem;
+    width: 45%;
     justify-content: flex-end;
     align-items: baseline;
     /* overflow-y: auto; */
@@ -133,24 +134,28 @@ body {
 
 .bottom1 {
     background-color: rgb(76, 91, 111);
-    height: 5%;
+    height: 96%;
     display: flex;
     /* justify-content: flex-start; */
-    border-bottom-left-radius: 1rem;
+    /* border-bottom-left-radius: 1rem; */
     border-bottom-right-radius: 1rem;
     flex-direction: row;
+    width: 100%;
 }
 
 .nopkmpBottom {
     display: flex;
     align-items: center;
     background-color: rgb(222, 184, 135);
-    /* justify-content: space-around; */
+    width: 100%;
+    /* justify-content: space-between; */
 }
 
 .bimg {
     display: flex;
     align-items: center;
+    /* height: 4px; */
+    flex-flow: 1;
 }
 
 input.el-input__inner {
@@ -161,6 +166,7 @@ input.el-input__inner {
     border: 0;
     background-color: burlywood;
     cursor: pointer;
+    display: flex;
 }
 
 .save {
@@ -217,8 +223,7 @@ input.el-input__inner {
     justify-content: center;
     text-align: center;
     padding: 0.5rem;
-    margin-left: 1rem;
-    width: 7.5rem;
+    width: auto;
     height: 2.5rem;
     line-height: 1.5rem;
     border: none;
@@ -239,20 +244,25 @@ input.el-input__inner {
 
 .roleOverall {
     display: flex;
+    margin: 0 1rem;
+    width: auto;
+}
+
+.roleOverallTopMargin {
     margin-top: 1rem;
-    /* margin-bottom: 1rem; */
 }
 
 .rightRoleOverall {
     margin-top: 0.5rem;
     flex-direction: row-reverse;
+    margin-right: 0;
 }
 
+#box>.rightRoleOverall:last-child{
+    margin-bottom:1rem; ;
+}
 .divImg {
-    padding: 0 0.5rem;
     padding-right: 0;
-    /* height: 0; */
-    /* display: none; */
 }
 
 .roleImg {
@@ -262,18 +272,21 @@ input.el-input__inner {
 }
 
 .roleNameSpan {
-    height: 1.8rem;
-    line-height: 1.5rem;
-    margin-bottom: 0.5rem;
     margin-left: 0.85rem;
     font-family: bold;
     font-weight: bold;
     font-size: large;
-    /* display: none; */
 }
 
 .roleRemarkDiv {
     display: flex;
+    padding: 0.5rem;
+}
+
+.roleRemarkDivs {
+    display: flex;
+    padding: 0.5rem 0.5rem 0 0.5rem;
+    width: 100%;
 }
 
 .horn {
@@ -300,18 +313,27 @@ input.el-input__inner {
 }
 
 .roleRemarkDiv2 {
-    max-width: 35rem;
+    max-width: 33rem;
+    /* max-width: 88%; */
     border-radius: 0.5rem;
     background: rgb(76, 91, 111);
     border: 1px solid rgb(76, 91, 111);
 }
 
+.replaceAvatar {
+    /* margin-left: 6rem; */
+    width: 72px;
+}
+
+.width0 {
+    display: none;
+}
+
 /* ////////////////////////////////////////////// */
-.roleRemarkDiv {
-    /* max-width: 90%; */
-    padding: 0.25rem 0.5rem;
-    /* position: relative; */
-    left: -0.25rem;
+.roleRemarkDivImg {
+    display: flex;
+    padding: 0.5rem;
+    width: 100%;
 }
 
 .roleRemarkDiv3 {
@@ -363,7 +385,7 @@ input.el-input__inner {
 
 .rightImg1 {
     background-color: rgb(74, 138, 202);
-    max-width: 70%;
+    max-width: 75%;
 }
 
 .rightImg2 {
@@ -376,8 +398,8 @@ input.el-input__inner {
     flex-direction: row;
     overflow: auto;
     overflow-y: hidden;
+    width: 100%;
     overscroll-behavior: contain;
-
 }
 
 .centerRoleArraybtn img {
@@ -399,18 +421,21 @@ input.el-input__inner {
 .bottomImgs {
     display: flex;
     flex-direction: row;
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden;
-    width: 95%;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
 }
 
 .bottomImgs img {
     margin: 0 0.5rem 0 0;
     border-radius: 50px;
     background-color: white;
-    display: flex;
-    width: 38px;
-    /* object-fit: cover; */
+    display: block;
+    object-fit: cover;
+    height: 35px;
+    width: 35px;
 }
 
 .imgd {
@@ -448,16 +473,23 @@ input.el-input__inner {
     margin: 0 auto;
     overflow: hidden;
     display: flex;
-    flex-grow: 2;
-    font-size: 1.35rem;
-    line-height: 1.35rem;
-    padding: 0.1rem;
+    /* flex-grow: 2; */
+    /* font-size: 1rem; */
+    /* line-height: 1rem; */
+    width: 100%;
+    /* padding: 0.1rem; */
+    padding: 0 auto;
 }
 
 
 .txtDiv {
-    display: flex;
-    flex-grow: 1;
+    /* display: flex; */
+    /* flex-grow: 2; */
+    /* width: 243px; */
+    /* height: 1rem; */
+    /* line-height: 1rem; */
+    /* padding: 0 1rem; */
+    width: 100%;
 }
 
 .sdad {
@@ -472,7 +504,7 @@ input.el-input__inner {
 
 .overall {
     display: flex;
-    height: 89%;
+    height: 94%;
     /* flex-wrap: wrap; */
     width: 100%;
 }
@@ -480,6 +512,7 @@ input.el-input__inner {
 .sonbsc {
     border-bottom: 1px solid rgb(230, 229, 229);
     pointer-events: auto;
+    width: 100%;
 }
 
 .nopkmp {
@@ -491,18 +524,23 @@ input.el-input__inner {
 
 .bimgcs {
 
-    margin-left: 0.25rem;
+    margin: 0 0.25rem;
+
+    height: auto;
+
+    display: flex;
 }
 
-
-.roleOverall:last-child {
-    margin-bottom: 0.5rem;
+.roleTb {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
-.roleOverall:first-child {
-    margin-top: 1.5rem;
-    /* margin-bottom: 1rem; */
+#box>.dc:last-child {
+    margin-bottom: 1rem;
 }
+
 
 .xq:hover {
     background-color: rgb(218, 228, 233);
@@ -691,14 +729,15 @@ input.el-input__inner {
     height: 9rem;
 }
 
-.oneImg:first-of-type {
-    margin-right: 0.5rem;
+.bimg>.oneImg:last-of-type {
+    /* margin-right: 0.3rem; */
 }
 
 .iuydsgfop {
     margin: 0;
     margin-bottom: 0.35rem;
-    margin-left: 5.5rem;
+    /* margin-left: 6rem; */
+    margin-top: 0.5rem;
 }
 
 .hudsfdosf {
@@ -841,6 +880,83 @@ input.el-input__inner {
     margin-right: 0.5rem;
 }
 
+.editBtn {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.editBtn>img {
+    width: 1.5rem;
+}
+
+.Gmain {
+    display: flex;
+    flex-direction: column;
+    /* height: 83%; */
+    width: 100%;
+}
+
+.GmainTop {
+    display: flex;
+    height: 94%;
+    width: 100%;
+}
+
+.GmainBtm {
+    display: flex;
+    height: 6%;
+    width: 100%;
+}
+
+.textarea-inherit {
+    width: 100%;
+    overflow: auto;
+    word-break: break-all;
+}
+
+.chooseDiv {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+}
+
+.iptChoose {
+    display: flex;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.chooseDivYHZ {
+    display: flex;
+    margin-right: 8px;
+}
+
+.iptChooseYHZ {
+    display: flex;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.dc {
+    width: 100%;
+}
+
+.dfsdfYHZ {
+
+    display: flex;
+
+    flex-direction: row-reverse;
+}
+.chooseNone{
+    display: none;
+}
+#box .editOpen>:first-child{
+    border-top: 2px dashed black;
+}
+.ipt{
+    
+}
 /* 超小屏幕（手机，小于 768px） */
 @media (max-width: 768px) {
     body {
@@ -852,6 +968,7 @@ input.el-input__inner {
 
     .left {
         display: none;
+        width: 15%;
     }
 
     .topimg {
@@ -863,22 +980,45 @@ input.el-input__inner {
         transition: width 0.5s;
         z-index: 99;
     }
+
     .right {
         width: 100%;
         transition: width 0.5s;
     }
+
     .roleRemarkDiv3 {
-        max-width: 75%;
+        max-width: 19rem;
     }
 
     .roleRemarkDiv2 {
-        max-width: 85%;
+        max-width: 19rem;
     }
-    .bxhjc{
+
+    .bxhjc {
         display: flex;
     }
-    .bottomImgs{
+
+    .bottomImgs {
         width: 94%;
+    }
+
+    .RoleOverall {
+        margin: 0 0.7rem;
+    }
+
+    .roleImg {
+        width: 56px;
+        height: 56px;
+    }
+
+    .replaceAvatar {
+        width: 64px;
+    }
+
+    .topDelete {
+        font-size: 1rem;
+        margin-left: 0;
+        width: auto;
     }
 }
 
@@ -911,4 +1051,3 @@ input.el-input__inner {
         max-width: 85%;
     } */
 }
-

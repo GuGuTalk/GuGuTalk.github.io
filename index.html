@@ -6,14 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GuGuTalk</title>
   <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/font.css">
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-
   <!-- 引入样式 -->
   <script src="js/code.jquery.com_jquery-3.7.1.js"></script>
   <!-- <script src="js/html2canvas.js"></script> -->
   <script src="js/dom-to-image.js"></script>
-  <script src="js/ScreenShot.js"></script>
-  <script src="js/index1.js"></script>
+  <script src="js/index.js"></script>
   <!-- 滚动条样式 -->
   <style scoped lang="scss">
     ::-webkit-scrollbar {
@@ -43,12 +42,12 @@
 
 <body>
   <div id="app">
-    <div class="top" >
+    <div class="top">
       <div style="display: flex;">
         <img src="/images/menu.webp" alt="" srcset="" class="topimg">
-      <span class="htmlName">GuGuTalk</span>
+        <span class="htmlName">GuGuTalk</span>
       </div>
-      
+
       <span class="stringLength">0KB</span>
       <span class="notice"></span>
     </div>
@@ -93,63 +92,72 @@
           </div>
         </div>
       </div>
-      <div class="center" id="knopiji">
+      <div class="Gmain">
+        <div class="GmainTop">
+          <div class="center" id="knopiji">
 
 
-      </div>
-      <div class="right">
-        <div class="topBox">
-          <button type="button" id="delAll" class="topDelete"><span class="topDeleteSpan">删除</span></button>
-          <button type="button" id="delOne" class="topDelete"><span class="topDeleteSpan">删除上一句</span></button>
-        </div>
-        <div id="he" style="display: flex;flex-direction: column; height: 86%; width: 100%;overflow-y: auto;">
-          <!-- 聊天区域 -->
-          <div id="can" style="width: 100%;height: 100%;">
-            <div id="box" ref="picture">
-
-
-            </div>
           </div>
-        </div>
-        <div class="nopkmp">
-          <div class="nopkmpBottom">
-            <div class="bimg">
-              <div class="bimgcs" id="imgUpload">
-                <img src="images/picture.png" alt="图片" srcset="" class="oneImg">
-                <input name="file" accept="image/*" type="file" style="display: none" />
-              </div>
-              <div class="bimgcs" id="imgExpression">
-                <img src="images/expression.png" alt="图片" srcset="" class="oneImg">
-                <input id="expressionUpload" name="file" accept="image/*" type="file" style="display: none" />
+          <div class="right">
+            <div class="topBox">
+              <button type="button" id="selectAll" class="topDelete"><span class="topDeleteSpan">全选</span></button>
+              <button type="button" id="reSelectAll" class="topDelete"><span class="topDeleteSpan">反选</span></button>
+              <button type="button" id="delAll" class="topDelete"><span class="topDeleteSpan">删除</span></button>
+              <button type="button" id="delOne" class="topDelete"><span class="topDeleteSpan">删除上一句</span></button>
+            </div>
+            <div id="he" style="display: flex;flex-direction: column; height: 86%; width: 100%;overflow-y: auto;">
+              <!-- 聊天区域 -->
+              <div id="can" style="width: 100%;height: 100%;">
+                <div id="box" ref="picture">
+
+
+
+
+                </div>
               </div>
             </div>
+            <div class="nopkmp">
+              <div class="nopkmpBottom">
+                <div class="bimg">
+                  <div class="bimgcs" id="imgUpload">
+                    <img src="images/picture.png" alt="图片" srcset="" class="oneImg">
+                  </div>
+                  <div class="bimgcs" id="imgExpression">
+                    <img src="images/expression.png" alt="图片" srcset="" class="oneImg">
+                  </div>
+                </div>
 
-            <div class="txtDiv">
-              <textarea contenteditable="true" id="text" maxlength="150"></textarea>
-            </div>
+                <div class="txtDiv">
+                  <textarea contenteditable="true" id="text" maxlength="150"></textarea>
+                </div>
 
-            <div>
-              <button type="button" class="send"><img src="images/send.png" alt="发送" srcset=""></button>
+                <div>
+                  <button type="button" class="send"><img src="images/send.png" alt="发送" srcset=""></button>
+                </div>
+              </div>
+              <div class="propIcons">
+                <img src="images/Reply.png" title="回复" alt="回复" srcset="" class="propIco">
+                <img src="images/info.png" title="旁白" alt="旁白" srcset="" class="propIco">
+                <img src="images/love.png" title="羁绊事件" alt="羁绊事件" srcset="" class="propIco">
+                <img src="images/save.png" title="保存" alt="保存" srcset="" id="save" class="save propIco">
+              </div>
             </div>
           </div>
-          <div class="propIcons">
-            <img src="images/Reply.png" title="回复" alt="回复" srcset="" class="propIco">
-            <img src="images/info.png" title="旁白" alt="旁白" srcset="" class="propIco">
-            <img src="images/love.png" title="羁绊事件" alt="羁绊事件" srcset="" class="propIco">
-            <img src="images/save.png" title="保存" alt="保存" srcset="" id="save" class="save propIco"
-              onclick="downloadQrcode()">
+        </div>
+        <div class="GmainBtm">
+          <div class="bottom1">
+            <div class="bottomImgs">
+            </div>
+            <div class="bxhjc">
+              <img src="/images/箭头左右.png" alt="" srcset="" class="bxhjcImg">
+            </div>
           </div>
+
         </div>
       </div>
     </div>
-    <div class="bottom1">
-      <div class="bottomImgs">
-      </div>
-      <div class="bxhjc">
-        <img src="/images/箭头左右.png" alt="" srcset="" class="bxhjcImg">
-      </div>
-    </div>
-    
+
+
     <!-- 设置 -->
     <div class="setList n">
       <div class="setListTitle">
