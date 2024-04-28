@@ -12,6 +12,8 @@
   <script src="js/code.jquery.com_jquery-3.7.1.js"></script>
   <!-- <script src="js/html2canvas.js"></script> -->
   <script src="js/dom-to-image.js"></script>
+  <script src="js/indexDb.js"></script>
+  <script src="js/indexDbTools.js"></script>
   <script src="js/index.js"></script>
   <!-- 滚动条样式 -->
   <style scoped lang="scss">
@@ -90,12 +92,63 @@
             </a>
             <div>设置</div>
           </div>
+          <div class="abc">
+            <a href="javascript:;" id="RoleList">
+              <div>角</div>
+            </a>
+            <div>角色列表</div>
+          </div>
+          <div class="abc">
+            <a href="javascript:;" id="ArchiveList">
+              <div>档</div>
+            </a>
+            <div>存档列表</div>
+          </div>
+          <!-- <div class="abc">
+            <a href="javascript:;" id="importExpression">
+              <div>导</div>
+            </a>
+            <div>导入表情</div>
+          </div> -->
         </div>
       </div>
       <div class="Gmain">
         <div class="GmainTop">
           <div class="center" id="knopiji">
-
+            <!-- <div class="AL-Series">
+              <div class="AL-ArchiveOne" data-id="${item.id}">
+                <div class="AL-TitleDiv">
+                  <div class="AL-Title">引航者和香奈美的游乐园之旅 引航者和香奈美的游乐园之旅</div>
+                  <div class="AL-imgTools">
+                    <img src="/images/updateName.png" alt="" srcset="" class="AL-updateTitle">
+                    <img src="/images/gb.png" alt="" srcset="" class="AL-deleteArchive">
+                  </div>
+                </div>
+              </div>
+              <div class="AL-OneChildList ">
+                <div class="AL-TitleDiv dxx">
+                  <div class="AL-Title word-wrap">引航者和香奈美的游乐园之旅-1</div>
+                  <div class="AL-imgTools">
+                    <img src="/images/updateName.png" alt="" srcset="" class="AL-updateTitle">
+                    <img src="/images/gb.png" alt="" srcset="" class="AL-deleteArchive">
+                  </div>
+                </div>
+                <div class="AL-TitleDiv dxx">
+                  <div class="AL-Title word-wrap">引航者和香奈美的游乐园之旅-2</div>
+                  <div class="AL-imgTools">
+                    <img src="/images/updateName.png" alt="" srcset="" class="AL-updateTitle">
+                    <img src="/images/gb.png" alt="" srcset="" class="AL-deleteArchive">
+                  </div>
+                </div>
+                <div class="AL-TitleDiv dxx">
+                  <div class="AL-Title word-wrap">引航者和香奈美的游乐园之旅-3</div>
+                  <div class="AL-imgTools">
+                    <img src="/images/updateName.png" alt="" srcset="" class="AL-updateTitle">
+                    <img src="/images/gb.png" alt="" srcset="" class="AL-deleteArchive">
+                  </div>
+                </div>
+              </div>
+            </div> -->
 
           </div>
           <div class="right">
@@ -140,6 +193,7 @@
                 <img src="images/info.png" title="旁白" alt="旁白" srcset="" class="propIco">
                 <img src="images/love.png" title="羁绊事件" alt="羁绊事件" srcset="" class="propIco">
                 <img src="images/save.png" title="保存" alt="保存" srcset="" id="save" class="save propIco">
+                <img src="images/Archive.png" title="存档" alt="存档" srcset="" id="ArchiveSave" class="propIco">
               </div>
             </div>
           </div>
@@ -156,7 +210,13 @@
         </div>
       </div>
     </div>
-
+    <!-- <div class="bah">
+      <div>想看发电^_^</div>
+      <div>
+        <a href="https://beian.miit.gov.cn" target="_blank">
+          赣ICP备2024026466号-1</a>
+      </div>
+    </div> -->
 
     <!-- 设置 -->
     <div class="setList n">
@@ -179,6 +239,56 @@
         </div>
       </div>
     </div>
+
+    <!-- 选择存档列表 -->
+    <div class="archiveList n">
+      <div class="archiveGalleryTop">
+        <div class="archiveTydgvsgfv">
+          <div class="archiveYhivdfbs">存档</div>
+          <img src="images/gb.png" alt="" srcset="" class="archiveGb">
+        </div>
+
+      </div>
+      <div class="archiveGalleryContent ">
+        <div class="newArchive">
+          <img src="/images/add.png" alt="" srcset="">
+          <div class="newArchiveLabel">创建新系列</div>
+        </div>
+        <div class="oldArchive">
+          <!-- <div class="AL-Series">
+            <div class="AL-ArchiveOne" data-id="${item.id}">
+              <div class="AL-TitleDiv">
+                <div class="AL-Title mhh">引航者和香奈美的游乐园之旅</div>
+                <div class="AL-imgTools">
+                  <img src="/images/insert.png" alt="" srcset="" class="AL-insertSeries">
+                </div>
+              </div>
+            </div>
+            <div class="AL-OneChildList n">
+              <div class="AL-TitleDiv">
+                <div class="AL-Title word-wrap mhhh">引航者和香奈美的游乐园之旅-1引航者和香奈美的游乐园之旅-1</div>
+                <div class="AL-imgTools">
+                  <img src="/images/replace.png" alt="" srcset="" class="AL-replaceArchive">
+                </div>
+              </div>
+              <div class="AL-TitleDiv">
+                <div class="AL-Title word-wrap mhhh">引航者和香奈美的游乐园之旅-2</div>
+                <div class="AL-imgTools">
+                  <img src="/images/replace.png" alt="" srcset="" class="AL-replaceArchive">
+                </div>
+              </div>
+              <div class="AL-TitleDiv">
+                <div class="AL-Title word-wrap mhhh">引航者和香奈美的游乐园之旅-3</div>
+                <div class="AL-imgTools">
+                  <img src="/images/replace.png" alt="" srcset="" class="AL-replaceArchive">
+                </div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
     <div class="Gallery n">
       <div class="GalleryTop">
         <div class="tydgvsgfv">
@@ -186,9 +296,7 @@
           <div class="yhivdfbs">卡丘丘的日常</div>
           <div><a href="javascript:;"><img class="ToB" src="images/right.png" alt="" srcset=""></a></div>
         </div>
-        <a href="javascript:;">
-          <img src="images/gb.png" alt="" srcset="" class="gb">
-        </a>
+        <img src="images/gb.png" alt="" srcset="" class="gb">
       </div>
       <div class="GalleryContent">
         <div class="imgContent">

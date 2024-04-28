@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="js/code.jquery.com_jquery-3.7.1.js"></script>
+    <title>Save Data Locally</title>
+
+</head>
+
+<body>
+    <input type="file" id="jsonFile" accept=".json">
+    <input type="file" id="imageFile" accept="image/*">
+    <input type="number" id="compressionRatio" placeholder="Compression Ratio">
+    <img src="http://127.0.0.1:8079/200009578.png" alt="" srcset="" id="img">
+    <button onclick="saveDataLocally()">Save Locally</button>
+    
+    <script>
+        function saveDataLocally() {
+            const jsonFile = document.getElementById('jsonFile').files[0];
+            const imageFile = document.getElementById('imageFile').files[0];
+            const compressionRatio = document.getElementById('compressionRatio').valueAsNumber || 0;
+
+            if (!jsonFile || !imageFile) {
+                alert('Please select both JSON file and image file.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function () {
+                const jsonText = reader.result;
+                localStorage.setItem('jsonData', jsonText);
+                console.log('JSON data saved to local storage.');
+
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                const img = new Image();
+                img.onload = function () {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0, img.width, img.height);
+
+                    canvas.toBlob(function (blob) {
+                        const compressedImage = new File([blob], 'compressed_image.jpg', { type: 'image/jpeg' });
+                        console.log(compressedImage);
+                        
+                        console.log('Compressed image saved to local storage.');
+                        alert('Data saved locally.');
+                    }, 'image/jpeg', compressionRatio);
+                };
+                //img.src = URL.createObjectURL(imageFile);
+                //下面是我加的
+                console.log(imageFile);
+                img.src = URL.createObjectURL(imageFile);
+                localStorage.setItem('compressedImage', compressedImage);
+                $("#img").prop("src",img.src)
+            };
+            reader.readAsText(jsonFile);
+        }
+    </script>
+</body>
+
+</html>
