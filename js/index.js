@@ -667,18 +667,8 @@ $().ready(function () {
 
     //初始化数据
     function Init() {
-<<<<<<< HEAD
-        toNewPath();
-        if (localStorage.getItem("delete") == null) {
-            localStorage.clear();
-            localStorage.setItem("delete", "1");
-            window.location.reload();
-        }
-
-=======
          toNewPath();
         localUpdateIndexDb()
->>>>>>> b91922a (新增存档功能)
         $("#knopiji").html('');
         $.getJSON("data/roles.json", function (data) {
             $.getJSON("data/imagese.json", function (dataImg) {
@@ -689,11 +679,6 @@ $().ready(function () {
                     item.avatarArray = '';
                 });
                 createRoleArrayCopy(data).then(res => {
-                    // for (let index = 0; index < res.length; index++) {
-                    //     if (res[index].description == "newRole") {
-                    //         res[index].imgURl = dataURItoBlob(res[index].imgURl);
-                    //     }
-                    // }
                     roleArray = res;
                     //循环展示角色
                     var html = '';
