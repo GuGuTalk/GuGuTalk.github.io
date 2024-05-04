@@ -6,6 +6,7 @@ $().ready(function () {
     };
     var boxJsonArray = new Array();
     var cen = 0;
+    var rla = ['aside', 'love', 'reply']
     var Keys = "GuGuTalk";
     Init();
 
@@ -82,8 +83,6 @@ $().ready(function () {
             }
             newTalk = createHtml(json)
             insertOrContinue(newTalk, json);
-
-            cen++;
             var text = document.getElementById("text");
             autoTextarea(text);// 调用
         }
@@ -101,13 +100,15 @@ $().ready(function () {
             boxJson(newObj);
             ToBtm();
         } else {
-            var index = that.find(".roleOverall").data("index");
+            var index = that.find(".gu").data("index");
+            console.log(index);
             insertTalk(newObj, index).then(res => {
+                // console.log(newObj,res);
                 that.before(newTalk);
             })
         }
         $("#text").val("");
-
+        cen++;
     }
     //传入参数生成html
     /**
@@ -119,22 +120,29 @@ $().ready(function () {
      */
     function createHtml(listOne) {
         var type;//1:继续 2:插入
-        var editOpen = $(".editOpen").prev().find('.roleOverall');
-        var lastDc = $("#box").children().last(".dc").find('.roleOverall');
+        var editOpen = $(".editOpen").prev().find('.gu');
+        var lastDc = $("#box").children().last(".dc").find('.gu');
+
+        // var replyEditOpen = $(".editOpen").prev().find('.rla');
+        // var replylastDc = $("#box").children().last(".dc").find('.rla');
         var tdc;
+        //var replyTdc;
         if ($(".editOpen").length == 0) {
             type = 1;
             tdc = lastDc;
+            //replyTdc = replylastDc;
+
         } else {
             type = 2;
             tdc = editOpen;
+            //replyTdc = replyEditOpen;
         }
         var html = '';
         var a = 'data:image'
         switch (listOne.type) {
             case 'Expression':
                 if (listOne.roleId == 9999) {
-                    newTalk = `<div class="dc"><div class="roleOverall rightRoleOverall statistics" data-index="${listOne.index}" data-name="${listOne.mark}">
+                    newTalk = `<div class="dc"><div class="gu roleOverall rightRoleOverall statistics" data-type="${listOne.type}" data-index="${listOne.index}" data-name="${listOne.mark}">
                   <div class="dfsdfYHZ">
                     <div class="chooseDivYHZ">
                       <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ ipt">
@@ -145,7 +153,7 @@ $().ready(function () {
                 } else {
                     if ((tdc.data("name") == listOne.mark) && (tdc.data("names") == listOne.name)) {
                         newTalk = `<div class="dc">
-                        <div class="roleOverall" data-names="${listOne.name}" data-name="${listOne.mark}" data-index="${listOne.index}">
+                        <div class="gu roleOverall" data-type="${listOne.type}" data-names="${listOne.name}" data-name="${listOne.mark}" data-index="${listOne.index}">
                           <div class="divImg">
                             <div class="xvb replaceAvatar"></div>
                             <img src="${listOne.base64.indexOf(a) >= 0 ? dataURItoBlob(listOne.base64) : listOne.path}" crossorigin="anonymous" alt="" class="roleImg width0" srcset="">
@@ -160,7 +168,7 @@ $().ready(function () {
                       </div>`;
                     } else {
                         newTalk = `<div class="dc">
-                        <div class="roleOverall roleOverallTopMargin" data-names="${listOne.name}" data-name="${listOne.mark}" data-index="${listOne.index}">
+                        <div class="gu roleOverall roleOverallTopMargin" data-type="${listOne.type}" data-names="${listOne.name}" data-name="${listOne.mark}" data-index="${listOne.index}">
                           <div class="divImg">
                             <div class="xvb replaceAvatar"></div>
                             <img src="${listOne.base64.indexOf(a) >= 0 ? dataURItoBlob(listOne.base64) : listOne.path}" crossorigin="anonymous" alt="" class="roleImg" srcset="">
@@ -179,7 +187,7 @@ $().ready(function () {
                 break;
             case 'img':
                 if (listOne.roleId == 9999) {
-                    newTalk = `<div class="dc"><div data-index="${listOne.index}" data-name="${listOne.mark}" class="roleOverall rightRoleOverall statistics">
+                    newTalk = `<div class="dc"><div data-index="${listOne.index}"data-type="${listOne.type}" data-name="${listOne.mark}" class="gu roleOverall rightRoleOverall statistics">
                     <div class="dfsdfYHZ">
                       <div class="chooseDivYHZ">
                         <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ  ipt">
@@ -192,7 +200,7 @@ $().ready(function () {
                 } else {
                     if ((tdc.data("name") == listOne.mark) && (tdc.data("names") == listOne.name)) {
                         newTalk = `<div class="dc">
-                  <div class="roleOverall" data-names="${listOne.name}" data-name="${listOne.mark}" data-index="${listOne.index}">
+                  <div class="gu roleOverall" data-names="${listOne.name}" data-type="${listOne.type}" data-name="${listOne.mark}" data-index="${listOne.index}">
                     <div class="divImg">
                       <div class="xvb replaceAvatar"></div>
                       <img src="${listOne.base64.indexOf(a) >= 0 ? dataURItoBlob(listOne.base64) : listOne.path}" crossorigin="anonymous" alt="" class="roleImg width0" srcset="">
@@ -209,7 +217,7 @@ $().ready(function () {
                 </div>`;
                     } else {
                         newTalk = `<div class="dc">
-                        <div class="roleOverall roleOverallTopMargin" data-names="${listOne.name}" data-name="${listOne.mark}" data-index="${listOne.index}">
+                        <div class="gu roleOverall roleOverallTopMargin" data-names="${listOne.name}" data-type="${listOne.type}" data-name="${listOne.mark}" data-index="${listOne.index}">
                           <div class="divImg">
                             <div class="xvb"></div>
                             <img src="${listOne.base64.indexOf(a) >= 0 ? dataURItoBlob(listOne.base64) : listOne.path}" crossorigin="anonymous" alt="" class="roleImg" srcset="">
@@ -230,7 +238,7 @@ $().ready(function () {
                 break;
             case 'txt':
                 if (listOne.roleId == 9999) {
-                    newTalk = `<div class="dc"><div data-index="${listOne.index}" data-name="${listOne.mark}" class="roleOverall rightRoleOverall">
+                    newTalk = `<div class="dc"><div data-index="${listOne.index}" data-type="${listOne.type}" data-name="${listOne.mark}" class="gu roleOverall rightRoleOverall">
                     <div class="dfsdfYHZ">
                       <div class="chooseDivYHZ">
                         <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ  ipt">
@@ -244,7 +252,7 @@ $().ready(function () {
                 } else {
                     if ((tdc.data("name") == listOne.mark) && (tdc.data("names") == listOne.name)) {
                         newTalk = `<div class="dc">
-                        <div class="roleOverall" data-names="${listOne.name}" data-name="${listOne.mark}" data-index="${listOne.index}">
+                        <div class="gu roleOverall" data-names="${listOne.name}" data-type="${listOne.type}" data-name="${listOne.mark}" data-index="${listOne.index}">
                           <div class="divImg">
                             <div class="xvb replaceAvatar"></div>
                             <img src="${listOne.base64.indexOf(a) >= 0 ? dataURItoBlob(listOne.base64) : listOne.path}" crossorigin="anonymous" alt="" class="roleImg width0" srcset="">
@@ -264,7 +272,7 @@ $().ready(function () {
                       </div>`;
                     } else {
                         newTalk = `<div class="dc">
-                    <div class="roleOverall roleOverallTopMargin" data-names="${listOne.name}" data-name="${listOne.mark}" data-index="${listOne.index}">
+                    <div class="gu roleOverall roleOverallTopMargin" data-names="${listOne.name}" data-type="${listOne.type}" data-name="${listOne.mark}" data-index="${listOne.index}">
                       <div class="divImg">
                         <div class="xvb"></div>
                         <img src="${listOne.base64.indexOf(a) >= 0 ? dataURItoBlob(listOne.base64) : listOne.path}" crossorigin="anonymous" alt="" class="roleImg" srcset="">
@@ -287,29 +295,75 @@ $().ready(function () {
                 html = html + newTalk;
                 break;
             case 'aside':
-                newTalk = "<div class='dc'><div class='pangbaiDiv ' data-index=" + listOne.index + " data-name=" + listOne.mark + "><span class='pangbaiSpan statistics' contenteditable='true' data-index=" + listOne.index + " >" + listOne.content + "</span></div></div>";
+                //newTalk = "<div class='dc'><div class='pangbaiDiv ' data-index=" + listOne.index + " data-type=" + listOne.type + " data-name=" + listOne.mark + "><span class='pangbaiSpan statistics' contenteditable='true' data-index=" + listOne.index + " >" + listOne.content + "</span></div></div>";
+                newTalk = `<div class="dc">
+                <div class="replyDiv">
+                  <div class="pangbaiDiv rla gu" data-type="${listOne.type}" data-index="${listOne.index}" data-name="${listOne.mark}"><span class="pangbaiSpan statistics"
+                      contenteditable="true" data-index="${listOne.index}">${listOne.content}</span></div>
+                  <div class="chooseDivYHZ">
+                    <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ  ipt">
+                  </div>
+                </div>
+              </div>`;
                 html = html + newTalk;
                 break;
             case 'reply':
-                newTalk = `<div class="dc"><div class='eventContainerReply' data-index='${listOne.index}' data-name='${listOne.mark}'>
-                <div class='eTopTitle'>
-                  <div class='colorBlue'></div>
-                  <div class='eTitle'>回复</div>
+                if (tdc.data("type") == listOne.type) {
+                    newTalk = "";
+                    tdc.append(`<div class='eContentBlue statistics' contenteditable='true' data-index='${listOne.index}' >${listOne.content}</div>`);
+                } else {
+                    //         newTalk = `<div class="dc"><div class='eventContainerReply'  data-index='${listOne.index}' data-type="${listOne.type}" data-name='${listOne.mark}'>
+                    //     <div class='eTopTitle'>
+                    //       <div class='colorBlue'></div>
+                    //       <div class='eTitle'>回复</div>
+                    //     </div>
+                    //     <div class='eLine'></div>
+                    //     <div class='eContentBlue statistics' contenteditable='true' data-index='${listOne.index}' >${listOne.content}</div>
+                    //   </div></div>`;
+                    newTalk = `<div class="dc">
+                <div class="replyDiv">
+                  <div class='eventContainerReply rla gu'  data-index='${listOne.index}' data-type="${listOne.type}" data-name='${listOne.mark}'>
+                    <div class="eTopTitle">
+                      <div class="colorBlue"></div>
+                      <div class="eTitle">回复</div>
+                    </div>
+                    <div class="eLine"></div>
+                    <div class="eContentBlue statistics" contenteditable="true" data-index="${listOne.index}">${listOne.content}</div>
+                  </div>
+                  <div class="chooseDivYHZ">
+                    <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ  ipt">
+                  </div>
                 </div>
-                <div class='eLine'></div>
-                <div class='eContentBlue statistics' contenteditable='true' data-index='${listOne.index}' >${listOne.content}</div>
-              </div></div>`;
+              </div>`;
+
+                }
+
                 html = html + newTalk;
                 break;
             case 'love':
-                newTalk = `<div class="dc"><div class='eventContainerLove' data-index='${listOne.index}' data-name='${listOne.mark}'>
-                <div class='eTopTitle'>
-                  <div class='colorRed'></div>
-                  <div class='eTitle'>羁绊事件</div>
+                newTalk = `<div class="dc">
+                <div class="replyDiv">
+                  <div class='eventContainerLove rla gu' data-type="${listOne.type}" data-index='${listOne.index}' data-name='${listOne.mark}'>
+                    <div class="eTopTitle">
+                      <div class="colorRed"></div>
+                      <div class="eTitle">羁绊事件</div>
+                    </div>
+                    <div class="eLine"></div>
+                    <div class="eContentRed statistics" contenteditable="true" data-index="${listOne.index}">${listOne.content}</div>
+                  </div>
+                  <div class="chooseDivYHZ">
+                    <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ  ipt">
+                  </div>
                 </div>
-                <div class='eLine'></div>
-                <div class='eContentRed statistics' contenteditable='true' data-index='${listOne.index}' >${listOne.content}</div>
-              </div></div>`;
+              </div>`;
+                //     newTalk = `<div class="dc"><div class='eventContainerLove' data-type="${listOne.type}" data-index='${listOne.index}' data-name='${listOne.mark}'>
+                //     <div class='eTopTitle'>
+                //       <div class='colorRed'></div>
+                //       <div class='eTitle'>羁绊事件</div>
+                //     </div>
+                //     <div class='eLine'></div>
+                //     <div class='eContentRed statistics' contenteditable='true' data-index='${listOne.index}' >${listOne.content}</div>
+                //   </div></div>`;
                 html = html + newTalk;
                 break;
         }
@@ -350,7 +404,6 @@ $().ready(function () {
             json.mark = 'aside';
             newTalk = createHtml(json)
             insertOrContinue(newTalk, json);
-            cen++;
             // textHeightRest ()
         }
     }
@@ -406,10 +459,10 @@ $().ready(function () {
                 break;
         }
         json.index = cen;
-        newTalk = createHtml(json)
+        var newTalk = createHtml(json)
         insertOrContinue(newTalk, json);
-        cen++;
     })
+
 
     //base64转blob
     function dataURItoBlob(base64Data) {
@@ -436,198 +489,28 @@ $().ready(function () {
     //加载未删除数据
     function loadBoxData() {
         getTempJson().then(res => {
+            $('#box').html("");
             boxJsonArray = res.boxJson;
-            cen = boxJsonArray.length > 0 ? boxJsonArray[boxJsonArray.length - 1].index + 1 : 0
-            var html = '';
+
+            //cen = boxJsonArray.length > 0 ? Math.max.apply(null, boxJsonArray) : 0
+            var temp = boxJsonArray[0].index;
             var a = 'data:image'
             var num = 9999;
             for (let i = 0; i < boxJsonArray.length; i++) {
-                var newTalk = '';
-                switch (boxJsonArray[i].type) {
-                    case 'Expression':
-                        if (boxJsonArray[i].roleId == 9999) {
-                            newTalk = `<div class="dc"><div class="roleOverall rightRoleOverall statistics" data-index="${boxJsonArray[i].index}" data-name="${boxJsonArray[i].mark}">
-                      <div class="dfsdfYHZ">
-                        <div class="chooseDivYHZ">
-                          <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ  ipt">
-                        </div>
-                        <img src="${boxJsonArray[i].content}" alt="" srcset="" class="rightImgExpression udiohsfnds">
-                      </div>
-                    </div></div>`;
-                        } else {
-                            if ((i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) && (i > 0 && boxJsonArray[i - 1].name == boxJsonArray[i].name) && ((i > 0 && boxJsonArray[i - 1].type == "txt") || (i > 0 && boxJsonArray[i - 1].type == "Expression"))) {
-                                newTalk = `<div class="dc">
-                            <div class="roleOverall" data-names="${boxJsonArray[i].name}" data-name="${boxJsonArray[i].mark}" data-index="${boxJsonArray[i].index}">
-                              <div class="divImg">
-                                <div class="xvb replaceAvatar"></div>
-                                <img src="${boxJsonArray[i].base64.indexOf(a) >= 0 ? dataURItoBlob(boxJsonArray[i].base64) : boxJsonArray[i].path}" crossorigin="anonymous" alt="" class="roleImg width0" srcset="">
-                              </div>
-                              <div class="roleTb"><span class="roleNameSpan width0">${boxJsonArray[i].name}</span>
-                                <div class="roleRemarkDivImg"><img src="${boxJsonArray[i].content}" alt="" srcset="" class="rightImgExpression ">
-                                <div class="chooseDiv">
-                            <input type="checkbox" name="iptChoose" id="" class="iptChoose  ipt">
-                          </div></div>
-                              </div>
-                            </div>
-                          </div>`;
-                            } else {
-                                newTalk = `<div class="dc">
-                            <div class="roleOverall roleOverallTopMargin" data-names="${boxJsonArray[i].name}" data-name="${boxJsonArray[i].mark}" data-index="${boxJsonArray[i].index}">
-                              <div class="divImg">
-                                <div class="xvb replaceAvatar"></div>
-                                <img src="${boxJsonArray[i].base64.indexOf(a) >= 0 ? dataURItoBlob(boxJsonArray[i].base64) : boxJsonArray[i].path}" crossorigin="anonymous" alt="" class="roleImg" srcset="">
-                              </div>
-                              <div class="roleTb"><span class="roleNameSpan">${boxJsonArray[i].name}</span>
-                                <div class="roleRemarkDivImg"><img src="${boxJsonArray[i].content}" alt="" srcset="" class="rightImgExpression ">
-                                <div class="chooseDiv">
-                            <input type="checkbox" name="iptChoose" id="" class="iptChoose  ipt">
-                          </div></div>
-                              </div>
-                            </div>
-                          </div>`;
-                            }
-                        }
-                        html = html + newTalk;
-                        break;
-                    case 'img':
-                        if (boxJsonArray[i].roleId == 9999) {
-                            newTalk = `<div class="dc"><div data-index="${boxJsonArray[i].index}" data-name="${boxJsonArray[i].mark}" class="roleOverall rightRoleOverall statistics">
-                        <div class="dfsdfYHZ">
-                          <div class="chooseDivYHZ">
-                            <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ  ipt">
-                          </div>
-                          <div class="Righthorn"></div>
-                          <img src="${dataURItoBlob(boxJsonArray[i].content)}" alt="" srcset=""
-                            class="rightImg rightImg1">
-                        </div>
-                      </div></div>`;
-                        } else {
-                            if ((i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) && (i > 0 && boxJsonArray[i - 1].name == boxJsonArray[i].name)) {
-                                newTalk = `<div class="dc">
-                      <div class="roleOverall" data-names="${boxJsonArray[i].name}" data-name="${boxJsonArray[i].mark}" data-index="${boxJsonArray[i].index}">
-                        <div class="divImg">
-                          <div class="xvb replaceAvatar"></div>
-                          <img src="${boxJsonArray[i].base64.indexOf(a) >= 0 ? dataURItoBlob(boxJsonArray[i].base64) : boxJsonArray[i].path}" crossorigin="anonymous" alt="" class="roleImg width0" srcset="">
-                        </div>
-                        <div class="roleTb"><span class="roleNameSpan width0">${boxJsonArray[i].name}</span>
-                          <div class="roleRemarkDivImg">
-                            <div class="horn width0"></div><img src="${dataURItoBlob(boxJsonArray[i].content)}" alt="" srcset="" class="rightImg rightImg2">
-                            <div class="chooseDiv">
-                            <input type="checkbox" name="iptChoose" id="" class="iptChoose  ipt">
-                          </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>`;
-                            } else {
-                                newTalk = `<div class="dc">
-                            <div class="roleOverall roleOverallTopMargin" data-names="${boxJsonArray[i].name}" data-name="${boxJsonArray[i].mark}" data-index="${boxJsonArray[i].index}">
-                              <div class="divImg">
-                                <div class="xvb"></div>
-                                <img src="${boxJsonArray[i].base64.indexOf(a) >= 0 ? dataURItoBlob(boxJsonArray[i].base64) : boxJsonArray[i].path}" crossorigin="anonymous" alt="" class="roleImg" srcset="">
-                              </div>
-                              <div class="roleTb"><span class="roleNameSpan">${boxJsonArray[i].name}</span>
-                                <div class="roleRemarkDivImg">
-                                  <div class="horn"></div><img src="${dataURItoBlob(boxJsonArray[i].content)}" alt="" srcset="" class="rightImg rightImg2">
-                                  <div class="chooseDiv">
-                            <input type="checkbox" name="iptChoose" id="" class="iptChoose  ipt">
-                          </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>`;
-                            }
-                        }
-                        html = html + newTalk;
-                        break;
-                    case 'txt':
-                        if (boxJsonArray[i].roleId == 9999) {
-                            newTalk = `<div class="dc"><div data-index="${boxJsonArray[i].index}" data-name="${boxJsonArray[i].mark}" class="roleOverall rightRoleOverall">
-                        <div class="dfsdfYHZ">
-                          <div class="chooseDivYHZ">
-                            <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ  ipt">
-                          </div>
-                          <div class="Righthorn"></div>
-                          <div class="roleRemarkDiv3 roleRemarkDiv">
-                            <div class="roleRemarkDivSpan statistics" contenteditable="true" data-index="${boxJsonArray[i].index}">${boxJsonArray[i].content}</div>
-                          </div>
-                        </div>
-                      </div></div>`;
-                        } else {
-                            if ((i > 0 && boxJsonArray[i - 1].mark == boxJsonArray[i].mark) && (i > 0 && boxJsonArray[i - 1].name == boxJsonArray[i].name) && (i > 0 && boxJsonArray[i - 1].type == "txt")) {
-                                newTalk = `<div class="dc">
-                            <div class="roleOverall" data-names="${boxJsonArray[i].name}" data-name="${boxJsonArray[i].mark}" data-index="${boxJsonArray[i].index}">
-                              <div class="divImg">
-                                <div class="xvb replaceAvatar"></div>
-                                <img src="${boxJsonArray[i].base64.indexOf(a) >= 0 ? dataURItoBlob(boxJsonArray[i].base64) : boxJsonArray[i].path}" crossorigin="anonymous" alt="" class="roleImg width0" srcset="">
-                              </div>
-                              <div class="roleTb"><span class="roleNameSpan width0">${boxJsonArray[i].name} </span>
-                                <div class="roleRemarkDivs">
-                                  <div class="horn width0"></div>
-                                  <div class="roleRemarkDiv2 roleRemarkDiv">
-                                    <div class="roleRemarkDivSpan statistics" data-index="${boxJsonArray[i].index}" contenteditable="true">${boxJsonArray[i].content}</div>
-                                  </div>
-                                  <div class="chooseDiv">
-                            <input type="checkbox" name="iptChoose" id="" class="iptChoose  ipt">
-                          </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>`;
-                            } else {
-                                newTalk = `<div class="dc">
-                        <div class="roleOverall roleOverallTopMargin" data-names="${boxJsonArray[i].name}" data-name="${boxJsonArray[i].mark}" data-index="${boxJsonArray[i].index}">
-                          <div class="divImg">
-                            <div class="xvb"></div>
-                            <img src="${boxJsonArray[i].base64.indexOf(a) >= 0 ? dataURItoBlob(boxJsonArray[i].base64) : boxJsonArray[i].path}" crossorigin="anonymous" alt="" class="roleImg" srcset="">
-                          </div>
-                          <div class="roleTb"><span class="roleNameSpan">${boxJsonArray[i].name} </span>
-                            <div class="roleRemarkDivs">
-                              <div class="horn"></div>
-                              <div class="roleRemarkDiv2 roleRemarkDiv">
-                                <div class="roleRemarkDivSpan statistics" data-index="${boxJsonArray[i].index}" contenteditable="true">${boxJsonArray[i].content}</div>
-                              </div>
-                              <div class="chooseDiv">
-                            <input type="checkbox" name="iptChoose" id="" class="iptChoose  ipt">
-                          </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>`;
-                            }
-                        }
-                        html = html + newTalk;
-                        break;
-                    case 'aside':
-                        newTalk = "<div class='dc'><div class='pangbaiDiv ' data-index=" + boxJsonArray[i].index + " data-name=" + boxJsonArray[i].mark + "><span class='pangbaiSpan statistics' contenteditable='true' data-index=" + boxJsonArray[i].index + " >" + boxJsonArray[i].content + "</span></div></div>";
-                        html = html + newTalk;
-                        break;
-                    case 'reply':
-                        newTalk = `<div class="dc"><div class='eventContainerReply' data-index='${boxJsonArray[i].index}' data-name='${boxJsonArray[i].mark}'>
-                    <div class='eTopTitle'>
-                      <div class='colorBlue'></div>
-                      <div class='eTitle'>回复</div>
-                    </div>
-                    <div class='eLine'></div>
-                    <div class='eContentBlue statistics' contenteditable='true' data-index='${boxJsonArray[i].index}' >${boxJsonArray[i].content}</div>
-                  </div></div>`;
-                        html = html + newTalk;
-                        break;
-                    case 'love':
-                        newTalk = `<div class="dc"><div class='eventContainerLove' data-index='${boxJsonArray[i].index}' data-name='${boxJsonArray[i].mark}'>
-                    <div class='eTopTitle'>
-                      <div class='colorRed'></div>
-                      <div class='eTitle'>羁绊事件</div>
-                    </div>
-                    <div class='eLine'></div>
-                    <div class='eContentRed statistics' contenteditable='true' data-index='${boxJsonArray[i].index}' >${boxJsonArray[i].content}</div>
-                  </div></div>`;
-                        html = html + newTalk;
-                        break;
-                }
+                    if (boxJsonArray[i].index > temp ) {
+                        temp = boxJsonArray[i].index;
+                    }
+                
+                
+                var newTalk = createHtml(boxJsonArray[i]);
+                $('#box').append(newTalk);
+
             }
-            $('#box').html(html);
+            //$('#box').html(html);
+            cen = boxJsonArray.length > 0 ? temp + 1 : 0
+            //console.log(temp, "temp")
             ToBtm();
+            console.log(boxJsonArray);
         })
     }
 
@@ -667,7 +550,7 @@ $().ready(function () {
 
     //初始化数据
     function Init() {
-         toNewPath();
+        // toNewPath();
         localUpdateIndexDb()
         $("#knopiji").html('');
         $.getJSON("data/roles.json", function (data) {
@@ -857,88 +740,8 @@ $().ready(function () {
             newTalk = createHtml(json)
             insertOrContinue(newTalk, json);
         }
-        cen++;
         closeExpression()
     }
-    //动态添加点击事件 弃用
-    // function roleArrayClick(id, index, e) {
-    //     var dom = $(".center").children().eq(index).children().eq(1);
-    //     roleArray.forEach(item => {
-    //         if (item.id == id) {
-    //             if (item.open) {
-    //                 item.open = false
-    //                 dom.css("display", "none");
-    //             } else {
-    //                 item.open = true
-    //                 dom.css("display", "flex");
-    //             }
-    //         }
-    //     });
-
-    //     roleArray.forEach(item => {
-    //         if (item.avatarArray == '' && item.id == id) {
-    //             $.getJSON("data/imagese.json", function (data) {
-    //                 if (!$.isEmptyObject(data)) {
-    //                     var roleImgs = new Array();
-    //                     data.forEach(item => {
-    //                         if (item.roleId == id) {
-    //                             item.mark = item.imagePath;
-    //                             item.path = 'images/roleImages/' + item.imagePath + '.png';
-    //                             item.choose = false;
-    //                             roleImgs.push(item);
-    //                         }
-
-    //                     });
-
-    //                     //角色头像加入角色数组
-    //                     roleArray.forEach(item => {
-    //                         if (item.id == id && item.description == null) {
-    //                             var a = new Object();
-    //                             a.avatarList = roleImgs;
-    //                             item.avatarArray = a;
-    //                         }
-    //                         //console.log(roleArray, "加入头像后的角色数组");
-    //                         //拼接自定义角色
-    //                         if (item.id == id && item.description == 'newRole') {
-    //                             //console.log(item, "拼接");
-    //                             var a = new Object();
-    //                             var b = {
-    //                                 path: item.imgURl,
-    //                                 mark: item.roleName,
-    //                                 choose: false,
-    //                                 roleId: item.id
-    //                             }
-    //                             var array = new Array();
-    //                             array.push(b);
-    //                             roleImgs.push(b);
-    //                             a.avatarList = array;
-    //                             item.avatarArray = a;
-    //                         }
-    //                     });
-    //                     //插入头像列表
-    //                     $(".center").children().eq(index).append("<div class='centerRoleArraybtn'></div>")
-    //                     for (let indexs = 0; indexs < roleImgs.length; indexs++) {
-    //                         $(".center").children().eq(index).children().last("div").append("<img data-mark=" + roleImgs[indexs].mark + " class='conImg imgb' data-imgid='" + roleImgs[indexs].id + "'  data-roleId='" + roleImgs[indexs].roleId + "' data-open='" + roleImgs[indexs].choose + "' data-index='" + indexs + "' title='" + roleImgs[indexs].imgName + "' src='" + roleImgs[indexs].path + "' crossOrigin='anonymous' alt='' srcset=''>");
-    //                         $(".center").children().eq(index).children().last("div").children().eq(indexs).click(function (e) {
-    //                             //console.log("点击");
-    //                             $(this).toggleClass("imgb bj");
-    //                             if ($(this).parent().children().is(".bj")) {
-    //                                 $(this).parent().siblings(".xq").addClass("qx");
-    //                             } else {
-    //                                 $(this).parent().siblings(".xq").removeClass("qx");
-    //                             }
-    //                             roleAvatarClick($(this));
-    //                             e.stopPropagation();
-    //                         })
-    //                     }
-    //                 } else {
-    //                 }
-    //             }
-    //             );
-    //         }
-    //     });
-
-    // }
     //角色头像点击事件
     function roleAvatarClick(e) {
         roleImgArray = new Array();
@@ -1028,14 +831,38 @@ $().ready(function () {
         if (b.length > 0) {
             if (confirm("确认要删除" + b.length + "条数据吗")) {
                 b.each(function () {
+                    // for (let index = 0; index < boxJsonArray.length; index++) {
+                    //     if ($(this).find(".rla").data("index") == boxJsonArray[index].index) {
+                    //         var i = index;
+                    //         if (boxJsonArray[index].type == "reply") {
+                    //             while (boxJsonArray[i].type == "reply") {
+                    //                 i++;
+                    //             }
+                    //             boxJsonArray.splice(index, i - index-1);
+                    //             console.log(boxJsonArray);
+                    //         }
+
+                    //         boxJsonArray.splice(index, 1);
+                    //         break;
+                    //     }
+
+                    // }
+
                     for (let index = 0; index < boxJsonArray.length; index++) {
-                        if ($(this).find(".roleOverall").data("index") == boxJsonArray[index].index) {
+                        if ($(this).find(".gu").data("index") == boxJsonArray[index].index) {
+                            var i = index;
+                            if (boxJsonArray[index].type == "reply") {
+                                while (boxJsonArray[i].type == "reply") {
+                                    i++;
+                                }
+                                boxJsonArray.splice(index, i - index - 1);
+                            }
                             boxJsonArray.splice(index, 1);
                             break;
                         }
                     }
                 })
-
+                console.log(boxJsonArray);
                 updateTempJson(boxJsonArray).then(res => {
                     loadBoxData();
                 });
@@ -1059,7 +886,7 @@ $().ready(function () {
         var lastDc = $("#box").children().last();
         if (editOpen.length > 0) {
             for (let i = 0; i < boxJsonArray.length - 1; i++) {
-                if (editOpen.prev().find(".roleOverall").data("index") == boxJsonArray[i].index) {
+                if (editOpen.prev().find(".gu").data("index") == boxJsonArray[i].index) {
                     boxJsonArray.splice(i, 1);
                     break
                 }
@@ -1112,7 +939,6 @@ $().ready(function () {
                     newTalk = createHtml(json)
                     insertOrContinue(newTalk, json);
                 }
-                cen++;
 
             })
         })
@@ -1263,7 +1089,7 @@ $().ready(function () {
                     reLoadLeftArchive()
                     $(this).parents().filter(".AL-TitleDiv").find(".mhhh").html(newtitle)
                 });
-                
+
             }
 
         }
@@ -1683,24 +1509,24 @@ $().ready(function () {
     //抽出头像显示隐藏方法
     //点击头像
     function ShowOrHidden(obj, e) {
-        var tNs = obj.parents().filter(".dc").prev().find(".roleOverall").data("names");
-        var tN = obj.parents().filter(".dc").prev().find(".roleOverall").data("name");
-        var bNs = obj.parents().filter(".roleOverall").data("names");
-        var bN = obj.parents().filter(".roleOverall").data("name");
-        var index = obj.parents().filter(".roleOverall").data("index")
+        var tNs = obj.parents().filter(".dc").prev().find(".gu").data("names");
+        var tN = obj.parents().filter(".dc").prev().find(".gu").data("name");
+        var bNs = obj.parents().filter(".gu").data("names");
+        var bN = obj.parents().filter(".gu").data("name");
+        var index = obj.parents().filter(".gu").data("index")
         if (tNs == bNs && bN == tN) {
             if (obj.find("img").is(".width0")) {
                 obj.find('.xvb').removeClass("replaceAvatar");
                 obj.find('.roleImg').removeClass("width0");
                 obj.next().find(".roleNameSpan").removeClass("width0");
                 obj.next().find(".horn").removeClass("width0");
-                obj.parents().filter(".roleOverall").addClass("roleOverallTopMargin");
+                obj.parents().filter(".gu").addClass("roleOverallTopMargin");
             } else {
                 obj.find('.roleImg').addClass("width0");
                 obj.find(".xvb").addClass("replaceAvatar");
                 obj.next().find(".roleNameSpan").addClass("width0");
                 obj.next().find(".horn").addClass("width0");
-                obj.parents().filter(".roleOverall").removeClass("roleOverallTopMargin");
+                obj.parents().filter(".gu").removeClass("roleOverallTopMargin");
             }
 
         }

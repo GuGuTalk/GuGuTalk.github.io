@@ -448,10 +448,12 @@ input.el-input__inner {
 .pangbaiDiv {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    margin: 1rem;
+    margin: 1rem 2rem;
     /* padding: 20px; */
     /* width: 610px; */
+    width: 100%;
+    justify-content: center;
+    /* margin-left: auto; */
 }
 
 .pangbaiSpan {
@@ -962,14 +964,24 @@ line-height: 1rem;
 .updateName {
     width: 1.25rem;
 }
-
+.replyDiv{
+    
+display: flex;
+    
+width: auto;
+    
+margin: 0 1rem;
+    
+/* justify-content: space-between; */
+}
 .eventContainerLove {
     display: flex;
     flex-direction: column;
-    width: auto;
+    width: 100%;
     color: #4C5B6F;
     border-radius: 0.5rem;
     padding: 0.5rem;
+    /* padding-bottom: 0; */
     background-color: rgb(252, 238, 240);
     border: 1px solid rgb(221, 210, 216);
     margin: 1rem 2rem;
@@ -982,17 +994,18 @@ line-height: 1rem;
 .eventContainerReply {
     display: flex;
     flex-direction: column;
-    width: auto;
+    width: 100%;
     margin: 1rem 2rem;
     color: #4C5B6F;
     border-radius: 0.5rem;
     padding: 0.5rem;
+    padding-bottom: 0;
     background-color: rgb(225, 237, 240);
     border: 1px solid rgb(221, 210, 216);
     background-image: url(/images/Popup_Img_Deco_2.webp);
     background-repeat: no-repeat;
     background-position: right top;
-    background-size: auto 100%;
+    /* background-size: auto 100%; */
 }
 
 .eTopTitle {
@@ -1045,10 +1058,13 @@ line-height: 1rem;
     white-space: pre-wrap;
     overflow-wrap: break-word;
     word-break: break-all;
+    /* margin-bottom: 0.5rem; */
 }
 
 .eContentBlue {
     display: flex;
+    line-height: 1.5rem;
+    /* font-size: 1.5rem; */
     background-color: rgb(252, 135, 155);
     padding: 0.5rem;
     border-radius: 0.5rem;
@@ -1062,6 +1078,7 @@ line-height: 1rem;
     white-space: pre-wrap;
     overflow-wrap: break-word;
     word-break: break-all;
+    margin-bottom: 0.5rem;
 }
 
 #box>div:nth-of-type(1) {
@@ -1231,6 +1248,9 @@ line-height: 1rem;
 
     .rightRoleOverall {
         margin-top: 0.5rem;
+    }
+    .replyDiv{
+        margin: 0 0.5rem;
     }
 }
 

@@ -348,6 +348,7 @@ async function insertTalk(obj, index) {
             break;
         }
     }
+    console.log(temp);
 }
 
 /**
