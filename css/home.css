@@ -1,0 +1,43 @@
+.backImg {
+    height: 100%;
+    overflow: auto;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(/images/hexa_back_01.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* width: 100%; */
+}
+
+.bddd {
+    height: 100%;
+    /* width: 100%; */
+    /* width: auto; */
+    /* margin: 0px 10.25rem; */
+}
+
+.bah {
+    display: flex;
+    padding: 0.5rem 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    justify-content: center;
+}
+
+.bah>div:first-child {
+    margin-right: 0.5rem;
+}
+
+.gugutalkJoin {
+
+    display: flex;
+
+    position: fixed;
+
+    top: 50%;
+
+    width: 100%;
+
+    /* align-content: center; */
+
+    justify-content: center;
+}

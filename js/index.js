@@ -6,6 +6,9 @@ $().ready(function () {
     };
     var boxJsonArray = new Array();
     var cen = 0;
+    var kqOptions = {
+        isYHZ: false
+    }
     var rla = ['aside', 'love', 'reply']
     var Keys = "GuGuTalk";
     Init();
@@ -24,6 +27,21 @@ $().ready(function () {
         }
 
     });
+    // const ua = navigator.userAgent;
+    // const iOS = /iPad|iPhone|iPod/.test(ua);
+    // const input = document.querySelector('#input');
+
+    // input.addEventListener('focus', () => {
+    //     setTimeout(() => {
+    //         if (iOS) {
+    //             if (!/OS 11_[0-3]\D/.test(ua)) {
+    //                 document.body.scrollTop = document.body.scrollHeight;
+    //             }
+    //         } else {
+    //             input.scrollIntoView(false);
+    //         }
+    //     }, 300);
+    // });
     $(".send").click(function () {
         wirte();
     });
@@ -122,9 +140,6 @@ $().ready(function () {
         var type;//1:继续 2:插入
         var editOpen = $(".editOpen").prev().find('.gu');
         var lastDc = $("#box").children().last(".dc").find('.gu');
-
-        // var replyEditOpen = $(".editOpen").prev().find('.rla');
-        // var replylastDc = $("#box").children().last(".dc").find('.rla');
         var tdc;
         //var replyTdc;
         if ($(".editOpen").length == 0) {
@@ -192,7 +207,7 @@ $().ready(function () {
                       <div class="chooseDivYHZ">
                         <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ  ipt">
                       </div>
-                      <div class="Righthorn"></div>
+                      <div class="Righthorn qp"></div>
                       <img src="${dataURItoBlob(listOne.content)}" alt="" srcset=""
                         class="rightImg rightImg1">
                     </div>
@@ -207,7 +222,7 @@ $().ready(function () {
                     </div>
                     <div class="roleTb"><span class="roleNameSpan width0">${listOne.name}</span>
                       <div class="roleRemarkDivImg">
-                        <div class="horn width0"></div><img src="${dataURItoBlob(listOne.content)}" alt="" srcset="" class="rightImg rightImg2">
+                        <div class="horn qp qpW"></div><img src="${dataURItoBlob(listOne.content)}" alt="" srcset="" class="rightImg rightImg2">
                         <div class="chooseDiv">
                         <input type="checkbox" name="iptChoose" id="" class="iptChoose  ipt">
                       </div>
@@ -224,7 +239,7 @@ $().ready(function () {
                           </div>
                           <div class="roleTb"><span class="roleNameSpan">${listOne.name}</span>
                             <div class="roleRemarkDivImg">
-                              <div class="horn"></div><img src="${dataURItoBlob(listOne.content)}" alt="" srcset="" class="rightImg rightImg2">
+                              <div class="horn qp"></div><img src="${dataURItoBlob(listOne.content)}" alt="" srcset="" class="rightImg rightImg2">
                               <div class="chooseDiv">
                         <input type="checkbox" name="iptChoose" id="" class="iptChoose  ipt">
                       </div>
@@ -238,17 +253,22 @@ $().ready(function () {
                 break;
             case 'txt':
                 if (listOne.roleId == 9999) {
-                    newTalk = `<div class="dc"><div data-index="${listOne.index}" data-type="${listOne.type}" data-name="${listOne.mark}" class="gu roleOverall rightRoleOverall">
+                    if (kqOptions.isYHZ) {
+                        newTalk=``
+                    } else {
+                        newTalk = `<div class="dc"><div data-index="${listOne.index}" data-type="${listOne.type}" data-name="${listOne.mark}" class="gu roleOverall rightRoleOverall">
                     <div class="dfsdfYHZ">
                       <div class="chooseDivYHZ">
                         <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ  ipt">
                       </div>
-                      <div class="Righthorn"></div>
+                      <div class="Righthorn qp"></div>
                       <div class="roleRemarkDiv3 roleRemarkDiv">
                         <div class="roleRemarkDivSpan statistics" contenteditable="true" data-index="${listOne.index}">${listOne.content}</div>
                       </div>
                     </div>
                   </div></div>`;
+                    }
+
                 } else {
                     if ((tdc.data("name") == listOne.mark) && (tdc.data("names") == listOne.name)) {
                         newTalk = `<div class="dc">
@@ -259,7 +279,7 @@ $().ready(function () {
                           </div>
                           <div class="roleTb"><span class="roleNameSpan width0">${listOne.name} </span>
                             <div class="roleRemarkDivs">
-                              <div class="horn width0"></div>
+                              <div class="horn qp qpW "></div>
                               <div class="roleRemarkDiv2 roleRemarkDiv">
                                 <div class="roleRemarkDivSpan statistics" data-index="${listOne.index}" contenteditable="true">${listOne.content}</div>
                               </div>
@@ -279,7 +299,7 @@ $().ready(function () {
                       </div>
                       <div class="roleTb"><span class="roleNameSpan">${listOne.name} </span>
                         <div class="roleRemarkDivs">
-                          <div class="horn"></div>
+                          <div class="horn qp"></div>
                           <div class="roleRemarkDiv2 roleRemarkDiv">
                             <div class="roleRemarkDivSpan statistics" data-index="${listOne.index}" contenteditable="true">${listOne.content}</div>
                           </div>
@@ -295,7 +315,6 @@ $().ready(function () {
                 html = html + newTalk;
                 break;
             case 'aside':
-                //newTalk = "<div class='dc'><div class='pangbaiDiv ' data-index=" + listOne.index + " data-type=" + listOne.type + " data-name=" + listOne.mark + "><span class='pangbaiSpan statistics' contenteditable='true' data-index=" + listOne.index + " >" + listOne.content + "</span></div></div>";
                 newTalk = `<div class="dc">
                 <div class="replyDiv">
                   <div class="pangbaiDiv rla gu" data-type="${listOne.type}" data-index="${listOne.index}" data-name="${listOne.mark}"><span class="pangbaiSpan statistics"
@@ -312,14 +331,6 @@ $().ready(function () {
                     newTalk = "";
                     tdc.append(`<div class='eContentBlue statistics' contenteditable='true' data-index='${listOne.index}' >${listOne.content}</div>`);
                 } else {
-                    //         newTalk = `<div class="dc"><div class='eventContainerReply'  data-index='${listOne.index}' data-type="${listOne.type}" data-name='${listOne.mark}'>
-                    //     <div class='eTopTitle'>
-                    //       <div class='colorBlue'></div>
-                    //       <div class='eTitle'>回复</div>
-                    //     </div>
-                    //     <div class='eLine'></div>
-                    //     <div class='eContentBlue statistics' contenteditable='true' data-index='${listOne.index}' >${listOne.content}</div>
-                    //   </div></div>`;
                     newTalk = `<div class="dc">
                 <div class="replyDiv">
                   <div class='eventContainerReply rla gu'  data-index='${listOne.index}' data-type="${listOne.type}" data-name='${listOne.mark}'>
@@ -356,17 +367,10 @@ $().ready(function () {
                   </div>
                 </div>
               </div>`;
-                //     newTalk = `<div class="dc"><div class='eventContainerLove' data-type="${listOne.type}" data-index='${listOne.index}' data-name='${listOne.mark}'>
-                //     <div class='eTopTitle'>
-                //       <div class='colorRed'></div>
-                //       <div class='eTitle'>羁绊事件</div>
-                //     </div>
-                //     <div class='eLine'></div>
-                //     <div class='eContentRed statistics' contenteditable='true' data-index='${listOne.index}' >${listOne.content}</div>
-                //   </div></div>`;
                 html = html + newTalk;
                 break;
         }
+
         return html;
     }
     //获取新建角色类型
@@ -497,11 +501,11 @@ $().ready(function () {
             var a = 'data:image'
             var num = 9999;
             for (let i = 0; i < boxJsonArray.length; i++) {
-                    if (boxJsonArray[i].index > temp ) {
-                        temp = boxJsonArray[i].index;
-                    }
-                
-                
+                if (boxJsonArray[i].index > temp) {
+                    temp = boxJsonArray[i].index;
+                }
+
+
                 var newTalk = createHtml(boxJsonArray[i]);
                 $('#box').append(newTalk);
 
@@ -551,7 +555,7 @@ $().ready(function () {
     //初始化数据
     function Init() {
         // toNewPath();
-        localUpdateIndexDb()
+        //localUpdateIndexDb()
         $("#knopiji").html('');
         $.getJSON("data/roles.json", function (data) {
             $.getJSON("data/imagese.json", function (dataImg) {
@@ -1289,13 +1293,6 @@ $().ready(function () {
     function deleteRole(id, e) {
         var c = confirm("确认要删除吗？");
         if (c) {
-            var json = roleArray;
-            var newJson = new Array();
-            for (let i = 0; i < json.length; i++) {
-                if (json[i].id != id) {
-                    newJson.push(json[i]);
-                }
-            }
             deleteNewRoleById(id);
             window.location.reload();
         }
@@ -1514,24 +1511,35 @@ $().ready(function () {
         var bNs = obj.parents().filter(".gu").data("names");
         var bN = obj.parents().filter(".gu").data("name");
         var index = obj.parents().filter(".gu").data("index")
+        console.log();
         if (tNs == bNs && bN == tN) {
             if (obj.find("img").is(".width0")) {
                 obj.find('.xvb').removeClass("replaceAvatar");
                 obj.find('.roleImg').removeClass("width0");
                 obj.next().find(".roleNameSpan").removeClass("width0");
-                obj.next().find(".horn").removeClass("width0");
-                obj.parents().filter(".gu").addClass("roleOverallTopMargin");
+                obj.parents().filter(".gu").toggleClass("roleOverallTopMargin");
+                obj.next().find(".qp").removeClass("qpW");
+                // if(obj.parents().is(".rightRoleOverall")){
+
+                // }else{
+                //     obj.next().find(".qp").removeClass("width0");
+                // }
             } else {
                 obj.find('.roleImg').addClass("width0");
                 obj.find(".xvb").addClass("replaceAvatar");
                 obj.next().find(".roleNameSpan").addClass("width0");
-                obj.next().find(".horn").addClass("width0");
-                obj.parents().filter(".gu").removeClass("roleOverallTopMargin");
+                //obj.next().find(".qp").addClass("width0");
+                obj.parents().filter(".gu").toggleClass("roleOverallTopMargin");
+                obj.next().find(".qp").addClass("qpW");
+                // if(obj.parents().is(".rightRoleOverall")){
+
+                // }else{
+                //     obj.next().find(".qp").addClass("width0");
+                // }
             }
 
         }
     }
-
     function getNowTime() {
         let now = new Date();
         let year = now.getFullYear(); //获取完整的年份(4位,1970-????)
@@ -1569,39 +1577,52 @@ $().ready(function () {
             $(".dc").removeClass("editOpen");
         }
     })
-    //////////////////////小屏幕时触发事件////////////////////////////
+    //引航者头像点击事件
+    $(".YHZTX").click(function(){
+        console.log(kqOptions.ab);
+    })
+    //#region layui事件
+    layui.use(['form', 'laydate', 'util'], function () {
+        var layer = layui.layer;
+        var form = layui.form;
+        form.on('switch(isYHZ)', function (data) {
+            // layer.msg('开关 checked：' + (this.checked ? 'true' : 'false'), {
+            //     offset: '6px'
+            // });
+            if(this.checked){
+                $(".YHZTX").removeClass("width0");
+            }else{
+                $(".YHZTX").addClass("width0");
+
+            }
+            kqOptions.isYHZ = this.checked;
+            setOption(kqOptions);
+        });
+    });
+    //#endregion
+
+    //#region 小屏幕时触发事件
     //点击显示/关闭左侧工具栏
     $(".topimg").click(function () {
-        $(".left").css("display") == 'flex' ?
-            $(".left").css("display", "none") :
-            $(".left").css("display", "flex")
+        var leftObj=$(".left");
+        leftObj.is(".disNone")?leftObj.removeClass("disNone"):leftObj.addClass("disNone")
     })
     //点击显示/关闭角色列表
     $(".bxhjc").click(function () {
+        var centerObj=$(".center");
+        var rightObj=$(".right");
         // if ($(".center").css("width") == '0') {
-
-        if ($(".right").css("display") == "none") {
-            $(".right").css({
-                "width": "100%",
-                "transition": "width 0.5s",
-                "display": "flex"
-            });
-            $(".center").css({
-                "width": "0",
-                "transition": "width 0.5s",
-                "display": "none"
-            });
-        } else {
-            $(".center").css({
-                "width": "100%",
-                "transition": "width 0.5s",
-                "display": "flex"
-            });
-            $(".right").css({
-                "width": "0",
-                "transition": "width 0.5s",
-                "display": "none"
-            });
+        if(centerObj.is(".width00")){
+            centerObj.addClass("width100");
+            centerObj.removeClass("width00");
+            rightObj.addClass("width00");
+            rightObj.removeClass("width100");
+        }else{
+            centerObj.addClass("width00");
+            centerObj.removeClass("width100");
+            rightObj.addClass("width100");
+            rightObj.removeClass("width00");
         }
     })
+    //#endregion
 });

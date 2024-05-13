@@ -3,43 +3,22 @@ var boxArray = "kqBoxArray";
 var tempJson = "kqTempJson";
 var roleArray = "kqRoleArray";
 var roleArrayCopy = "kqRoleArrayCopy"
+var kqOptions = "kqOption"
 /**
- * 切换开关
+ * 创建/修改设置参数
+ * @param {*} options 设置参数对象
  */
-function handOff(name) {
-    openDB(gugutalk).then(res => {
-        getDataByKey(res, gugutalk, "handoff").then(opt => {
-            if (opt == undefined) {
-                addData(res, gugutalk, "klbq")
-            } else {
-                switch (name) {
-                    case "尘白禁区":
-                        updateDB(res, gugutalk, "cbjq", "handoff");
-                        boxArray = "cbBoxArray"
-                        tempJson = "cbTempJson"
-                        roleArray = "cbRoleArray"
-                        roleArrayCopy = "cbRoleArrayCopy"
-                        break;
-                    case "卡拉彼丘":
-                        updateDB(res, gugutalk, "klbq", "handoff");
-                        boxArray = "kqBoxArray"
-                        tempJson = "kqTempJson"
-                        roleArray = "kqRoleArray";
-                        roleArrayCopy = "kqRoleArrayCopy"
-                        break;
-                    default:
-                        break;
-                }
-            }
-        })
-    })
+async function setOption(options) {
+    var db = await openDB(gugutalk);
+    var optionDb = await getDataByKey(db, gugutalk, kqOptions);
+    if (optionDb == undefined) {
+        await addData(db, gugutalk, options, kqOptions);
+    } else {
+        await updateDB(db, gugutalk, options, kqOptions);
+    }
+    closeDB(db);
 }
-/**
- * 全局判断初始化
- */
-function handOffInit() {
 
-}
 /**
  * 删除角色副本-同步
  */
@@ -126,14 +105,14 @@ async function getRoleArray() {
  * @param {*} rolearray 初始角色列表
  */
 async function createRoleArrayCopy(rolearray) {
-    var array;
+    var array = new Array();
     var db = await openDB(gugutalk);
     //获取自定义角色列表
     var newrolearray = await getDataByKey(db, gugutalk, roleArray);
     //判断是否存在角色副本，没有则创建
     var exist = await getDataByKey(db, gugutalk, roleArrayCopy);
     if (exist == undefined) {
-        if (newrolearray == undefined || newrolearray == "") {
+        if (newrolearray == undefined) {
             array = rolearray;
         }
         else {
@@ -142,14 +121,14 @@ async function createRoleArrayCopy(rolearray) {
             });
             array = rolearray;
         }
-
         await addData(db, gugutalk, array, roleArrayCopy);
     }
     else {
-        if (newrolearray != "" && newrolearray != undefined) {
+        if (newrolearray != undefined) {
             for (let index = newrolearray.length - 1; index >= 0; index--) {
                 rolearray.unshift(newrolearray[index])
             }
+
             if (rolearray.length != exist.length) {
                 array = rolearray;
                 await updateDB(db, gugutalk, rolearray, roleArrayCopy)
@@ -158,6 +137,7 @@ async function createRoleArrayCopy(rolearray) {
             }
         } else {
             array = rolearray;
+            await updateDB(db, gugutalk, rolearray, roleArrayCopy)
         }
 
 
@@ -170,19 +150,23 @@ async function createRoleArrayCopy(rolearray) {
  * 根据id删除指定自定义角色
  * @param {*} id 
  */
-function deleteNewRoleById(id) {
-    openDB(gugutalk).then(res => {
-        getDataByKey(res, gugutalk, roleArray).then(opt => {
-            var newArray = new Array();
-            for (let index = 0; index < opt.length; index++) {
-                if (opt[index].id != id) {
-                    newArray.push(opt[index]);
-                }
-            }
-            updateDB(res, gugutalk, newArray, roleArray);
-            closeDB(res);
-        });
-    })
+async function deleteNewRoleById(id) {
+    var db = await openDB(gugutalk);
+    var raL = await getDataByKey(db, gugutalk, roleArray);
+    var newArray = new Array();
+    for (let index = 0; index < raL.length; index++) {
+        if (raL[index].id != id) {
+            newArray.push(raL[index]);
+        }
+    }
+    if (newArray.length == 0) {
+        await deleteDB(db, gugutalk, roleArray)
+    } else {
+        await updateDB(db, gugutalk, newArray, roleArray);
+
+    }
+    closeDB(db);
+
 }
 /**
  * 根据id和cid获取指定存档替换tempJson
@@ -208,10 +192,10 @@ async function updateArchive(id, cid) {
     }
     if (aaa == undefined || aaa == "") {
         aaa = boxjson;
-        var obj={
-            id:getNowTime(),
-            title:aaa.ctitle,
-            boxJson:aaa.boxJson
+        var obj = {
+            id: getNowTime(),
+            title: aaa.ctitle,
+            boxJson: aaa.boxJson
         }
         await addData(db, gugutalk, obj, tempJson);
     } else {
@@ -226,20 +210,18 @@ async function updateArchive(id, cid) {
  * 新增角色
  * @param {*} json 
  */
-function createNewRoleArray(json) {
-    openDB(gugutalk).then(res => {
-        getDataByKey(res, gugutalk, roleArray).then(opt => {
-            if (opt == undefined) {
-                var array = new Array();
-                array.push(json);
-                addData(res, gugutalk, array, roleArray)
-            } else {
-                opt.unshift(json);
-                updateDB(res, gugutalk, opt, roleArray);
-            }
-            closeDB(res);
-        })
-    })
+async function createNewRoleArray(json) {
+    var db = await openDB(gugutalk);
+    var raL = await getDataByKey(db, gugutalk, roleArray);
+    if (raL == undefined) {
+        var array = new Array();
+        array.push(json);
+        await addData(db, gugutalk, array, roleArray)
+    } else {
+        raL.unshift(json);
+        await updateDB(db, gugutalk, raL, roleArray);
+    }
+    closeDB(db);
 }
 /**
  * 获取tempJson

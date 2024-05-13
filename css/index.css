@@ -16,6 +16,7 @@ a:link {
 #app {
     width: 100%;
     height: 100%;
+    overflow-y: hidden;
 }
 
 .htmlName,
@@ -37,6 +38,7 @@ a:link {
 }
 
 .backImg {
+    position: fixed;
     height: 100%;
     overflow: auto;
     background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(/images/hexa_back_01.webp);
@@ -48,17 +50,20 @@ a:link {
 body {
     height: 100%;
     width: auto;
-    margin: 0px 10.25rem;
+    margin: 0px 15rem;
+    /* position: fixed; */
 }
 
 .top {
     background-color: rgb(139, 187, 233);
     width: auto;
-    height: 6%;
+    /* height: 6%; */
+    height: 3.5rem;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
     display: flex;
     flex-direction: row;
+    overflow-y: hidden;
     align-items: center;
     justify-content: space-between;
 }
@@ -71,7 +76,7 @@ body {
 
 .left {
     background-color: rgb(76, 91, 111);
-    height: 100%;
+    height: calc(100% - 3.5rem);
     width: 6%;
     border-bottom-left-radius: 1rem;
     /* flex-grow: 1; */
@@ -80,9 +85,10 @@ body {
 .left .content {
     display: flex;
     flex-direction: column;
-    height: 100%;
     flex-wrap: nowrap;
     align-items: center;
+    width: 100%;
+    overflow-y: auto;
 }
 
 .left .content .xx img {
@@ -113,6 +119,8 @@ body {
     width: 100%;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
 }
 
 .qx {
@@ -208,17 +216,18 @@ input.el-input__inner {
 
 .topBox {
     padding: 0.25rem 0.5rem;
-    width: auto;
+    /* width: auto; */
     /* margin-left: auto; */
     display: flex;
     flex-direction: row;
     width: 100%;
     height: auto;
+    overflow-x: hidden;
     justify-content: flex-end;
 }
 
 .topDelete {
-    display: inline;
+    display: flex;
     -webkit-box-pack: center;
     justify-content: center;
     text-align: center;
@@ -234,6 +243,7 @@ input.el-input__inner {
     border: 0.2px solid rgb(230, 233, 235);
     box-shadow: rgb(207, 212, 215) 0.05rem 0.1rem 0.2rem;
     border-radius: 0.25rem;
+    flex-wrap: nowrap;
 }
 
 .topDeleteSpan {
@@ -269,6 +279,7 @@ input.el-input__inner {
 
 .roleImg {
     width: 64px;
+    width: calc();
     height: 64px;
     border-radius: 2.5rem;
 }
@@ -315,7 +326,8 @@ input.el-input__inner {
 }
 
 .roleRemarkDiv2 {
-    max-width: 33rem;
+    /* max-width: 25rem; */
+    max-width: calc(100% - 8rem);
     /* max-width: 88%; */
     border-radius: 0.5rem;
     background: rgb(76, 91, 111);
@@ -324,7 +336,7 @@ input.el-input__inner {
 
 .replaceAvatar {
     /* margin-left: 6rem; */
-    width: 72px;
+    width: 64px;
 }
 
 .width0 {
@@ -340,10 +352,14 @@ input.el-input__inner {
 }
 
 .roleRemarkDiv3 {
-    max-width: 35rem;
+    /* max-width: 25rem; */
+    max-width: calc(100% - 12rem);
+    line-height: 1.5rem;
     border-radius: 0.5rem;
     background: rgb(74, 138, 202);
     border: 1px solid rgb(74, 138, 202);
+    height: auto;
+    /* display: flex; */
 }
 
 .roleRemarkDivSpan {
@@ -351,7 +367,7 @@ input.el-input__inner {
     white-space: pre-wrap;
     overflow-wrap: break-word;
     word-break: break-all;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-family: none;
     /* font-weight: bold; */
     /* display: inline-block; */
@@ -509,7 +525,7 @@ input.el-input__inner {
 
 .overall {
     display: flex;
-    height: 94%;
+    height: 100%;
     /* flex-wrap: wrap; */
     width: 100%;
 }
@@ -517,7 +533,7 @@ input.el-input__inner {
 .sonbsc {
     border-bottom: 1px solid rgb(230, 229, 229);
     pointer-events: auto;
-    width: 100%;
+    /* width: 100%; */
 }
 
 .nopkmp {
@@ -566,6 +582,9 @@ input.el-input__inner {
     font-size: 2rem;
     color: rgb(69, 75, 84);
     font-weight: bolder;
+    display: flex;
+    flex-wrap: nowrap;
+    /* width: 0; */
 }
 
 .wwww {
@@ -577,13 +596,14 @@ input.el-input__inner {
 
 .ddddddddddd {
     height: 100%;
+    /* display: flex; */
 }
 
 .bxhjc {
     display: none;
     margin: 4px;
     width: 32px;
-    /* height: 100%; */
+    height: 32px;
     justify-content: center;
     align-items: center;
     border: 2px solid white;
@@ -773,9 +793,11 @@ input.el-input__inner {
     margin-left: 0.5rem;
     cursor: pointer;
 }
-.AL-OneChildList>.AL-OneChildTitleDiv:first-child{
+
+.AL-OneChildList>.AL-OneChildTitleDiv:first-child {
     /* margin-top: 1rem; */
-} 
+}
+
 .AL-TitleDiv {
     font-size: 1.5rem;
     line-height: 1.5rem;
@@ -787,7 +809,8 @@ input.el-input__inner {
     align-items: center;
     justify-content: space-between;
 }
-.dxx{
+
+.dxx {
     font-size: 1.4rem;
     line-height: 1.4rem;
     padding: 0;
@@ -797,6 +820,7 @@ input.el-input__inner {
     cursor: pointer;
     justify-content: space-between;
 }
+
 .AL-OneChildList {
     width: auto;
     display: flex;
@@ -819,11 +843,13 @@ input.el-input__inner {
     word-break: break-all;
     cursor: pointer;
 }
-.word-wrap{
+
+.word-wrap {
     word-wrap: break-word;
     word-break: break-all;
     /* cursor: pointer; */
 }
+
 .AL-imgTools {
     display: flex;
     /* margin-left: auto; */
@@ -834,18 +860,21 @@ input.el-input__inner {
     cursor: pointer;
     margin-left: 0.5rem;
 }
-.mhh{
-    
-font-size: 1.1rem;
-    
-line-height: 1.1rem;
+
+.mhh {
+
+    font-size: 1.1rem;
+
+    line-height: 1.1rem;
 }
-.mhhh{
-    
-font-size: 1rem;
-    
-line-height: 1rem;
+
+.mhhh {
+
+    font-size: 1rem;
+
+    line-height: 1rem;
 }
+
 /* 存档 */
 .n {
     display: none;
@@ -959,21 +988,24 @@ line-height: 1rem;
 .adb {
     margin-left: 1.25rem;
     margin-top: 0.75rem;
+    display: flex;
 }
 
 .updateName {
     width: 1.25rem;
 }
-.replyDiv{
-    
-display: flex;
-    
-width: auto;
-    
-margin: 0 1rem;
-    
-/* justify-content: space-between; */
+
+.replyDiv {
+
+    display: flex;
+
+    width: auto;
+
+    margin: 0 1rem;
+
+    /* justify-content: space-between; */
 }
+
 .eventContainerLove {
     display: flex;
     flex-direction: column;
@@ -1108,19 +1140,22 @@ margin: 0 1rem;
 .Gmain {
     display: flex;
     flex-direction: column;
-    /* height: 83%; */
+    height: 100%;
     width: 100%;
+    overflow-x: hidden;
 }
 
 .GmainTop {
     display: flex;
-    height: 94%;
+    /* height: 94%; */
     width: 100%;
+    height: calc(100% - 6.3rem);
 }
 
 .GmainBtm {
     display: flex;
-    height: 6%;
+    /* height: 6%; */
+    height: 3rem;
     width: 100%;
 }
 
@@ -1158,10 +1193,9 @@ margin: 0 1rem;
 }
 
 .dfsdfYHZ {
-
-    display: flex;
-
-    flex-direction: row-reverse;
+display: flex;
+width: 100%;
+flex-direction: row-reverse;
 }
 
 .chooseNone {
@@ -1172,20 +1206,111 @@ margin: 0 1rem;
     border-top: 2px dashed black;
 }
 
-.ipt {}
+.yr {
+display: flex;
+width: 100%;
+flex-direction: column;
+}
+
+.yt {}
+
+.yb {
+
+    display: flex;
+
+    margin-top: 0.5rem;
+
+    flex-direction: row-reverse;
+}
+
+.yhzName {
+
+    /* display: flex; */
+
+    float: right;
+
+    justify-content: flex-end;
+}
+
+.dfsiohbdu {
+    display: flex;
+    width: 100%;
+    flex-direction: row-reverse;
+}
+
+.left>.content::-webkit-scrollbar {
+    width: 0 !important
+}
+
+.gfuyfhf {
+    margin-top: 2.5rem;
+}
+
+.qpW {
+
+    opacity: 0;
+}
+
+.dfusf {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    /* margin-right: 1rem; */
+    justify-content: flex-end;
+}
+
+.YHZTX {}
+
+.yhzColor {
+    background-color: #E9FEFF;
+}
+
+.dfusf>img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.yhzRightTXTool {
+
+    display: flex;
+
+    height: 3rem;
+
+    width: 100%;
+}
+
+.layui-form>.layui-form-switch {
+    margin: 0;
+}
+
+.yhzRightTX {}
+
+
+
 
 /* 超小屏幕（手机，小于 768px） */
 @media (max-width: 768px) {
+    .width100 {
+        width: 100%;
+    }
+
+    .width00 {
+        width: 0;
+    }
+
     body {
         height: 100%;
         width: auto;
         margin: 0;
         overflow-x: hidden;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
     }
 
     .left {
-        display: none;
-        width: 15%;
+        display: flex;
+        width: 5rem;
     }
 
     .topimg {
@@ -1193,22 +1318,17 @@ margin: 0 1rem;
     }
 
     .center {
-        width: 0;
-        transition: width 0.5s;
         z-index: 99;
-    }
 
-    .right {
-        width: 100%;
-        transition: width 0.5s;
+
     }
 
     .roleRemarkDiv3 {
-        max-width: 13rem;
+        /* max-width: 14rem; */
     }
 
     .roleRemarkDiv2 {
-        max-width: 14rem;
+        /* max-width: 14rem; */
     }
 
     .bxhjc {
@@ -1229,13 +1349,15 @@ margin: 0 1rem;
     }
 
     .replaceAvatar {
-        width: 64px;
+        width: 56px;
     }
 
     .topDelete {
         font-size: 1rem;
         margin-left: 0;
         width: auto;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
     }
 
     .roleOverall {
@@ -1244,13 +1366,21 @@ margin: 0 1rem;
 
     .roleOverallTopMargin {
         margin-top: 1rem;
+        display: flex;
     }
 
     .rightRoleOverall {
         margin-top: 0.5rem;
     }
-    .replyDiv{
+
+    .replyDiv {
         margin: 0 0.5rem;
+    }
+
+    .left>.content {}
+
+    .disNone {
+        display: none;
     }
 }
 
