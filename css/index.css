@@ -19,6 +19,10 @@ a:link {
     overflow-y: hidden;
 }
 
+.height100 {
+    height: 100%;
+}
+
 .htmlName,
 .notice {
 
@@ -47,11 +51,38 @@ a:link {
     width: 100%;
 }
 
-body {
+.width100 {
+    width: 100%;
+}
+
+.whDiv {
+
+    display: flex;
+
+    /* width: 50px; */
+
+    font-size: 25px;
+
+    color: rgb(76, 91, 111);
+
+    /* height: 50px; */
+
+    align-items: center;
+}
+
+.whDiv>div {
+
+    font-size: 1.5rem;
+}
+
+.bodyN {
     height: 100%;
     width: auto;
-    margin: 0px 15rem;
-    /* position: fixed; */
+    margin: 0 calc(10%);
+}
+
+.margin0 {
+    margin: 0;
 }
 
 .top {
@@ -64,8 +95,8 @@ body {
     display: flex;
     flex-direction: row;
     overflow-y: hidden;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 }
 
 .topimg {
@@ -77,7 +108,7 @@ body {
 .left {
     background-color: rgb(76, 91, 111);
     height: calc(100% - 3.5rem);
-    width: 6%;
+    width: 5rem;
     border-bottom-left-radius: 1rem;
     /* flex-grow: 1; */
 }
@@ -88,6 +119,7 @@ body {
     flex-wrap: nowrap;
     align-items: center;
     width: 100%;
+    height: 100%;
     overflow-y: auto;
 }
 
@@ -347,6 +379,7 @@ input.el-input__inner {
 .roleRemarkDivImg {
     display: flex;
     padding: 0.5rem;
+    /* padding-left: 0; */
     padding-right: 0;
     /* width: 100%; */
 }
@@ -354,6 +387,17 @@ input.el-input__inner {
 .roleRemarkDiv3 {
     /* max-width: 25rem; */
     max-width: calc(100% - 12rem);
+    line-height: 1.5rem;
+    border-radius: 0.5rem;
+    background: rgb(74, 138, 202);
+    border: 1px solid rgb(74, 138, 202);
+    height: auto;
+    /* display: flex; */
+}
+
+.roleRemarkDiv3r {
+    /* max-width: 25rem; */
+    max-width: calc(100% - 6.5rem);
     line-height: 1.5rem;
     border-radius: 0.5rem;
     background: rgb(74, 138, 202);
@@ -378,7 +422,7 @@ input.el-input__inner {
     overflow: auto;
     overflow-x: hidden;
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     overscroll-behavior: contain;
 }
 
@@ -395,7 +439,7 @@ input.el-input__inner {
 }
 
 .udiohsfnds {
-    margin-right: 1.25rem;
+    /* margin-right: 1.25rem; */
 }
 
 .sioahdnaoi {
@@ -527,7 +571,7 @@ input.el-input__inner {
     display: flex;
     height: 100%;
     /* flex-wrap: wrap; */
-    width: 100%;
+    /* width: 100%; */
 }
 
 .sonbsc {
@@ -652,21 +696,8 @@ input.el-input__inner {
     display: flex;
 }
 
-.setList {
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 30rem;
-    width: 30rem;
-    border-radius: 0.9rem;
-    background-color: rgb(255, 255, 255);
-    margin-left: -15rem;
-    /*宽度的一半*/
-    margin-top: -15rem;
-    /*高度的一半*/
-}
-
+.setOptionsDiv,
+.setList,
 .Gallery {
     position: absolute;
     top: 50%;
@@ -680,6 +711,30 @@ input.el-input__inner {
     margin-top: -15rem;
     /*高度的一半*/
 }
+
+/* .setList {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 30rem;
+    width: 30rem;
+    border-radius: 0.9rem;
+    background-color: rgb(255, 255, 255);
+    margin-left: -15rem;
+    margin-top: -15rem;
+} */
+
+/* .Gallery {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 30rem;
+    width: 30rem;
+    border-radius: 0.9rem;
+    background-color: rgb(255, 255, 255);
+    margin-left: -15rem;
+    margin-top: -15rem;
+} */
 
 /* 存档 */
 .archiveList {
@@ -882,7 +937,7 @@ input.el-input__inner {
 
 .GalleryTop {
     display: flex;
-    height: 10%;
+    height: 3rem;
     flex-direction: row;
     justify-content: flex-end;
     background-image: url(/images/Popup_Img_Deco_0.webp);
@@ -894,22 +949,22 @@ input.el-input__inner {
 
 .tydgvsgfv {
     display: flex;
-    align-items: center;
     flex-wrap: nowrap;
     flex-direction: row;
     margin-right: 3.8rem;
     align-content: space-between;
+    align-items: center;
 }
 
 .tydgvsgfv img {
-    position: relative;
-    top: 3px;
-    /* width: 66%; */
+    /* position: relative; */
+    /* top: 3px; */
+    width: calc(90%);
 }
 
 .yhivdfbs {
     color: rgb(45, 70, 100);
-    font-size: 1.7rem;
+    font-size: calc(160%);
     font-weight: bold;
     font-family: emoji;
     /* margin-right: 7rem; */
@@ -1193,9 +1248,12 @@ input.el-input__inner {
 }
 
 .dfsdfYHZ {
-display: flex;
-width: 100%;
-flex-direction: row-reverse;
+
+    display: flex;
+
+    /* width: 100%; */
+
+    flex-direction: row-reverse;
 }
 
 .chooseNone {
@@ -1207,9 +1265,12 @@ input.el-input__inner {
 }
 
 .yr {
-display: flex;
-width: 100%;
-flex-direction: column;
+
+    display: flex;
+
+    width: 100%;
+
+    flex-direction: column;
 }
 
 .yt {}
@@ -1219,6 +1280,8 @@ input.el-input__inner {
     display: flex;
 
     margin-top: 0.5rem;
+
+    width: 100%;
 
     flex-direction: row-reverse;
 }
@@ -1286,9 +1349,93 @@ input.el-input__inner {
 
 .yhzRightTX {}
 
+.zzDiv {
+    background-color: rgb(250, 156, 62);
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    /* padding: 1rem; */
+    width: 250px;
+    padding-bottom: 0;
+    color: white;
+}
 
+.zzDiv_top {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
 
+.ColorOrangeHorn {
+    border-top: 0.3rem solid transparent;
+    border-right: 0.5rem solid rgb(250, 156, 62);
+    border-bottom: 0.3rem solid transparent;
+    width: 0;
+    height: 0;
+    margin-top: 0.5rem;
+}
+.ColorOrangeHornR{
+    border-top: 0.3rem solid transparent;
+    border-left: 0.5rem solid rgb(250, 156, 62);
+    border-bottom: 0.3rem solid transparent;
+    width: 0;
+    height: 0;
+    margin-top: 0.5rem;
+    margin-right: 0.65rem;
+}
+.zt_font {
+    margin-left: 0.5rem;
+    color: white;
+    line-height: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
 
+.zt_font>div {
+    display: flex;
+}
+
+.zzDivd {
+    display: flex;
+    /* width: 250px; */
+    margin: 0.5rem;
+    /* width: 15rem; */
+    /* opacity: 0.5; */
+    /* background-color: rgb(233,207,179); */
+}
+
+.zt_divImg {
+    border: 1px solid white;
+    border-radius: 50%;
+    /* padding: 0px; */
+}
+
+.zt_img {
+
+    /* width: 30px; */
+
+    /* height: 90%; */
+
+    padding: 6px;
+}
+
+.zzDiv_bottom {
+    margin-left: 10px;
+}
+
+.zt_cz {
+    display: flex;
+    flex-direction: column;
+    line-height: 1rem;
+    margin-left: auto;
+}
+.zt_cz>div{
+    cursor: pointer;
+}
+
+.MarLeftAuto{/* margin-left: auto; */}
 /* 超小屏幕（手机，小于 768px） */
 @media (max-width: 768px) {
     .width100 {
@@ -1325,10 +1472,18 @@ input.el-input__inner {
 
     .roleRemarkDiv3 {
         /* max-width: 14rem; */
+        max-width: calc(100% - 10rem);
+    }
+
+    .roleRemarkDiv3r {
+
+        max-width: calc(100% - 6rem);
+
     }
 
     .roleRemarkDiv2 {
         /* max-width: 14rem; */
+        max-width: calc(100% - 6rem);
     }
 
     .bxhjc {
@@ -1373,6 +1528,10 @@ input.el-input__inner {
         margin-top: 0.5rem;
     }
 
+    .rightRoleOverallr {
+        margin-top: 0;
+    }
+
     .replyDiv {
         margin: 0 0.5rem;
     }
@@ -1381,6 +1540,31 @@ input.el-input__inner {
 
     .disNone {
         display: none;
+    }
+
+    .Gallery {
+        position: absolute;
+        top: calc(50%);
+        left: calc(50%);
+        height: calc(50%);
+        width: calc(85%);
+        border-radius: 0.9rem;
+        background-color: rgb(255, 255, 255);
+        margin-left: calc(-42.5%);
+        /*宽度的一半*/
+        margin-top: calc(-50%);
+        /*高度的一半*/
+    }
+
+    .hgfhdft {
+
+        height: calc(33%);
+
+        width: calc(33%);
+    }
+
+    .tydgvsgfv {
+        margin: 0;
     }
 }
 

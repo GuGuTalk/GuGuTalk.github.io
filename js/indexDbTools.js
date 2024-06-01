@@ -314,23 +314,39 @@ async function deleteBoxArrayChild(id, cid) {
  * @param {*} obj 插入的对话对象
  * @param {*} index 标识
  */
-async function insertTalk(obj, index) {
+async function insertTalk(boxjson) {
     var db = await openDB(gugutalk);
     var temp = await getDataByKey(db, gugutalk, tempJson);
-    var previousArray = new Array();
-    var afterArray = new Array();
-    for (let i = 0; i < temp.boxJson.length; i++) {
-        if (temp.boxJson[i].index == index) {
-            previousArray = temp.boxJson.slice(0, i);
-            previousArray.push(obj);
-            afterArray = temp.boxJson.slice(i, temp.boxJson.length);
-            temp.boxJson = previousArray.concat(afterArray);
-            await updateDB(db, gugutalk, temp, tempJson);
-            closeDB(db);
-            break;
-        }
+    await updateDB(db,gugutalk,boxjson,tempJson);
+    // var previousArray = new Array();
+    // var afterArray = new Array();
+    // for (let i = 0; i < temp.boxJson.length; i++) {
+    //     if (temp.boxJson[i].index == index) {
+    //         previousArray = temp.boxJson.slice(0, i);
+    //         previousArray.push(obj);
+    //         afterArray = temp.boxJson.slice(i, temp.boxJson.length);
+    //         temp.boxJson = previousArray.concat(afterArray);
+    //         await updateDB(db, gugutalk, temp, tempJson);
+    //         closeDB(db);
+    //         break;
+    //     }
+    // }
+    closeDB(db);
+}
+/**
+ * 临时用用
+ * 导入存档-同步
+ * @param {*} json 
+ */
+async function LSupdateTempJson(json){
+    var db=await openDB(gugutalk);
+    var tj=await getDataByKey(db,gugutalk,tempJson);
+    if(tj==undefined){
+        await addData(db,gugutalk,json,tempJson)
+    }else{
+        await updateDB(db,gugutalk,json,tempJson);
     }
-    console.log(temp);
+    closeDB(db);
 }
 
 /**

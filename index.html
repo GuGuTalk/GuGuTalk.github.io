@@ -3,25 +3,17 @@
 
 <head>
   <meta charset="UTF-8">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="browsermode" content="application">
-  <meta name="full-screen" content="yes" />
-  <meta name="x5-fullscreen" content="true" />
-  <meta name="x5-page-mode" content="app" />
-  <meta name="360-fullscreen" content="true" />
   <title>GuGuTalk</title>
   <link rel="stylesheet" href="layui/css/layui.css">
   <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/tool.css">
   <link rel="stylesheet" href="css/font.css">
 
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <!-- 引入样式 -->
   <script src="js/code.jquery.com_jquery-3.7.1.js"></script>
   <script src="layui/layui.js"></script>
-  <script src="js/layuiTool.js"></script>
   <!-- <script src="js/html2canvas.js"></script> -->
   <script src="js/dom-to-image.js"></script>
   <script src="js/indexDb.js"></script>
@@ -54,17 +46,25 @@
 
 </head>
 
-<body>
+<body class="bodyN ">
   <div id="app">
     <div class="top">
       <div style="display: flex;">
         <img src="/images/menu.webp" alt="" srcset="" class="topimg">
         <span class="htmlName">GuGuTalk</span>
+        <div class="whDiv layui-icon layui-icon-tips-fill">
+        </div>
       </div>
-
-      <!-- <span class="stringLength">0KB</span>
+      <!-- <div class="stringLength">0KB</div>
       <span class="notice"></span> -->
-
+      <div class="yhzRightTXTool">
+        <div class="dfusf">
+          <img src="http://127.0.0.1:8079/200009578.png" alt="" class="YHZTX width0" srcset="">
+          <div class="layui-form">
+            <input type="checkbox" id="isYHZ" name="isYHZ" title="ON|OFF" lay-filter="isYHZ" lay-skin="switch">
+          </div>
+        </div>
+      </div>
 
     </div>
     <div class="overall">
@@ -100,12 +100,6 @@
             </a>
             <div>重置名称</div>
           </div>
-          <div class="abc" style="display: none;">
-            <a href="javascript:;" id="updateSet">
-              <div>设</div>
-            </a>
-            <div>设置</div>
-          </div>
           <div class="abc">
             <a href="javascript:;" id="RoleList">
               <div>角</div>
@@ -125,6 +119,24 @@
             </a>
             <div>问题反馈</div>
           </div>
+          <div class="abc">
+            <a href="javascript:;" id="ALLPM">
+              <div>全</div>
+            </a>
+            <div>网页全屏</div>
+          </div>
+          <div class="abc">
+            <a href="javascript:;" id="drcd">
+              <div>入</div>
+            </a>
+            <div>导入存档</div>
+          </div>
+          <div class="abc">
+            <a href="javascript:;" id="dccd">
+              <div>出</div>
+            </a>
+            <div>导出存档</div>
+          </div>
           <!-- <div class="abc">
             <a href="javascript:;" id="importExpression">
               <div>导</div>
@@ -136,16 +148,15 @@
       <div class="Gmain">
         <div class="GmainTop">
           <div class="width00 center " id="knopiji">
-            <div class="yhzRightTXTool">
+            <!-- <div class="yhzRightTXTool">
               <div class="dfusf">
                 <img src="http://127.0.0.1:8079/200009578.png" alt="" class="YHZTX width0" srcset="">
                 <div class="layui-form">
                   <input type="checkbox" id="isYHZ" name="isYHZ" title="ON|OFF" lay-filter="isYHZ" lay-skin="switch">
                 </div>
-
               </div>
-            </div>
-            <div class="yhzRightTX">
+            </div> -->
+            <!-- <div class="yhzRightTX">
               <div class="sonbsc yhzColor">
                 <div class="xq" data-id="1">
                   <div class="wwww"><img crossorigin="anonymous" src="images/roleImages/mxr.png" alt="" height="75px;"
@@ -175,7 +186,7 @@
                     data-imgid="108" data-roleid="1" data-open="false" title="金玲报春"
                     src=" images/roleImages/mxr_jlbc.png" crossorigin="anonymous" alt="" srcset=""></div>
               </div>
-            </div>
+            </div> -->
 
             <!-- <div class="AL-Series">
               <div class="AL-ArchiveOne" data-id="${item.id}">
@@ -225,110 +236,91 @@
               <div id="can" style="width: 100%;height: 100%;">
                 <div id="box" ref="picture">
 
+
                   <!-- <div class="dc">
-                    <div class="roleOverall roleOverallTopMargin" data-names="信" data-type="txt" data-name="xin_sbzj"
-                      data-index="4">
-                      <div class="divImg">
-                        <div class="xvb"></div>
-                        <img src=" images/roleImages/xin_sbzj.png" crossorigin="anonymous" alt="" class="roleImg"
-                          srcset="">
-                      </div>
-                      <div class="roleTb"><span class="roleNameSpan">信 </span>
-                        <div class="roleRemarkDivs">
-                          <div class="horn qp"></div>
-                          <div class="roleRemarkDiv2 roleRemarkDiv">
-                            <div class="roleRemarkDivSpan statistics" data-index="4" contenteditable="true">1</div>
-                          </div>
-                          <div class="chooseDiv">
-                            <input type="checkbox" name="iptChoose" id="" class="iptChoose  ipt">
-                          </div>
+                    <div class="gu roleOverall rightRoleOverall statistics" data-type="Expression" data-index="7"
+                      data-name="9999">
+                      <div class="dfsdfYHZ">
+                        <div class="chooseDivYHZ">
+                          <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ ipt">
                         </div>
+                        <img src="images/Expression/10005.png" alt="" srcset="" class="rightImgExpression udiohsfnds">
                       </div>
                     </div>
                   </div>
-                  <div class="dc">
-                    <div class="roleOverall" data-names="信" data-type="txt" data-name="xin_sbzj" data-index="4">
-                      <div class="divImg">
-                        <div class="xvb"></div>
-                        <img src=" images/roleImages/xin_sbzj.png" crossorigin="anonymous" alt="" class="roleImg"
-                          srcset="">
-                      </div>
-                      <div class="roleTb"><span class="roleNameSpan">信 </span>
-                        <div class="roleRemarkDivs">
-                          <div class="horn qp"></div>
-                          <div class="roleRemarkDiv2 roleRemarkDiv">
-                            <div class="roleRemarkDivSpan statistics" data-index="4" contenteditable="true">1</div>
-                          </div>
-                          <div class="chooseDiv">
-                            <input type="checkbox" name="iptChoose" id="" class="iptChoose  ipt">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="dc">
 
-                    <div data-index="5" data-name="9999" class="roleOverall rightRoleOverall">
-
+                  <div class="dc">
+                    <div data-index="0" data-type="txt" data-name="mxr_sf"
+                      class="gu roleOverall rightRoleOverall roleOverallTopMargin">
                       <div class="dfsdfYHZ">
                         <div class="chooseDivYHZ">
                           <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ ipt">
                         </div>
                       </div>
-
                       <div class="divImg">
                         <div class="xvb"></div>
-                        <img src=" images/roleImages/xin_sbzj.png" crossorigin="anonymous" alt="" class="roleImg"
-                          srcset="">
-                      </div>
-                      <div class="dfsiohbdu">
-                        <div class="Righthorn gfuyfhf qp"></div>
-                        <div class="yr">
-                          <div class="yt">
-                            <div class="yhzName roleNameSpan ">信</div>
-                          </div>
-                          <div class="yb">
-                            <div class="roleRemarkDiv3 roleRemarkDiv">
-                              <div class="roleRemarkDivSpan statistics" contenteditable="true" data-index="5">4</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="dc">
-
-                    <div data-index="5" data-name="9999" class="roleOverall rightRoleOverall">
-
-                      <div class="dfsdfYHZ">
-                        <div class="chooseDivYHZ">
-                          <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ ipt">
-                        </div>
-                      </div>
-
-                      <div class="divImg">
-                        <div class="xvb"></div>
-                        <img src=" images/roleImages/xin_sbzj.png" crossorigin="anonymous" alt="" class="roleImg"
+                        <img src=" images/roleImages/mxr_sf.png" crossorigin="anonymous" alt="" class="roleImg"
                           srcset="">
                       </div>
                       <div class="dfsiohbdu">
                         <div class="Righthorn gfuyfhf qp qpW"></div>
-
                         <div class="yr">
                           <div class="yt">
-                            <div class="yhzName roleNameSpan ">信</div>
+                            <div class="yhzName roleNameSpan ">米雪儿</div>
                           </div>
                           <div class="yb">
-                            <div class="roleRemarkDiv3 roleRemarkDiv">
-                              <div class="roleRemarkDivSpan statistics" contenteditable="true" data-index="5">4</div>
-                            </div>
+                            <img src="images/Expression/10005.png" alt="" srcset="" class="rightImgExpression">
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dc">
+                    <div data-index="0" data-type="txt" data-name="mxr_sf"
+                      class="gu roleOverall rightRoleOverall roleOverallTopMargin">
+                      <div class="dfsdfYHZ">
+                        <div class="chooseDivYHZ">
+                          <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ ipt">
+                        </div>
+                      </div>
+                      <div class="divImg">
+                        <div class="xvb"></div>
+                        <img src=" images/roleImages/mxr_sf.png" crossorigin="anonymous" alt="" class="roleImg"
+                          srcset="">
+                      </div>
+                      <div class="dfsiohbdu">
+                        <div class="Righthorn gfuyfhf qp qpW"></div>
+                        <div class="yr">
+                          <div class="yt">
+                            <div class="yhzName roleNameSpan ">米雪儿</div>
+                          </div>
+                          <div class="yb">
+                            <img src="images/Expression/10005.png" alt="" srcset="" class="rightImgExpression">
+
                           </div>
                         </div>
                       </div>
                     </div>
                   </div> -->
+                  
 
 
+
+                  
+                  <!-- <div class="dc">
+                    <div data-index="4" data-type="img" data-name="9999"
+                      class="gu roleOverall rightRoleOverall statistics">
+                      <div class="dfsdfYHZ">
+                        <div class="chooseDivYHZ">
+                          <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ  ipt">
+                        </div>
+                        <div class="Righthorn qp"></div>
+                        <img src="http://127.0.0.1:8079/200009578.png" alt="" srcset=""
+                          class="rightImg rightImg1">
+                      </div>
+                    </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -353,9 +345,10 @@
               </div>
               <div class="propIcons">
                 <img src="images/Reply.png" title="回复" alt="回复" srcset="" class="propIco">
+                <img src="images/zz.png" title="转账" alt="转账" srcset="" class="propIco">
                 <img src="images/info.png" title="旁白" alt="旁白" srcset="" class="propIco">
                 <img src="images/love.png" title="羁绊事件" alt="羁绊事件" srcset="" class="propIco">
-                
+
                 <img src="images/Archive.png" title="存档" alt="存档" srcset="" id="ArchiveSave" class="propIco">
                 <img src="images/save.png" title="保存" alt="保存" srcset="" id="save" class="save propIco">
               </div>
@@ -375,27 +368,7 @@
       </div>
     </div>
 
-    <!-- 设置 -->
-    <div class="setList n">
-      <div class="setListTitle">
-        设置
-      </div>
-      <div class="setLists">
-        <div class="fdgfd">
-          <div>背景色</div>
-          <input type="text">
-        </div>
-        <div class="fdgfd">
-          <div>背景图片</div>
-          <input type="text">
-        </div>
-        <div class="fdgfd">
-          <div>底部头像方向</div>
-          <select name="" id="">
-          </select>
-        </div>
-      </div>
-    </div>
+
 
     <!-- 选择存档列表 -->
     <div class="archiveList n">
@@ -415,7 +388,7 @@
         </div>
       </div>
     </div>
-
+    <!-- 表情包 -->
     <div class="Gallery n">
       <div class="GalleryTop">
         <div class="tydgvsgfv">
@@ -428,6 +401,16 @@
       <div class="GalleryContent">
         <div class="imgContent">
         </div>
+      </div>
+    </div>
+    <!-- 设置 -->
+    <div class="setOptionsDiv n">
+      <div class="archiveGalleryTop">
+        <div class="archiveTydgvsgfv">
+          <div class="archiveYhivdfbs">存档</div>
+          <img src="images/gb.png" alt="" srcset="" class="archiveGb">
+        </div>
+
       </div>
     </div>
   </div>
