@@ -160,7 +160,7 @@ a:link {
 }
 
 .right {
-    background-color: rgb(207, 207, 206);
+    /* background-color: rgb(207, 207, 206); */
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -302,7 +302,6 @@ input.el-input__inner {
 
 #box>.rightRoleOverall:last-child {
     margin-bottom: 1rem;
-    ;
 }
 
 .divImg {
@@ -317,7 +316,7 @@ input.el-input__inner {
 }
 
 .roleNameSpan {
-    margin-left: 0.85rem;
+    margin-left: 1.1rem;
     font-family: bold;
     font-weight: bold;
     font-size: large;
@@ -418,7 +417,7 @@ input.el-input__inner {
 }
 
 #box {
-    background-color: rgb(207, 207, 206);
+    /* background-color: rgb(207, 207, 206); */
     overflow: auto;
     overflow-x: hidden;
     width: 100%;
@@ -435,6 +434,7 @@ input.el-input__inner {
 .rightImgExpression {
     border-radius: 0.25rem;
     /* max-width: 90%; */
+    margin-right: 1rem;
     width: 10rem;
 }
 
@@ -448,7 +448,7 @@ input.el-input__inner {
 
 .rightImg1 {
     background-color: rgb(74, 138, 202);
-    max-width: 75%;
+    max-width: 85%;
 }
 
 .rightImg2 {
@@ -642,9 +642,10 @@ input.el-input__inner {
     height: 100%;
     /* display: flex; */
 }
-
-.bxhjc {
+#qh{
     display: none;
+}
+.bxhjc {
     margin: 4px;
     width: 32px;
     height: 32px;
@@ -660,7 +661,7 @@ input.el-input__inner {
 .bxhjcImg {
     /* width: 100%; */
     /* height: 100%; */
-    width: 30px;
+    width: 32px;
     object-fit: cover;
 }
 
@@ -697,7 +698,6 @@ input.el-input__inner {
 }
 
 .setOptionsDiv,
-.setList,
 .Gallery {
     position: absolute;
     top: 50%;
@@ -712,17 +712,6 @@ input.el-input__inner {
     /*高度的一半*/
 }
 
-/* .setList {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 30rem;
-    width: 30rem;
-    border-radius: 0.9rem;
-    background-color: rgb(255, 255, 255);
-    margin-left: -15rem;
-    margin-top: -15rem;
-} */
 
 /* .Gallery {
     position: absolute;
@@ -805,7 +794,13 @@ input.el-input__inner {
     cursor: pointer;
     border-bottom: 1px solid rgb(218, 225, 229);
 }
+.setList{
 
+}
+.setList>div{
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
 .newArchive:active {
     background-color: rgb(202, 215, 221);
 }
@@ -1210,7 +1205,7 @@ input.el-input__inner {
 .GmainBtm {
     display: flex;
     /* height: 6%; */
-    height: 3rem;
+    height: 2.9rem;
     width: 100%;
 }
 
@@ -1486,7 +1481,7 @@ input.el-input__inner {
         max-width: calc(100% - 6rem);
     }
 
-    .bxhjc {
+    #qh {
         display: flex;
     }
 

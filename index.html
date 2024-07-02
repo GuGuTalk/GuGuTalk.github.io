@@ -52,19 +52,20 @@
       <div style="display: flex;">
         <img src="/images/menu.webp" alt="" srcset="" class="topimg">
         <span class="htmlName">GuGuTalk</span>
-        <div class="whDiv layui-icon layui-icon-tips-fill">
+        <div class="whDiv whDiv1 layui-icon layui-icon-tips-fill">
         </div>
       </div>
       <!-- <div class="stringLength">0KB</div>
       <span class="notice"></span> -->
-      <div class="yhzRightTXTool">
+      <!-- 右侧引航者发言,未完成 -->
+      <!-- <div class="yhzRightTXTool">
         <div class="dfusf">
-          <img src="http://127.0.0.1:8079/200009578.png" alt="" class="YHZTX width0" srcset="">
+          <img src="images/Expression/10001.png" alt="" class="YHZTX width0" srcset="">
           <div class="layui-form">
             <input type="checkbox" id="isYHZ" name="isYHZ" title="ON|OFF" lay-filter="isYHZ" lay-skin="switch">
           </div>
         </div>
-      </div>
+      </div> -->
 
     </div>
     <div class="overall">
@@ -137,6 +138,12 @@
             </a>
             <div>导出存档</div>
           </div>
+          <div class="abc">
+            <a href="javascript:;" id="setList">
+              <div>设</div>
+            </a>
+            <div>设置</div>
+          </div>
           <!-- <div class="abc">
             <a href="javascript:;" id="importExpression">
               <div>导</div>
@@ -148,79 +155,13 @@
       <div class="Gmain">
         <div class="GmainTop">
           <div class="width00 center " id="knopiji">
-            <!-- <div class="yhzRightTXTool">
-              <div class="dfusf">
-                <img src="http://127.0.0.1:8079/200009578.png" alt="" class="YHZTX width0" srcset="">
-                <div class="layui-form">
-                  <input type="checkbox" id="isYHZ" name="isYHZ" title="ON|OFF" lay-filter="isYHZ" lay-skin="switch">
-                </div>
-              </div>
-            </div> -->
-            <!-- <div class="yhzRightTX">
-              <div class="sonbsc yhzColor">
-                <div class="xq" data-id="1">
-                  <div class="wwww"><img crossorigin="anonymous" src="images/roleImages/mxr.png" alt="" height="75px;"
-                      width="75px;" class="sdad"><span class="roleName">米雪儿</span><a href="javascript:;"
-                      class="adb"><img src="images/updateName.png" class="updateName" alt="" srcset=""></a></div><img
-                    src="images/roleImages/op.webp" class="ddddddddddd" alt="" srcset="">
-                </div>
-                <div class="centerRoleArraybtn n" style="display: flex;"><img data-mark="mxr_lyem" class="conImg imgb"
-                    data-imgid="1" data-roleid="1" data-open="false" title="炼狱恶魔" src=" images/roleImages/mxr_lyem.png"
-                    crossorigin="anonymous" alt="" srcset=""><img data-mark="mxr" class="conImg imgb" data-imgid="2"
-                    data-roleid="1" data-open="false" title="常服" src=" images/roleImages/mxr.png"
-                    crossorigin="anonymous" alt="" srcset=""><img data-mark="mxr_sf" class="conImg imgb" data-imgid="3"
-                    data-roleid="1" data-open="false" title="萌萌元气" src=" images/roleImages/mxr_sf.png"
-                    crossorigin="anonymous" alt="" srcset=""><img data-mark="mxr_dlm" class="conImg imgb" data-imgid="6"
-                    data-roleid="1" data-open="false" title="盗垒猫" src=" images/roleImages/mxr_dlm.png"
-                    crossorigin="anonymous" alt="" srcset=""><img data-mark="mxr_lhce" class="conImg imgb"
-                    data-imgid="7" data-roleid="1" data-open="false" title="猎虎裁恶" src=" images/roleImages/mxr_lhce.png"
-                    crossorigin="anonymous" alt="" srcset=""><img data-mark="mxr_mqdf" class="conImg imgb"
-                    data-imgid="8" data-roleid="1" data-open="false" title="麻雀东风" src=" images/roleImages/mxr_mqdf.png"
-                    crossorigin="anonymous" alt="" srcset=""><img data-mark="mxr_tdmm" class="conImg imgb"
-                    data-imgid="9" data-roleid="1" data-open="false" title="甜点美梦" src=" images/roleImages/mxr_tdmm.png"
-                    crossorigin="anonymous" alt="" srcset=""><img data-mark="mxr_tlyh" class="conImg imgb"
-                    data-imgid="10" data-roleid="1" data-open="false" title="踏浪远航" src=" images/roleImages/mxr_tlyh.png"
-                    crossorigin="anonymous" alt="" srcset=""><img data-mark="mxr_txfm" class="conImg imgb"
-                    data-imgid="74" data-roleid="1" data-open="false" title="踏雪飞猫" src=" images/roleImages/mxr_txfm.png"
-                    crossorigin="anonymous" alt="" srcset=""><img data-mark="mxr_jlbc" class="conImg imgb"
-                    data-imgid="108" data-roleid="1" data-open="false" title="金玲报春"
-                    src=" images/roleImages/mxr_jlbc.png" crossorigin="anonymous" alt="" srcset=""></div>
-              </div>
-            </div> -->
-
-            <!-- <div class="AL-Series">
-              <div class="AL-ArchiveOne" data-id="${item.id}">
-                <div class="AL-TitleDiv">
-                  <div class="AL-Title">引航者和香奈美的游乐园之旅 引航者和香奈美的游乐园之旅</div>
-                  <div class="AL-imgTools">
-                    <img src="/images/updateName.png" alt="" srcset="" class="AL-updateTitle">
-                    <img src="/images/gb.png" alt="" srcset="" class="AL-deleteArchive">
-                  </div>
-                </div>
-              </div>
-              <div class="AL-OneChildList ">
-                <div class="AL-TitleDiv dxx">
-                  <div class="AL-Title word-wrap">引航者和香奈美的游乐园之旅-1</div>
-                  <div class="AL-imgTools">
-                    <img src="/images/updateName.png" alt="" srcset="" class="AL-updateTitle">
-                    <img src="/images/gb.png" alt="" srcset="" class="AL-deleteArchive">
-                  </div>
-                </div>
-                <div class="AL-TitleDiv dxx">
-                  <div class="AL-Title word-wrap">引航者和香奈美的游乐园之旅-2</div>
-                  <div class="AL-imgTools">
-                    <img src="/images/updateName.png" alt="" srcset="" class="AL-updateTitle">
-                    <img src="/images/gb.png" alt="" srcset="" class="AL-deleteArchive">
-                  </div>
-                </div>
-                <div class="AL-TitleDiv dxx">
-                  <div class="AL-Title word-wrap">引航者和香奈美的游乐园之旅-3</div>
-                  <div class="AL-imgTools">
-                    <img src="/images/updateName.png" alt="" srcset="" class="AL-updateTitle">
-                    <img src="/images/gb.png" alt="" srcset="" class="AL-deleteArchive">
-                  </div>
-                </div>
-              </div>
+            <!-- <div class="setList">
+              <div>字体大小<input type="text" id="guFont-size" value="1.2" placeholder="数字，默认1.2">rem</div>
+              <div>背景颜色<input type="text" name="" id="guBackColor" value="207,207,206" placeholder="例如：white、#ffffff、rgb(0,0,0)"></div>
+              <div>旁白字体大小<input type="text" name="" id="guAsideFont-size" value="1.1" placeholder="数字，默认1.1">rem</div>
+              <div>下载图片清晰度<input type="text" name="" id="loadImg-scale" value="1" placeholder="1-4，不要乱填！"></div>
+              <div><button type="button" id="setSave">保存</button></div>
+              <div><button type="button" id="setRe">重置</button></div>
             </div> -->
 
           </div>
@@ -235,92 +176,10 @@
               <!-- 聊天区域 -->
               <div id="can" style="width: 100%;height: 100%;">
                 <div id="box" ref="picture">
-
-
-                  <!-- <div class="dc">
-                    <div class="gu roleOverall rightRoleOverall statistics" data-type="Expression" data-index="7"
-                      data-name="9999">
-                      <div class="dfsdfYHZ">
-                        <div class="chooseDivYHZ">
-                          <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ ipt">
-                        </div>
-                        <img src="images/Expression/10005.png" alt="" srcset="" class="rightImgExpression udiohsfnds">
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="dc">
-                    <div data-index="0" data-type="txt" data-name="mxr_sf"
-                      class="gu roleOverall rightRoleOverall roleOverallTopMargin">
-                      <div class="dfsdfYHZ">
-                        <div class="chooseDivYHZ">
-                          <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ ipt">
-                        </div>
-                      </div>
-                      <div class="divImg">
-                        <div class="xvb"></div>
-                        <img src=" images/roleImages/mxr_sf.png" crossorigin="anonymous" alt="" class="roleImg"
-                          srcset="">
-                      </div>
-                      <div class="dfsiohbdu">
-                        <div class="Righthorn gfuyfhf qp qpW"></div>
-                        <div class="yr">
-                          <div class="yt">
-                            <div class="yhzName roleNameSpan ">米雪儿</div>
-                          </div>
-                          <div class="yb">
-                            <img src="images/Expression/10005.png" alt="" srcset="" class="rightImgExpression">
-
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="dc">
-                    <div data-index="0" data-type="txt" data-name="mxr_sf"
-                      class="gu roleOverall rightRoleOverall roleOverallTopMargin">
-                      <div class="dfsdfYHZ">
-                        <div class="chooseDivYHZ">
-                          <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ ipt">
-                        </div>
-                      </div>
-                      <div class="divImg">
-                        <div class="xvb"></div>
-                        <img src=" images/roleImages/mxr_sf.png" crossorigin="anonymous" alt="" class="roleImg"
-                          srcset="">
-                      </div>
-                      <div class="dfsiohbdu">
-                        <div class="Righthorn gfuyfhf qp qpW"></div>
-                        <div class="yr">
-                          <div class="yt">
-                            <div class="yhzName roleNameSpan ">米雪儿</div>
-                          </div>
-                          <div class="yb">
-                            <img src="images/Expression/10005.png" alt="" srcset="" class="rightImgExpression">
-
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> -->
                   
 
-
-
                   
-                  <!-- <div class="dc">
-                    <div data-index="4" data-type="img" data-name="9999"
-                      class="gu roleOverall rightRoleOverall statistics">
-                      <div class="dfsdfYHZ">
-                        <div class="chooseDivYHZ">
-                          <input type="checkbox" name="iptChoose" id="" class="iptChooseYHZ  ipt">
-                        </div>
-                        <div class="Righthorn qp"></div>
-                        <img src="http://127.0.0.1:8079/200009578.png" alt="" srcset=""
-                          class="rightImg rightImg1">
-                      </div>
-                    </div>
-                  </div> -->
+
                 </div>
               </div>
             </div>
@@ -357,10 +216,13 @@
         </div>
         <div class="GmainBtm">
           <div class="bottom1">
+            <div class="bxhjc " id="js" style="margin-left: 5px;">
+              <img src="/images/js.png" alt="" srcset="" class="bxhjcImg">
+            </div>
             <div class="bottomImgs">
             </div>
-            <div class="bxhjc">
-              <img src="/images/箭头左右.png" alt="" srcset="" class="bxhjcImg">
+            <div class="bxhjc" id="qh">
+              <img src="/images/箭头左右.png" alt="" srcset="" class="bxhjcImg" >
             </div>
           </div>
 
@@ -403,17 +265,8 @@
         </div>
       </div>
     </div>
-    <!-- 设置 -->
-    <div class="setOptionsDiv n">
-      <div class="archiveGalleryTop">
-        <div class="archiveTydgvsgfv">
-          <div class="archiveYhivdfbs">存档</div>
-          <img src="images/gb.png" alt="" srcset="" class="archiveGb">
-        </div>
-
-      </div>
-    </div>
   </div>
+  <div class="donut disNoneD"></div>
 
 </body>
 

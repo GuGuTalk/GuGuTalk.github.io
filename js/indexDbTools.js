@@ -2,8 +2,9 @@ var gugutalk = "gugutalk";
 var boxArray = "kqBoxArray";
 var tempJson = "kqTempJson";
 var roleArray = "kqRoleArray";
-var roleArrayCopy = "kqRoleArrayCopy"
-var kqOptions = "kqOption"
+var roleArrayCopy = "kqRoleArrayCopy";
+var kqOptions = "kqOption";
+var kqAvatar = "kqAvatar";
 /**
  * 创建/修改设置参数
  * @param {*} options 设置参数对象
@@ -18,7 +19,46 @@ async function setOption(options) {
     }
     closeDB(db);
 }
+/**
+ * 读取设置列表
+ */
+async function loadSetList() {
+    var db = await openDB(gugutalk);
+    var options = await getDataByKey(db, gugutalk, kqOptions);
+    if(options==undefined||options==" "){
+        var options = {
+            guFont_size: "1.2",
+            guBackColor: "rgb(207,207,206)",
+            guAsideFont_size: "1.1",
+            loadImg_scale: "1"
+        }
+        await addData(db,gugutalk,options,kqOptions);
+    }
+    closeDB(db);
+    return options;
+}
 
+//修改底部备选头像队列
+async function updateAvatar(AvatarOptions) {
+    var db = await openDB(gugutalk);
+    var AvatarList = await getDataByKey(db, gugutalk, kqAvatar);
+    if (AvatarList == undefined) {
+        await addData(db, gugutalk, AvatarOptions, kqAvatar);
+    } else {
+        await updateDB(db, gugutalk, AvatarOptions, kqAvatar);
+    }
+    closeDB(db);
+}
+/**
+ * 读取备选头像队列
+ * @returns 备选头像队列
+ */
+async function LoadAvatar() {
+    var db = await openDB(gugutalk)
+    var opt = await getDataByKey(db, gugutalk, kqAvatar);
+    closeDB(db);
+    return opt;
+}
 /**
  * 删除角色副本-同步
  */
@@ -213,6 +253,7 @@ async function updateArchive(id, cid) {
 async function createNewRoleArray(json) {
     var db = await openDB(gugutalk);
     var raL = await getDataByKey(db, gugutalk, roleArray);
+    console.log("raL", raL);
     if (raL == undefined) {
         var array = new Array();
         array.push(json);
@@ -317,7 +358,7 @@ async function deleteBoxArrayChild(id, cid) {
 async function insertTalk(boxjson) {
     var db = await openDB(gugutalk);
     var temp = await getDataByKey(db, gugutalk, tempJson);
-    await updateDB(db,gugutalk,boxjson,tempJson);
+    await updateDB(db, gugutalk, boxjson, tempJson);
     // var previousArray = new Array();
     // var afterArray = new Array();
     // for (let i = 0; i < temp.boxJson.length; i++) {
@@ -338,13 +379,13 @@ async function insertTalk(boxjson) {
  * 导入存档-同步
  * @param {*} json 
  */
-async function LSupdateTempJson(json){
-    var db=await openDB(gugutalk);
-    var tj=await getDataByKey(db,gugutalk,tempJson);
-    if(tj==undefined){
-        await addData(db,gugutalk,json,tempJson)
-    }else{
-        await updateDB(db,gugutalk,json,tempJson);
+async function LSupdateTempJson(json) {
+    var db = await openDB(gugutalk);
+    var tj = await getDataByKey(db, gugutalk, tempJson);
+    if (tj == undefined) {
+        await addData(db, gugutalk, json, tempJson)
+    } else {
+        await updateDB(db, gugutalk, json, tempJson);
     }
     closeDB(db);
 }
