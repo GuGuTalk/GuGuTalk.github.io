@@ -1083,7 +1083,7 @@ $().ready(function () {
 
     //初始化数据
     function Init() {
-        // toNewPath();
+        toNewPath();
         $("#knopiji").html('');
         $.getJSON("data/roles.json", function (data) {
             $.getJSON("data/imagese.json", function (dataImg) {
