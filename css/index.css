@@ -141,6 +141,7 @@ a:link {
     overflow: auto;
     width: 50%;
     overscroll-behavior: contain;
+    resize:horizontal;
     /* flex-grow: 1; */
 }
 
@@ -253,8 +254,9 @@ input.el-input__inner {
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: auto;
-    overflow-x: hidden;
+    /* height: auto; */
+    overflow-x: auto;
+    overflow-y: hidden;
     justify-content: flex-end;
 }
 
@@ -571,7 +573,7 @@ input.el-input__inner {
     display: flex;
     height: 100%;
     /* flex-wrap: wrap; */
-    /* width: 100%; */
+    width: 100%;
 }
 
 .sonbsc {
@@ -637,7 +639,20 @@ input.el-input__inner {
 
     align-items: center;
 }
-
+.ytutug{
+    height: 20%;
+    display: flex;
+    
+}
+.dufgdusybvcis{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 110px;
+}
+.dufgdusybvcis>button{
+    margin-bottom: 0.5rem;
+}
 .ddddddddddd {
     height: 100%;
     /* display: flex; */
@@ -1516,7 +1531,7 @@ input.el-input__inner {
 
     .roleOverallTopMargin {
         margin-top: 1rem;
-        display: flex;
+        /* display: flex; */
     }
 
     .rightRoleOverall {

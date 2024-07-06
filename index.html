@@ -46,7 +46,8 @@
 
 </head>
 
-<body class="bodyN ">
+<body class="bodyN opacity05">
+  <div class="overlay "></div>
   <div id="app">
     <div class="top">
       <div style="display: flex;">
@@ -145,6 +146,12 @@
             <div>设置</div>
           </div>
           <!-- <div class="abc">
+            <a href="javascript:;" id="test">
+              <div>测</div>
+            </a>
+            <div>测试</div>
+          </div> -->
+          <!-- <div class="abc">
             <a href="javascript:;" id="importExpression">
               <div>导</div>
             </a>
@@ -163,12 +170,23 @@
               <div><button type="button" id="setSave">保存</button></div>
               <div><button type="button" id="setRe">重置</button></div>
             </div> -->
-
+            <!-- <div><button type="button" id="reBmAvatar">重置底部备选头像列表</button></div> -->
           </div>
           <div class="right width100">
             <div class="topBox">
-              <button type="button" id="selectAll" class="topDelete"><span class="topDeleteSpan">全选</span></button>
-              <button type="button" id="reSelectAll" class="topDelete"><span class="topDeleteSpan">反选</span></button>
+              <div class="">
+                <button type="button" id="drop-down" class="topDelete">
+                  <span class="topDeleteSpan">......</span>
+                </button>
+                <div class="disNoneD dufgdusybvcis">
+                  <button type="button" id="selectAll" class="topDelete"><span class="topDeleteSpan">全选</span></button>
+                  <button type="button" id="reSelectAll" class="topDelete"><span
+                      class="topDeleteSpan">反选</span></button>
+                  <button type="button" id="intervalSelection" class="topDelete"><span
+                      class="topDeleteSpan">区间选</span></button>
+                </div>
+              </div>
+
               <button type="button" id="delAll" class="topDelete"><span class="topDeleteSpan">删除</span></button>
               <button type="button" id="delOne" class="topDelete"><span class="topDeleteSpan">删除上一句</span></button>
             </div>
@@ -176,9 +194,9 @@
               <!-- 聊天区域 -->
               <div id="can" style="width: 100%;height: 100%;">
                 <div id="box" ref="picture">
-                  
 
-                  
+                 
+
 
                 </div>
               </div>
@@ -222,7 +240,7 @@
             <div class="bottomImgs">
             </div>
             <div class="bxhjc" id="qh">
-              <img src="/images/箭头左右.png" alt="" srcset="" class="bxhjcImg" >
+              <img src="/images/箭头左右.png" alt="" srcset="" class="bxhjcImg">
             </div>
           </div>
 
@@ -266,7 +284,7 @@
       </div>
     </div>
   </div>
-  <div class="donut disNoneD"></div>
+  <div class="donut "></div>
 
 </body>
 

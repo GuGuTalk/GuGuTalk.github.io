@@ -25,14 +25,19 @@ async function setOption(options) {
 async function loadSetList() {
     var db = await openDB(gugutalk);
     var options = await getDataByKey(db, gugutalk, kqOptions);
-    if(options==undefined||options==" "){
-        var options = {
+    if (options == undefined) {
+        options = {
             guFont_size: "1.2",
             guBackColor: "rgb(207,207,206)",
             guAsideFont_size: "1.1",
-            loadImg_scale: "1"
+            loadImg_scale: "1",
+            uploadImg_scale: "0.2"
         }
-        await addData(db,gugutalk,options,kqOptions);
+        await addData(db, gugutalk, options, kqOptions);
+    }
+    if (options.uploadImg_scale == undefined) {
+        options.uploadImg_scale="0.2";
+        await updateDB(db, gugutalk, options, kqOptions);
     }
     closeDB(db);
     return options;
@@ -56,8 +61,24 @@ async function updateAvatar(AvatarOptions) {
 async function LoadAvatar() {
     var db = await openDB(gugutalk)
     var opt = await getDataByKey(db, gugutalk, kqAvatar);
+
     closeDB(db);
     return opt;
+}
+async function test() {
+    var db = await openDB(gugutalk);
+    var a = [undefined];
+    await addData(db, gugutalk, a, kqAvatar);
+    await updateDB(db, gugutalk, a, kqOptions);
+    closeDB(db);
+}
+/**
+ * 删除底部备选头像列表
+ */
+async function DeleteAvatar() {
+    var db = await openDB(gugutalk);
+    await deleteDB(db, gugutalk, kqAvatar);
+    closeDB(db)
 }
 /**
  * 删除角色副本-同步
@@ -358,7 +379,8 @@ async function deleteBoxArrayChild(id, cid) {
 async function insertTalk(boxjson) {
     var db = await openDB(gugutalk);
     var temp = await getDataByKey(db, gugutalk, tempJson);
-    await updateDB(db, gugutalk, boxjson, tempJson);
+    temp.boxJson = boxjson;
+    await updateDB(db, gugutalk, temp, tempJson);
     // var previousArray = new Array();
     // var afterArray = new Array();
     // for (let i = 0; i < temp.boxJson.length; i++) {
